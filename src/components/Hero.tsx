@@ -26,9 +26,9 @@ export function Hero() {
     <section 
       id="home" 
       ref={containerRef}
-      className="relative min-h-screen flex flex-col items-center justify-center pt-32 md:pt-48 pb-20 overflow-hidden bg-background"
+      className="relative min-h-screen flex flex-col items-center justify-center pt-40 md:pt-56 pb-20 overflow-hidden bg-background"
     >
-      {/* Dynamic Spatial Grid - subtle motion */}
+      {/* Dynamic Spatial Grid */}
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
         <div 
           className="absolute inset-0 data-grid" 
@@ -41,70 +41,82 @@ export function Hero() {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center">
-          {/* System Status HUD - Positioned to avoid Navbar collision */}
-          <div className={`mb-8 md:mb-12 flex items-center gap-4 md:gap-8 px-4 md:px-8 py-2 md:py-3 bg-white/[0.02] border-x border-primary/40 transition-all duration-1000 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-            <Layers size={14} className="text-secondary animate-pulse" />
-            <div className="h-4 w-[1px] bg-white/10" />
-            <span className="text-[7px] md:text-[9px] font-mono font-black tracking-[0.2em] md:tracking-[0.5em] text-white uppercase whitespace-nowrap">
-              ACCESS_GRANTED // NODE_ID: R-01
-            </span>
-            <div className="flex gap-1.5 hidden sm:flex">
-              <div className="w-1.5 h-1.5 bg-primary shadow-[0_0_10px_rgba(130,26,252,1)]" />
-              <div className="w-1.5 h-1.5 bg-primary/30" />
+          
+          {/* Welcome Message Protocol */}
+          <div className={`mb-4 md:mb-6 transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
+            <div className="flex items-center gap-3">
+              <span className="w-2 h-[1px] bg-primary animate-pulse" />
+              <span className="text-[8px] md:text-[10px] font-mono text-primary/60 uppercase tracking-[0.5em] font-black">
+                WELCOME_USER // INITIALIZING_NEURAL_LINK
+              </span>
+              <span className="w-2 h-[1px] bg-primary animate-pulse" />
             </div>
           </div>
 
-          {/* Kinetic Title Interface */}
+          {/* System Status HUD Bar */}
+          <div className={`mb-10 md:mb-16 flex items-center gap-4 md:gap-8 px-5 md:px-10 py-2.5 bg-white/[0.02] border border-white/5 transition-all duration-1000 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+            <div className="flex items-center gap-3">
+              <Activity size={12} className="text-secondary animate-pulse" />
+              <span className="text-[7px] md:text-[9px] font-mono font-black tracking-[0.3em] text-white/40 uppercase">
+                ACCESS_GRANTED
+              </span>
+            </div>
+            <div className="h-4 w-[1px] bg-white/10" />
+            <span className="text-[7px] md:text-[9px] font-mono font-black tracking-[0.3em] text-primary uppercase">
+              NODE_ID: R-01 // STABLE
+            </span>
+          </div>
+
+          {/* Kinetic Title Interface - NAME IN ONE LINE */}
           <div 
-            className="relative mb-8 md:mb-12 text-center"
+            className="relative mb-12 md:mb-20 text-center"
             style={{ 
               transform: `perspective(1000px) rotateY(${coords.x * 0.03}deg) rotateX(${coords.y * -0.03}deg)`,
               transition: 'transform 0.2s ease-out'
             }}
           >
-            <h1 className={`text-4xl sm:text-6xl md:text-7xl lg:text-9xl font-headline font-black leading-[0.8] tracking-tighter transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <span className="block text-white glow-text mb-2">ROHITH</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_auto] animate-gradient-x">YP</span>
+            <h1 className={`text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-headline font-black tracking-tighter transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <span className="text-white glow-text">ROHITH </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_auto] animate-gradient-x">YP</span>
             </h1>
 
-            {/* Tagline */}
-            <div className={`mt-8 md:mt-10 transition-all duration-1000 delay-200 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
-              <div className="inline-flex items-center gap-4 px-4 py-1 border border-white/5 bg-white/[0.01]">
+            {/* Tactical Brackets */}
+            <div className="absolute -top-6 -left-6 md:-top-12 md:-left-12 w-10 h-10 md:w-24 md:h-24 border-t-2 border-l-2 border-primary/20" />
+            <div className="absolute -bottom-6 -right-6 md:-bottom-12 md:-right-12 w-10 h-10 md:w-24 md:h-24 border-b-2 border-r-2 border-secondary/20" />
+          </div>
+
+          {/* Tagline & Technical Subtext */}
+          <div className={`max-w-4xl text-center transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="mb-10 flex flex-col items-center">
+              <div className="inline-flex items-center gap-4 px-6 py-2 border-x border-white/10 bg-white/[0.01] mb-6">
                 <div className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
-                <span className="text-[8px] md:text-[10px] font-mono font-bold tracking-[0.3em] md:tracking-[0.6em] text-white/60 uppercase">
+                <span className="text-[9px] md:text-xs font-mono font-bold tracking-[0.4em] text-white/80 uppercase">
                   NEURAL_INTERFACE // DISTRIBUTED_INTELLIGENCE
                 </span>
               </div>
+              
+              <p className="text-sm md:text-2xl text-white/30 font-light leading-snug tracking-tight uppercase">
+                <span className="text-white font-bold">AIML Engineering Architect</span><br />
+                Synthesizing Next-Gen Web Ecosystems.
+              </p>
             </div>
-
-            {/* Tactical Brackets */}
-            <div className="absolute -top-4 -left-4 md:-top-10 md:-left-10 w-8 h-8 md:w-20 md:h-20 border-t-2 border-l-2 border-primary/30" />
-            <div className="absolute -bottom-4 -right-4 md:-bottom-10 md:-right-10 w-8 h-8 md:w-20 md:h-20 border-b-2 border-r-2 border-secondary/30" />
-          </div>
-
-          {/* Technical Subtext */}
-          <div className={`max-w-3xl text-center transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <p className="text-xs md:text-xl text-white/30 font-light leading-snug mb-10 md:mb-16 tracking-tight px-4 uppercase">
-              <span className="text-white font-bold">AIML Engineering Architect</span><br className="hidden md:block" />
-              Synthesizing Next-Gen Web Ecosystems.
-            </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-8 w-full sm:w-auto px-4">
               <a 
                 href="#projects" 
-                className="group relative w-full sm:w-auto px-8 md:px-14 py-4 md:py-6 bg-primary text-white font-black tracking-[0.2em] text-[9px] md:text-[10px] uppercase overflow-hidden transition-all hover:scale-105 active:scale-95 text-center"
+                className="group relative w-full sm:w-auto px-10 md:px-16 py-5 md:py-7 bg-primary text-white font-black tracking-[0.3em] text-[10px] uppercase overflow-hidden transition-all hover:scale-105 active:scale-95 text-center"
               >
-                <div className="relative z-10 flex items-center justify-center gap-3 md:gap-4">
-                  INITIALIZE_CORE <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
+                <div className="relative z-10 flex items-center justify-center gap-4">
+                  INITIALIZE_CORE <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
               </a>
               
               <a 
                 href="#contact" 
-                className="group w-full sm:w-auto px-8 md:px-14 py-4 md:py-6 border border-white/10 text-white/40 font-black tracking-[0.2em] text-[9px] md:text-[10px] uppercase hover:bg-white/5 hover:text-white transition-all flex items-center justify-center gap-3 md:gap-4 text-center"
+                className="group w-full sm:w-auto px-10 md:px-16 py-5 md:py-7 border border-white/10 text-white/40 font-black tracking-[0.3em] text-[10px] uppercase hover:bg-white/5 hover:text-white transition-all flex items-center justify-center gap-4 text-center"
               >
-                <Terminal size={14} className="text-secondary" />
+                <Terminal size={16} className="text-secondary" />
                 <span>CMD_PROMPT</span>
               </a>
             </div>
@@ -113,19 +125,20 @@ export function Hero() {
       </div>
 
       {/* Persistent Technical Telemetry */}
-      <div className="absolute bottom-6 left-6 font-mono text-[8px] text-white/10 space-y-1.5 hidden lg:block">
+      <div className="absolute bottom-10 left-10 font-mono text-[9px] text-white/10 space-y-2 hidden lg:block">
         <div className="flex items-center gap-3">
-          <div className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.5)]" />
+          <div className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
           <span className="tracking-[0.2em]">NETWORK_SYNC: OPTIMAL</span>
         </div>
         <p className="tracking-[0.1em]">SPATIAL_X: {coords.x.toFixed(2)}</p>
         <p className="tracking-[0.1em]">SPATIAL_Y: {coords.y.toFixed(2)}</p>
+        <p className="tracking-[0.1em]">CORE_TEMP: 32.4°C</p>
       </div>
 
-      <div className="absolute top-1/2 right-6 -translate-y-1/2 hidden 2xl:flex flex-col gap-8 opacity-20">
-        <Share2 size={18} className="hover:text-primary cursor-pointer transition-all hover:scale-110" />
-        <Shield size={18} className="hover:text-primary cursor-pointer transition-all hover:scale-110" />
-        <Activity size={18} className="hover:text-primary cursor-pointer transition-all hover:scale-110" />
+      <div className="absolute top-1/2 right-10 -translate-y-1/2 hidden 2xl:flex flex-col gap-10 opacity-20">
+        <Share2 size={20} className="hover:text-primary cursor-pointer transition-all hover:scale-110" />
+        <Shield size={20} className="hover:text-primary cursor-pointer transition-all hover:scale-110" />
+        <Activity size={20} className="hover:text-primary cursor-pointer transition-all hover:scale-110" />
       </div>
     </section>
   );
