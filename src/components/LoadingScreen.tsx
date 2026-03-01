@@ -175,14 +175,14 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
 
       {/* Cinematic HUD Overlays */}
       <div className="absolute top-10 left-10 text-[10px] font-mono text-white/10 space-y-2 hidden sm:block">
-        <p className="flex items-center gap-2"><div className="w-1 h-1 bg-primary" /> COORDINATES: 12.9716° N, 77.5946° E</p>
-        <p className="flex items-center gap-2"><div className="w-1 h-1 bg-white/10" /> NODE_STATUS: INITIALIZING_V5</p>
+        <div className="flex items-center gap-2"><div className="w-1 h-1 bg-primary" /> COORDINATES: 12.9716° N, 77.5946° E</div>
+        <div className="flex items-center gap-2"><div className="w-1 h-1 bg-white/10" /> NODE_STATUS: INITIALIZING_V5</div>
       </div>
 
       <div className="absolute bottom-10 left-10 text-[9px] font-mono text-white/10 space-y-1 hidden sm:block">
-        <p>SYSTEM: NEURAL_ARCH_OS</p>
-        <p>ENCRYPTION: AES_256_ACTIVE</p>
-        <p>PROTOCOL: SYNC_V5</p>
+        <div>SYSTEM: NEURAL_ARCH_OS</div>
+        <div>ENCRYPTION: AES_256_ACTIVE</div>
+        <div>PROTOCOL: SYNC_V5</div>
       </div>
 
       <div className="absolute bottom-10 right-10 text-[10px] font-mono text-white/20 text-right space-y-2">
