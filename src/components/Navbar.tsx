@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Terminal } from 'lucide-react';
+import { Menu, X, Terminal, Cpu, Activity } from 'lucide-react';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,89 +23,125 @@ export function Navbar() {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'py-3 bg-black/80 backdrop-blur-xl border-b border-white/5' : 'py-5 bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${isScrolled ? 'py-3 bg-black/80 backdrop-blur-2xl border-b border-primary/20 shadow-[0_4px_30px_rgba(0,0,0,0.5)]' : 'py-6 bg-transparent'}`}>
+      {/* Scanning Line Indicator */}
+      {isScrolled && <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent animate-pulse" />}
+      
       <div className="container mx-auto px-6 flex items-center justify-between">
         
         {/* Left Side: Neural Brand Node */}
         <a href="#home" className="flex items-center gap-4 group">
-          <div className="w-10 h-10 bg-primary flex items-center justify-center text-white font-black text-xl shadow-[0_0_20px_rgba(130,26,252,0.3)] transition-transform group-hover:scale-105">
-            R
+          <div className="relative">
+            <div className="w-11 h-11 bg-primary flex items-center justify-center text-white font-black text-2xl shadow-[0_0_20px_rgba(130,26,252,0.4)] transition-all group-hover:scale-110 group-hover:rotate-3">
+              R
+            </div>
+            <div className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(16,185,129,1)]" />
           </div>
           <div className="flex flex-col">
-            <span className="text-[9px] font-mono font-black text-primary leading-tight uppercase tracking-[0.2em]">NEURAL_NODE</span>
-            <span className="text-sm font-headline font-black text-white uppercase tracking-tighter leading-none">ROHITH YP</span>
+            <div className="flex items-center gap-2">
+              <Activity size={10} className="text-primary animate-pulse" />
+              <span className="text-[8px] font-mono font-black text-primary leading-tight uppercase tracking-[0.3em]">SYSTEM_STABLE</span>
+            </div>
+            <span className="text-base font-headline font-black text-white uppercase tracking-tighter leading-none group-hover:text-primary transition-colors">ROHITH YP</span>
           </div>
         </a>
 
         {/* Desktop Navigation: Protocol Based */}
-        <div className="hidden lg:flex items-center gap-10">
+        <div className="hidden lg:flex items-center gap-12">
           <div className="flex items-center gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="group relative flex items-baseline gap-1.5 transition-all"
+                className="group relative flex items-baseline gap-2 py-1"
               >
-                <span className="text-[7px] font-mono font-bold text-primary opacity-60 group-hover:opacity-100 transition-opacity">
+                <span className="text-[7px] font-mono font-bold text-primary/60 group-hover:text-primary transition-colors">
                   {link.id}
                 </span>
-                <span className="text-[10px] font-mono font-black text-white/50 group-hover:text-white uppercase tracking-[0.2em] transition-colors">
+                <span className="text-[11px] font-mono font-black text-white/40 group-hover:text-white uppercase tracking-[0.2em] transition-all group-hover:translate-x-1">
                   {link.name}
                 </span>
-                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all duration-300 group-hover:w-full" />
+                {/* Tactical Underline */}
+                <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary group-hover:w-full transition-all duration-500 ease-out shadow-[0_0_10px_rgba(130,26,252,0.8)]" />
+                <div className="absolute -bottom-1 right-0 w-0 h-[2px] bg-secondary group-hover:w-1/3 transition-all duration-700 ease-out delay-100" />
               </a>
             ))}
           </div>
 
-          {/* Separator & Tactical Button */}
+          {/* HUD Separator & Action Node */}
           <div className="flex items-center gap-8 ml-4">
-            <div className="h-4 w-[1px] bg-white/10" />
+            <div className="h-6 w-[1px] bg-white/10 relative">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-primary/20 rounded-full" />
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-secondary/20 rounded-full" />
+            </div>
             <a 
               href="#contact" 
-              className="px-8 py-2.5 border border-primary/30 text-[10px] font-mono font-black text-primary uppercase hover:bg-primary/10 hover:border-primary transition-all tracking-[0.4em] shadow-[0_0_15px_rgba(130,26,252,0.1)]"
+              className="group relative px-8 py-3 overflow-hidden border border-primary/30"
             >
-              SYNC_NOW
+              <div className="relative z-10 flex items-center gap-3">
+                <Cpu size={14} className="text-secondary group-hover:rotate-180 transition-transform duration-700" />
+                <span className="text-[10px] font-mono font-black text-primary uppercase tracking-[0.4em] group-hover:text-white transition-colors">SYNC_PROTOCOL</span>
+              </div>
+              <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+              <div className="absolute -inset-1 bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
             </a>
           </div>
         </div>
 
-        {/* Mobile Toggle */}
+        {/* Mobile Toggle Interface */}
         <button 
-          className="lg:hidden w-10 h-10 flex items-center justify-center text-white bg-white/5 border border-white/10"
+          className={`lg:hidden w-12 h-12 flex flex-col items-center justify-center gap-1.5 border transition-all ${isMobileMenuOpen ? 'border-primary bg-primary/10' : 'border-white/10 bg-white/5'}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          <div className={`h-[2px] bg-white transition-all duration-300 ${isMobileMenuOpen ? 'w-6 rotate-45 translate-y-[8px]' : 'w-6'}`} />
+          <div className={`h-[2px] bg-white transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : 'w-4'}`} />
+          <div className={`h-[2px] bg-white transition-all duration-300 ${isMobileMenuOpen ? 'w-6 -rotate-45 -translate-y-[8px]' : 'w-6'}`} />
         </button>
       </div>
 
-      {/* Mobile Menu Interface */}
-      <div className={`lg:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-2xl border-b border-white/10 transition-all duration-500 overflow-hidden ${isMobileMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
-        <div className="flex flex-col p-8 gap-6">
-          {navLinks.map((link) => (
+      {/* Mobile Terminal Overlay */}
+      <div className={`lg:hidden fixed inset-0 top-[72px] bg-black/95 backdrop-blur-3xl transition-all duration-700 ease-in-out ${isMobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}>
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03] data-grid" />
+        
+        <div className="flex flex-col p-10 gap-8 relative z-10 h-full justify-center">
+          <div className="mb-8">
+            <div className="text-[9px] font-mono text-primary/40 uppercase tracking-[0.5em] mb-2">Navigation_Nodes</div>
+            <div className="h-[1px] w-full bg-gradient-to-r from-primary/30 to-transparent" />
+          </div>
+
+          {navLinks.map((link, idx) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setIsMobileMenuOpen(false)}
               className="flex items-center justify-between group"
+              style={{ transitionDelay: `${idx * 100}ms` }}
             >
-              <div className="flex items-center gap-4">
-                <span className="text-[10px] font-mono text-primary/40 font-bold">{link.id}</span>
-                <span className="text-lg font-headline font-black text-white/60 group-hover:text-primary uppercase tracking-tighter transition-colors">
+              <div className="flex items-center gap-6">
+                <span className="text-[12px] font-mono text-primary/40 font-bold group-hover:text-primary transition-colors">{link.id}</span>
+                <span className="text-3xl font-headline font-black text-white/40 group-hover:text-white group-hover:translate-x-4 transition-all uppercase tracking-tighter">
                   {link.name}
                 </span>
               </div>
-              <Terminal size={14} className="opacity-0 group-hover:opacity-100 transition-opacity text-primary" />
+              <Terminal size={18} className="opacity-0 group-hover:opacity-100 transition-all text-primary -translate-x-4 group-hover:translate-x-0" />
             </a>
           ))}
-          <a 
-            href="#contact" 
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="mt-4 w-full py-4 border border-primary text-primary text-center font-black tracking-[0.4em] text-[10px] uppercase bg-primary/5 hover:bg-primary hover:text-white transition-all shadow-[0_0_30px_rgba(130,26,252,0.1)]"
-          >
-            ESTABLISH_LINK
-          </a>
+
+          <div className="mt-auto space-y-6">
+            <div className="h-[1px] w-full bg-gradient-to-l from-secondary/30 to-transparent" />
+            <a 
+              href="#contact" 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="w-full py-5 border border-primary text-primary text-center font-black tracking-[0.5em] text-[12px] uppercase bg-primary/5 relative group overflow-hidden"
+            >
+              <span className="relative z-10">INITIALIZE_HANDSHAKE</span>
+              <div className="absolute inset-0 bg-primary -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+            </a>
+          </div>
         </div>
-        <div className="scanning-line opacity-10" />
+        
+        {/* HUD Scanning Line */}
+        <div className="scanning-line opacity-20" />
       </div>
     </nav>
   );
