@@ -4,38 +4,38 @@
 
 @layer base {
   :root {
-    /* Deep Navy/Purple Background: #14121C */
-    --background: 250 20% 9%;
+    /* Deep Space Black: #050508 */
+    --background: 240 30% 2%;
     --foreground: 0 0% 98%;
     
-    --card: 250 22% 12%;
+    --card: 240 25% 6%;
     --card-foreground: 0 0% 98%;
     
-    --popover: 250 20% 9%;
+    --popover: 240 30% 4%;
     --popover-foreground: 0 0% 98%;
     
-    /* Neon Purple Accent: #821AFC */
-    --primary: 268 97% 55%;
+    /* Cyber Purple/Indigo: #6D28D9 */
+    --primary: 263 70% 50%;
     --primary-foreground: 0 0% 100%;
     
-    --secondary: 250 20% 15%;
+    --secondary: 240 20% 10%;
     --secondary-foreground: 0 0% 98%;
     
-    --muted: 250 20% 15%;
-    --muted-foreground: 250 10% 65%;
+    --muted: 240 20% 12%;
+    --muted-foreground: 240 10% 60%;
     
-    /* Bright Sky Blue: #9ECFFC */
-    --accent: 210 95% 80%;
-    --accent-foreground: 250 20% 9%;
+    /* Neon Cyan/Blue: #06B6D4 */
+    --accent: 188 90% 45%;
+    --accent-foreground: 240 30% 2%;
     
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
     
-    --border: 250 20% 20%;
-    --input: 250 20% 20%;
-    --ring: 268 97% 55%;
+    --border: 240 20% 15%;
+    --input: 240 20% 15%;
+    --ring: 263 70% 50%;
     
-    --radius: 1rem;
+    --radius: 0.5rem;
   }
 }
 
@@ -46,95 +46,92 @@
   body {
     @apply bg-background text-foreground font-body overflow-x-hidden selection:bg-primary/30 selection:text-primary;
     background-image: 
-      radial-gradient(circle at 50% -20%, hsla(268, 97%, 55%, 0.15), transparent 60%),
-      radial-gradient(circle at 0% 50%, hsla(210, 95%, 80%, 0.05), transparent 40%);
+      radial-gradient(circle at 50% -20%, hsla(263, 70%, 50%, 0.15), transparent 70%),
+      radial-gradient(circle at 100% 100%, hsla(188, 90%, 45%, 0.05), transparent 50%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 }
 
 @layer components {
-  .glass {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
+  .cyber-grid {
+    background-image: 
+      linear-gradient(to right, rgba(109, 40, 217, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(109, 40, 217, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+  }
+
+  .hud-corner {
+    @apply absolute w-4 h-4 border-primary/40 pointer-events-none;
   }
   
-  .glass-card {
-    @apply glass rounded-2xl transition-all duration-500 hover:border-primary/50 hover:bg-white/10;
+  .hud-corner-tl { @apply hud-corner top-0 left-0 border-t-2 border-l-2; }
+  .hud-corner-tr { @apply hud-corner top-0 right-0 border-t-2 border-r-2; }
+  .hud-corner-bl { @apply hud-corner bottom-0 left-0 border-b-2 border-l-2; }
+  .hud-corner-br { @apply hud-corner bottom-0 right-0 border-b-2 border-r-2; }
+
+  .neon-glow-purple {
+    box-shadow: 0 0 20px hsla(263, 70%, 50%, 0.2);
   }
 
-  .neon-text-purple {
-    text-shadow: 0 0 10px hsla(268, 97%, 55%, 0.5), 0 0 20px hsla(268, 97%, 55%, 0.3);
+  .neon-glow-cyan {
+    box-shadow: 0 0 20px hsla(188, 90%, 45%, 0.2);
   }
 
-  .neon-text-blue {
-    text-shadow: 0 0 10px hsla(210, 95%, 80%, 0.5), 0 0 20px hsla(210, 95%, 80%, 0.3);
+  .glitch-text {
+    position: relative;
+    display: inline-block;
   }
 
-  .neon-border-purple {
-    box-shadow: 0 0 15px hsla(268, 97%, 55%, 0.3), inset 0 0 15px hsla(268, 97%, 55%, 0.1);
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
   }
 
-  .grid-bg {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
+  .glitch-text::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff00c1;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+  }
+
+  .glitch-text::after {
+    left: -2px;
+    text-shadow: -2px 0 #00fff9;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
   }
 }
 
-@keyframes scan {
-  from { transform: translateY(-100vh); }
-  to { transform: translateY(100vh); }
+@keyframes glitch-anim {
+  0% { clip: rect(31px, 9999px, 94px, 0); }
+  20% { clip: rect(62px, 9999px, 42px, 0); }
+  40% { clip: rect(16px, 9999px, 78px, 0); }
+  60% { clip: rect(89px, 9999px, 13px, 0); }
+  80% { clip: rect(54px, 9999px, 91px, 0); }
+  100% { clip: rect(27px, 9999px, 56px, 0); }
 }
 
-@keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-  100% { transform: translate(0); }
+@keyframes glitch-anim2 {
+  0% { clip: rect(76px, 9999px, 23px, 0); }
+  20% { clip: rect(13px, 9999px, 98px, 0); }
+  40% { clip: rect(45px, 9999px, 34px, 0); }
+  60% { clip: rect(29px, 9999px, 87px, 0); }
+  80% { clip: rect(92px, 9999px, 11px, 0); }
+  100% { clip: rect(58px, 9999px, 49px, 0); }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+@keyframes scan-line {
+  0% { top: -100%; }
+  100% { top: 200%; }
 }
 
-@keyframes sweep {
-  0% { left: -100%; }
-  50% { left: 100%; }
-  100% { left: 100%; }
-}
-
-.animate-scan {
-  animation: scan 2.5s linear infinite;
-}
-
-.animate-glitch {
-  animation: glitch 0.3s cubic-bezier(.25,.46,.45,.94) infinite;
-}
-
-.animate-float {
-  animation: float 4s ease-in-out infinite;
-}
-
-.sweep-effect::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: none;
-}
-
-.sweep-effect:hover::after {
-  animation: sweep 0.8s ease-in-out forwards;
-}
-
-.perspective-1000 {
-  perspective: 1000px;
-}
-
-.preserve-3d {
-  transform-style: preserve-3d;
+.animate-scan-line {
+  animation: scan-line 4s linear infinite;
 }
