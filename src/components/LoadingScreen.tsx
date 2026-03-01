@@ -2,16 +2,31 @@
 
 import { useEffect, useState } from 'react';
 
+interface StreamProps {
+  left: string;
+  delay: string;
+  duration: string;
+}
+
 export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [isVisible, setIsVisible] = useState(true);
   const [progress, setProgress] = useState(0);
   const [log, setLog] = useState("");
-  const [sessionId, setSessionId] = useState("INIT_PENDING");
+  const [sessionId, setSessionId] = useState("");
+  const [streams, setStreams] = useState<StreamProps[]>([]);
 
   useEffect(() => {
-    // Prevent hydration error by generating random string only on client
+    // Prevent hydration error by generating client-side only values
     setSessionId(Math.random().toString(16).substring(2, 10).toUpperCase());
     
+    // Generate random properties for data streams only on client
+    const generatedStreams = Array.from({ length: 15 }).map((_, i) => ({
+      left: `${i * 7}%`,
+      delay: `${i * 0.3}s`,
+      duration: `${2 + Math.random() * 3}s`
+    }));
+    setStreams(generatedStreams);
+
     const logs = [
       "ESTABLISHING_NEURAL_LINK...",
       "SYNCING_SPATIAL_NODES...",
@@ -53,14 +68,14 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       
       {/* Falling Data Streams */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {Array.from({ length: 15 }).map((_, i) => (
+        {streams.map((stream, i) => (
           <div 
             key={i} 
             className="data-stream" 
             style={{ 
-              left: `${i * 7}%`, 
-              animationDelay: `${i * 0.3}s`,
-              animationDuration: `${2 + Math.random() * 3}s`,
+              left: stream.left, 
+              animationDelay: stream.delay,
+              animationDuration: stream.duration,
               height: '150px'
             }} 
           />
@@ -135,7 +150,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         <div className="flex items-center justify-end gap-2 text-primary">
           AUTH: <span className="font-bold">ADMIN_MASTER</span>
         </div>
-        <p className="opacity-40 uppercase">SID: {sessionId}</p>
+        <p className="opacity-40 uppercase">SID: {sessionId || "SYNCING..."}</p>
       </div>
 
       {/* Decorative Hud Lines */}
