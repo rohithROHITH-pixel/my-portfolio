@@ -23,16 +23,17 @@ export function About() {
   const [isFlipped, setIsFlipped] = useState(false);
   
   const codeSnippet = `// REQUISITION: HTML + CSS + JS
-const structure = "<html><section>...</section></html>";
-const styling = ".ui { color: electric-purple; }";
-const logic = "() => { animate_spatial_nodes(); }";
+const identity = "Rohith YP";
+const status = "2nd Year AIML Student";
+const focus = ["Performance", "Design", "Usability"];
 
 function build_modern_app() {
-  combine(structure, styling, logic);
-  deploy_to_cloud("WEB_OUTPUT_V4");
+  const code = manual_precision();
+  const enhanced = ai_assisted_logic(code);
+  deploy_to_cloud(enhanced);
 }
 
-// > STATUS: COMPILING_PILLARS
+// > STATUS: COMPILING_BIOGRAPHY
 // > READY_FOR_SYNTHESIS`;
 
   useEffect(() => {
@@ -59,7 +60,7 @@ function build_modern_app() {
       observer.disconnect();
       if (interval) clearInterval(interval);
     };
-  }, [isVisible]);
+  }, [isVisible, isVisible]);
 
   return (
     <section id="about" ref={sectionRef} className="py-16 md:py-32 relative bg-background overflow-hidden border-t border-white/5">
@@ -80,12 +81,12 @@ function build_modern_app() {
                   </div>
                   <div className="flex items-center gap-2 text-[8px] font-mono text-white/20 uppercase tracking-widest">
                     <Terminal size={10} />
-                    source_input.sh
+                    identity_protocol.ts
                   </div>
                 </div>
 
                 <div className="p-4 md:p-6 font-mono text-[10px] sm:text-xs md:text-sm leading-relaxed relative h-full overflow-y-auto scrollbar-hide">
-                  <div className="text-secondary/40 mb-2">/* Initializing_Handshake... */</div>
+                  <div className="text-secondary/40 mb-2">/* Initializing_Identity_Handshake... */</div>
                   <pre className="text-white/60 whitespace-pre-wrap break-words mb-6">
                     {typedCode}
                     <span className="inline-block w-1.5 h-4 bg-primary animate-pulse ml-1 align-middle" />
@@ -104,7 +105,7 @@ function build_modern_app() {
                 <div className="relative z-10 w-full h-full p-6 md:p-10 flex flex-col items-center justify-center animate-reveal-blur">
                   <div className="text-[9px] font-mono font-black text-primary uppercase tracking-[0.5em] mb-12 flex items-center gap-3">
                     <Activity size={10} className="animate-pulse" />
-                    Synthesis_Complete
+                    Architecture_Synthesis
                   </div>
 
                   {/* Three Pillars UI */}
@@ -137,7 +138,7 @@ function build_modern_app() {
                       </div>
                       <div className="text-left">
                         <div className="text-[7px] font-mono text-white/40 uppercase tracking-widest">Project_Status</div>
-                        <div className="text-xs md:text-sm font-black text-white tracking-tight uppercase">LIVE_WEB_OUTPUT</div>
+                        <div className="text-xs md:text-sm font-black text-white tracking-tight uppercase">MODERN_WEB_OUTPUT</div>
                       </div>
                     </div>
                     <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
@@ -158,7 +159,7 @@ function build_modern_app() {
             </div>
           </div>
 
-          {/* Simplified Bio Text */}
+          {/* Bio Text Column */}
           <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
             <div className="flex items-center gap-4 mb-6">
               <div className="w-8 md:w-16 h-[2px] bg-primary shadow-[0_0_10px_rgba(130,26,252,0.5)]" />
@@ -171,13 +172,19 @@ function build_modern_app() {
 
             <div className="space-y-6 md:space-y-10 text-sm md:text-base lg:text-lg text-white/40 font-light leading-relaxed">
               <p>
-                I am <span className="text-white font-bold">Rohith YP</span>. I specialize in combining the three pillars of web development—<span className="text-white">Structure, Design, and Logic</span>—into high-performance digital experiences.
+                I am <span className="text-white font-bold">Rohith YP</span>, a 2nd year AIML Engineering student and passionate web developer. 
+                I specialize in creating <span className="text-white">modern, responsive, and animated websites</span>.
               </p>
               
+              <p>
+                Currently fluent in frontend development and actively expanding my backend skills. 
+                I build projects using a powerful combination of <span className="text-primary font-bold">manual coding expertise</span> and <span className="text-secondary font-bold">AI-assisted productivity tools</span> to deliver high-quality and efficient solutions.
+              </p>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                 {[
-                  { icon: <Brain size={20} />, title: "Smart Logic", desc: "Complex functions made simple and fast" },
-                  { icon: <Cpu size={20} />, title: "Modern Stack", desc: "Using the best tools for 2025 standards" }
+                  { icon: <Brain size={20} />, title: "AIML Scholar", desc: "Applying engineering logic to complex web interfaces" },
+                  { icon: <Cpu size={20} />, title: "Hybrid Workflow", desc: "Synthesizing manual precision with AI efficiency" }
                 ].map((item, i) => (
                   <div key={i} className="tactical-panel p-5 md:p-8 border-white/5 hover:border-primary/40 transition-all group bg-white/[0.01]">
                     <div className="text-primary mb-3 md:mb-5 group-hover:scale-110 transition-transform">{item.icon}</div>
@@ -190,7 +197,7 @@ function build_modern_app() {
               <div className="p-6 md:p-10 border-l-4 border-secondary/40 bg-white/[0.01] relative overflow-hidden group">
                 <div className="absolute top-0 right-0 p-2 text-[7px] font-mono text-secondary opacity-40">MISSION_CONTROL</div>
                 <p className="italic text-white/70 relative z-10 text-base md:text-xl leading-snug">
-                  "I transform complex technical requirements into clean, beautiful, and intuitive web solutions."
+                  "My focus is on performance, design quality, and real-world usability."
                 </p>
               </div>
             </div>
