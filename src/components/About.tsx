@@ -1,44 +1,86 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
-import { Brain, Fingerprint, Radar, Layers } from 'lucide-react';
+import { Brain, Fingerprint, Radar, Layers, Terminal, Code2 } from 'lucide-react';
 
 export function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [typedCode, setTypedCode] = useState("");
+  const codeSnippet = `class RohithYP {
+  role = 'AIML_ARCHITECT';
+  node = 'IN_NODE_01';
+  
+  async synthesize() {
+    await this.neuralSync();
+    return "SYSTEM_ONLINE";
+  }
+}`;
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) setIsVisible(true);
     }, { threshold: 0.1 });
     if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
+    
+    // Typing animation effect
+    let i = 0;
+    const interval = setInterval(() => {
+      setTypedCode(codeSnippet.slice(0, i));
+      i++;
+      if (i > codeSnippet.length) clearInterval(interval);
+    }, 40);
+
+    return () => {
+      observer.disconnect();
+      clearInterval(interval);
+    };
   }, []);
 
   return (
     <section id="about" ref={sectionRef} className="py-20 md:py-32 relative bg-background overflow-hidden border-t border-white/5">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 items-center">
-          {/* Bio-Scan Profile */}
+          {/* Neural Terminal Interface */}
           <div className={`relative transition-all duration-1000 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-            <div className="relative tactical-panel p-1 md:p-2 aspect-[4/5] max-w-sm mx-auto lg:mx-0 group">
-              <img 
-                src="https://picsum.photos/seed/rohith-os/1200/1500" 
-                alt="System Administrator" 
-                className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-1000"
-                data-ai-hint="futuristic pilot portrait"
-              />
+            <div className="relative tactical-panel p-0 aspect-[4/5] max-w-sm mx-auto lg:mx-0 group overflow-hidden bg-black/40 border-primary/20">
+              {/* Terminal Header */}
+              <div className="bg-white/5 border-b border-white/10 p-3 flex items-center justify-between">
+                <div className="flex gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-red-500/40" />
+                  <div className="w-2 h-2 rounded-full bg-yellow-500/40" />
+                  <div className="w-2 h-2 rounded-full bg-emerald-500/40" />
+                </div>
+                <div className="flex items-center gap-2 text-[8px] font-mono text-white/20 uppercase tracking-widest">
+                  <Terminal size={10} />
+                  neural_core_init.ts
+                </div>
+              </div>
+
+              {/* Terminal Body with Typing Effect */}
+              <div className="p-6 font-mono text-xs md:text-sm leading-relaxed relative h-full">
+                <div className="text-secondary/60 mb-2">/* Initializing_Subject_Profile */</div>
+                <pre className="text-white/80 whitespace-pre-wrap">
+                  {typedCode}
+                  <span className="inline-block w-1.5 h-4 bg-primary animate-pulse ml-1 align-middle" />
+                </pre>
+
+                {/* Background Decor Layer */}
+                <div className="absolute bottom-10 right-0 opacity-10 pointer-events-none">
+                  <Code2 size={120} className="text-primary rotate-12" />
+                </div>
+              </div>
               
               {/* Scan Overlay */}
               <div className="absolute inset-0 pointer-events-none">
                 <div className="scanning-line" />
-                <div className="absolute top-4 left-4 p-2 md:p-4 bg-black/80 backdrop-blur-md border border-primary/20">
-                  <Fingerprint className="text-primary mb-1 md:mb-2 w-4 h-4 md:w-6 md:h-6" />
-                  <div className="text-[6px] md:text-[8px] font-mono text-white/40 uppercase tracking-tighter">Subject_ID: 966376</div>
+                <div className="absolute top-12 left-4 p-2 bg-black/80 backdrop-blur-md border border-primary/20">
+                  <Fingerprint className="text-primary mb-1 w-4 h-4" />
+                  <div className="text-[6px] font-mono text-white/40 uppercase">ID: 966376</div>
                 </div>
-                <div className="absolute bottom-4 right-4 p-2 md:p-4 bg-black/80 backdrop-blur-md border border-secondary/20">
-                  <Radar className="text-secondary animate-spin-slow w-4 h-4 md:w-6 md:h-6" />
-                  <div className="text-[6px] md:text-[8px] font-mono text-white/40 uppercase tracking-tighter">Loc: IN_NODE_01</div>
+                <div className="absolute bottom-4 right-4 p-2 bg-black/80 backdrop-blur-md border border-secondary/20">
+                  <Radar className="text-secondary animate-spin-slow w-4 h-4" />
+                  <div className="text-[6px] font-mono text-white/40 uppercase">SYNC_OK</div>
                 </div>
               </div>
             </div>
@@ -46,9 +88,9 @@ export function About() {
 
           {/* Technical Specifications */}
           <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
-            <div className="flex items-center gap-4 mb-6 md:mb-10">
+            <div className="flex items-center gap-4 mb-6">
               <div className="w-8 md:w-16 h-[2px] bg-primary" />
-              <span className="text-[9px] md:text-[11px] font-mono font-black tracking-[0.3em] md:tracking-[0.8em] text-primary uppercase">Bio_Processor</span>
+              <span className="text-[9px] md:text-[11px] font-mono font-black tracking-[0.3em] text-primary uppercase">Bio_Processor</span>
             </div>
             
             <h2 className="text-3xl sm:text-5xl md:text-7xl font-headline font-black text-white mb-6 md:mb-10 tracking-tighter uppercase leading-none">
