@@ -154,11 +154,11 @@ function build_digital_experience() {
 
             <div className="space-y-8 text-base md:text-lg text-slate-400 font-light leading-relaxed">
               <p>
-                I am <span className="text-white font-semibold">Rohith YP</span>, an AIML Engineering student and professional web developer dedicated to building high-performance digital solutions.
+                I am <span className="text-white font-semibold">Rohith YP</span>, a 2nd year AIML Engineering student and passionate web developer dedicated to building high-performance digital solutions.
               </p>
               
               <p>
-                I specialize in creating <span className="text-white">responsive, interactive, and beautifully animated</span> websites. By combining traditional engineering logic with modern design patterns, I deliver results that are fast, clean, and reliable.
+                I specialize in creating <span className="text-white">modern, responsive, and beautifully animated</span> websites. By combining traditional engineering logic with modern design patterns, I deliver results that are fast, clean, and reliable.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -176,7 +176,7 @@ function build_digital_experience() {
 
               <div className="p-8 border-l-2 border-primary/40 bg-slate-900/30 rounded-r-2xl">
                 <p className="italic text-slate-300 text-lg">
-                  "I focus on performance, professional design, and creating experiences that actually work for users."
+                  "I focus on performance, design quality, and real-world usability."
                 </p>
               </div>
             </div>
