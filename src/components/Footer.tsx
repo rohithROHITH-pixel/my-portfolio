@@ -17,7 +17,7 @@ export function Footer() {
           {[
             { icon: <Github size={20} />, href: "https://github.com/rohithROHITH-pixel" },
             { icon: <Linkedin size={20} />, href: "https://www.linkedin.com/in/rohith-y-p-a4588132b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
-            { icon: <Instagram size={20} />, href: "#" },
+            { icon: <Instagram size={20} />, href: "https://www.instagram.com/rohith__r11?igsh=MXJydzVzNnNraGdyZw==" },
           ].map((social, idx) => (
             <a 
               key={idx}
