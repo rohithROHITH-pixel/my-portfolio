@@ -2,75 +2,73 @@
 
 import { Layout, Server, Cpu, Brain, Database, Globe, Layers, Zap } from 'lucide-react';
 
-const skills = [
-  { name: 'Neural Frontend', icon: <Layout />, items: ['Next.js 15', 'TypeScript', 'Tailwind', 'Motion UI'], color: 'primary' },
-  { name: 'Logic Cluster', icon: <Server />, items: ['Node.js', 'Firebase', 'PostgreSQL', 'Cloud Ops'], color: 'accent' },
-  { name: 'Intelligence', icon: <Brain />, items: ['Gemini AI', 'Genkit', 'Neural Nets', 'Prompt Eng'], color: 'primary' },
-  { name: 'System Hardware', icon: <Cpu />, items: ['Performance', 'SEO Arch', 'Vercel Node', 'Security'], color: 'accent' },
+const skillNodes = [
+  { name: 'NEURAL FRONTEND', icon: <Layout />, items: ['Next.js 15', 'TypeScript', 'Tailwind', 'Spatial UI'], id: 'NODE_01' },
+  { name: 'LOGIC CLUSTER', icon: <Server />, items: ['Node.js', 'Firebase', 'PostgreSQL', 'Cloud Architecture'], id: 'NODE_02' },
+  { name: 'INTELLIGENCE', icon: <Brain />, items: ['Gemini AI', 'Genkit', 'Prompt Engineering', 'RAG Flows'], id: 'NODE_03' },
+  { name: 'CORE HARDWARE', icon: <Cpu />, items: ['Performance Opt', 'SEO Synthesis', 'Vercel Edge', 'Security Protocols'], id: 'NODE_04' },
 ];
 
 export function Skills() {
   return (
-    <section id="skills" className="py-32 relative overflow-hidden bg-black/40">
-      {/* Background Grid Accent */}
-      <div className="absolute inset-0 pointer-events-none opacity-20">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
-      </div>
+    <section id="skills" className="py-32 relative overflow-hidden bg-[#050508]">
+      {/* HUD Accent lines */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
 
       <div className="container mx-auto px-6">
-        <div className="mb-20 text-center">
-          <div className="inline-block px-4 py-1 border border-white/10 mb-6 bg-white/5">
-            <span className="text-[10px] font-mono tracking-[0.4em] uppercase text-muted-foreground">Tech Stack Efficiency: 98.4%</span>
+        <div className="mb-24 text-center">
+          <div className="inline-block px-6 py-1.5 border border-white/10 mb-8 bg-white/[0.02]">
+            <span className="text-[10px] font-mono tracking-[0.8em] uppercase text-white/40">Efficiency_Metric: 99.4%</span>
           </div>
-          <h2 className="text-5xl md:text-7xl font-headline font-bold text-white tracking-tighter">CAPABILITIES</h2>
+          <h2 className="text-6xl md:text-9xl font-headline font-bold text-white tracking-tighter opacity-10 absolute left-1/2 -translate-x-1/2 top-0 select-none">ARCHITECTURE</h2>
+          <h2 className="text-5xl md:text-8xl font-headline font-bold text-white tracking-tighter relative z-10">CAPABILITIES</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {skills.map((skill, idx) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {skillNodes.map((node, idx) => (
             <div 
-              key={skill.name}
-              className="group relative p-10 cyber-panel border-white/5 hover:border-primary/40 transition-all duration-500"
+              key={node.name}
+              className="group relative p-12 neural-panel border-white/5 hover:border-primary/40 transition-all duration-700 hover:translate-y-[-8px]"
             >
-              {/* Animation Scanning Effect */}
+              {/* Dynamic Scanning Line */}
               <div className="absolute top-0 left-0 w-full h-1 bg-primary/40 opacity-0 group-hover:opacity-100 group-hover:animate-scan-h" />
 
-              <div className={`w-14 h-14 rounded-sm flex items-center justify-center mb-8 border transition-all duration-500 ${skill.color === 'primary' ? 'border-primary/20 text-primary group-hover:bg-primary group-hover:text-white group-hover:neon-glow-purple' : 'border-accent/20 text-accent group-hover:bg-accent group-hover:text-black group-hover:neon-glow-cyan'}`}>
-                {skill.icon}
+              <div className="w-16 h-16 flex items-center justify-center mb-12 border border-white/10 group-hover:border-primary/40 group-hover:text-primary transition-all duration-500 rounded-sm bg-white/[0.02]">
+                {node.icon}
               </div>
 
-              <h3 className="text-lg font-bold text-white mb-6 tracking-wide group-hover:translate-x-1 transition-transform">{skill.name}</h3>
+              <h3 className="text-xl font-headline font-bold text-white mb-8 tracking-wide group-hover:translate-x-2 transition-transform">{node.name}</h3>
               
-              <ul className="space-y-4">
-                {skill.items.map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-xs font-medium text-muted-foreground group-hover:text-white/80 transition-all">
-                    <div className={`w-1 h-1 rounded-full ${skill.color === 'primary' ? 'bg-primary' : 'bg-accent'}`} />
+              <ul className="space-y-5">
+                {node.items.map((item) => (
+                  <li key={item} className="flex items-center gap-4 text-sm font-medium text-white/40 group-hover:text-white transition-all">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary/40 group-hover:bg-primary transition-colors" />
                     {item}
                   </li>
                 ))}
               </ul>
 
-              {/* Technical ID Label */}
-              <div className="absolute top-4 right-4 text-[8px] font-mono text-white/10 uppercase">
-                NODE_SKL_0{idx}
+              <div className="absolute bottom-6 right-6 text-[9px] font-mono text-white/10 uppercase font-bold tracking-[0.2em]">
+                {node.id}
               </div>
             </div>
           ))}
         </div>
 
-        {/* Bottom Hardware Info */}
-        <div className="mt-20 flex flex-wrap items-center justify-center gap-12 border-t border-white/5 pt-12">
+        {/* Global Network Stats */}
+        <div className="mt-24 flex flex-wrap items-center justify-center gap-16 border-t border-white/5 pt-16">
           {[
-            { label: 'Latency', value: '14ms', icon: <Zap size={14} /> },
-            { label: 'Availability', value: '99.9%', icon: <Database size={14} /> },
-            { label: 'Uptime', value: '365d', icon: <Layers size={14} /> },
-            { label: 'Global Reach', value: '128 Nodes', icon: <Globe size={14} /> },
+            { label: 'Latency', value: '14.2ms', icon: <Zap size={14} /> },
+            { label: 'Database', value: 'Distributed', icon: <Database size={14} /> },
+            { label: 'Uptime', value: '365_Days', icon: <Layers size={14} /> },
+            { label: 'Coverage', value: 'Global', icon: <Globe size={14} /> },
           ].map((stat) => (
-            <div key={stat.label} className="flex items-center gap-4 text-muted-foreground">
-              <div className="text-primary">{stat.icon}</div>
+            <div key={stat.label} className="flex items-center gap-5 group">
+              <div className="text-primary group-hover:scale-110 transition-transform">{stat.icon}</div>
               <div>
-                <p className="text-[10px] uppercase font-bold tracking-widest">{stat.label}</p>
-                <p className="text-white font-mono">{stat.value}</p>
+                <p className="text-[10px] uppercase font-bold tracking-[0.4em] text-white/30 mb-1">{stat.label}</p>
+                <p className="text-white font-mono text-lg tracking-tight">{stat.value}</p>
               </div>
             </div>
           ))}
