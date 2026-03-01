@@ -15,14 +15,17 @@ const serviceNodes = [
       "Basic Interactivity",
       "5-7 Static Sectors"
     ],
-    accent: "emerald"
+    accentColor: "emerald-400",
+    hoverBg: "hover:bg-emerald-500/10",
+    hoverBorder: "hover:border-emerald-500/50",
+    glowColor: "shadow-emerald-500/20"
   },
   {
     title: "MODERN NEURAL NODE",
     price: "₹6,000",
     id: "SRV_02",
     popular: true,
-    icon: <Zap className="text-accent" size={28} />,
+    icon: <Zap className="text-secondary" size={28} />,
     features: [
       "Everything in Basic",
       "Neural Transitions",
@@ -30,7 +33,10 @@ const serviceNodes = [
       "Fluid Spatial Motion",
       "Performance Optimized"
     ],
-    accent: "accent"
+    accentColor: "secondary",
+    hoverBg: "hover:bg-secondary/10",
+    hoverBorder: "hover:border-secondary/50",
+    glowColor: "shadow-secondary/20"
   },
   {
     title: "PREMIUM 3D NODE",
@@ -44,7 +50,10 @@ const serviceNodes = [
       "Full Brand Immersion",
       "Priority Protocol"
     ],
-    accent: "primary"
+    accentColor: "primary",
+    hoverBg: "hover:bg-primary/10",
+    hoverBorder: "hover:border-primary/50",
+    glowColor: "shadow-primary/20"
   }
 ];
 
@@ -67,7 +76,9 @@ export function Services() {
           {serviceNodes.map((node, idx) => (
             <div 
               key={idx}
-              className={`relative group tactical-panel p-8 md:p-12 flex flex-col transition-all duration-700 hover:scale-[1.02] ${node.popular ? 'border-primary/40 bg-white/[0.03] ring-1 ring-primary/20' : 'border-white/5'}`}
+              className={`relative group tactical-panel p-8 md:p-12 flex flex-col transition-all duration-700 hover:scale-[1.02] ${
+                node.popular ? 'border-primary/40 bg-white/[0.03] ring-1 ring-primary/20' : 'border-white/5 bg-black/40'
+              }`}
             >
               {node.popular && (
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-primary text-white text-[8px] font-bold px-5 py-1.5 rounded-full uppercase tracking-[0.3em] shadow-[0_0_20px_rgba(130,26,252,0.4)]">
@@ -76,7 +87,7 @@ export function Services() {
               )}
 
               <div className="mb-10">
-                <div className="mb-5 opacity-60 group-hover:opacity-100 transition-opacity">{node.icon}</div>
+                <div className="mb-5 transition-transform duration-500 group-hover:scale-110">{node.icon}</div>
                 <h3 className="text-xl md:text-2xl font-headline font-bold text-white mb-3 tracking-tight">{node.title}</h3>
                 <div className="flex items-baseline gap-2">
                   <span className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">{node.price}</span>
@@ -87,7 +98,11 @@ export function Services() {
               <div className="space-y-4 md:space-y-6 mb-12 flex-grow">
                 {node.features.map((feature, fIdx) => (
                   <div key={fIdx} className="flex items-center gap-3 group/item">
-                    <div className={`w-1 h-1 rounded-full ${node.accent === 'primary' ? 'bg-primary' : node.accent === 'accent' ? 'bg-accent' : 'bg-emerald-400'}`} />
+                    <div className={`w-1 h-1 rounded-full ${
+                      node.accentColor === 'primary' ? 'bg-primary' : 
+                      node.accentColor === 'secondary' ? 'bg-secondary' : 
+                      'bg-emerald-400'
+                    } transition-all group-hover:scale-150`} />
                     <span className="text-[11px] md:text-sm text-white/40 group-hover/item:text-white transition-colors">{feature}</span>
                   </div>
                 ))}
@@ -95,14 +110,14 @@ export function Services() {
 
               <a 
                 href="#contact" 
-                className={`w-full py-4 md:py-5 rounded-none text-center font-bold tracking-[0.2em] md:tracking-[0.3em] text-[9px] md:text-[10px] uppercase transition-all duration-500 relative overflow-hidden ${
+                className={`w-full py-4 md:py-5 rounded-none text-center font-bold tracking-[0.2em] md:tracking-[0.3em] text-[9px] md:text-[10px] uppercase transition-all duration-500 relative overflow-hidden shadow-lg ${
                   node.popular 
-                    ? 'bg-primary text-white' 
-                    : 'bg-white/5 border border-white/10 text-white hover:bg-white/10'
+                    ? 'bg-primary text-white hover:bg-primary/80 shadow-primary/20' 
+                    : `bg-white/5 border border-white/10 text-white/60 hover:text-white ${node.hoverBg} ${node.hoverBorder} ${node.glowColor}`
                 }`}
               >
-                INITIALIZE_SYNC
-                <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-0 transition-transform duration-700" />
+                <span className="relative z-10">INITIALIZE_SYNC</span>
+                <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-700" />
               </a>
 
               <div className="absolute top-5 right-5 text-[7px] font-mono text-white/5 font-bold tracking-widest uppercase">
