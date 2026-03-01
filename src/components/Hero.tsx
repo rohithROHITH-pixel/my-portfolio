@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from 'react';
-import { ArrowRight, Terminal, Cpu, Shield, Activity, Share2 } from 'lucide-react';
+import { ArrowRight, Terminal, Cpu, Shield, Activity, Share2, Layers } from 'lucide-react';
 
 export function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -14,8 +14,8 @@ export function Hero() {
       if (!containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
       setCoords({
-        x: ((e.clientX - rect.left) / rect.width - 0.5) * 40,
-        y: ((e.clientY - rect.top) / rect.height - 0.5) * 40
+        x: ((e.clientX - rect.left) / rect.width - 0.5) * 60,
+        y: ((e.clientY - rect.top) / rect.height - 0.5) * 60
       });
     };
     window.addEventListener('mousemove', handleMove);
@@ -28,74 +28,85 @@ export function Hero() {
       ref={containerRef}
       className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-background"
     >
-      {/* Background Perspective Grid */}
+      {/* Dynamic Spatial Grid */}
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-        <div className="absolute inset-0 data-grid" />
+        <div 
+          className="absolute inset-0 data-grid" 
+          style={{ 
+            transform: `perspective(1200px) rotateX(${coords.y * 0.1}deg) rotateY(${coords.x * -0.1}deg) translateY(-200px)`,
+            transition: 'transform 0.1s ease-out'
+          }}
+        />
       </div>
 
-      {/* Floating UI Elements */}
-      <div className="absolute top-1/4 left-10 animate-spatial hidden lg:block">
-        <div className="tactical-panel p-4 border-primary/20 bg-black/40">
-          <Activity size={20} className="text-primary mb-2" />
-          <div className="w-12 h-1 bg-primary/20" />
+      {/* Floating HUD Artifacts */}
+      <div className="absolute top-1/4 left-20 animate-spatial hidden xl:block pointer-events-none">
+        <div className="tactical-panel p-6 border-primary/20 bg-black/40 rotate-12">
+          <Activity size={24} className="text-primary mb-4" />
+          <div className="space-y-2">
+            <div className="w-16 h-[2px] bg-primary/40" />
+            <div className="w-8 h-[2px] bg-primary/20" />
+          </div>
+          <p className="mt-8 text-[8px] font-mono text-white/20 uppercase tracking-widest">Core_Signal: Active</p>
         </div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center">
-          {/* Header HUD */}
-          <div className={`mb-16 flex items-center gap-6 px-8 py-3 bg-white/[0.02] border-x border-primary/30 transition-all duration-1000 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
-            <Cpu size={14} className="text-secondary animate-pulse" />
-            <span className="text-[10px] font-mono font-black tracking-[0.5em] text-white uppercase">
-              System_Authorized // Access_Granted
+          {/* System Status HUD */}
+          <div className={`mb-20 flex items-center gap-8 px-10 py-4 bg-white/[0.02] border-x border-primary/40 transition-all duration-1000 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+            <Layers size={14} className="text-secondary animate-pulse" />
+            <div className="h-4 w-[1px] bg-white/10" />
+            <span className="text-[10px] font-mono font-black tracking-[0.6em] text-white uppercase">
+              Neural_Architecture_V4 // Node_01_Secure
             </span>
-            <div className="flex gap-1">
-              <div className="w-1 h-1 bg-primary" />
-              <div className="w-1 h-1 bg-primary/40" />
+            <div className="flex gap-1.5">
+              <div className="w-1.5 h-1.5 bg-primary shadow-[0_0_10px_rgba(130,26,252,1)]" />
+              <div className="w-1.5 h-1.5 bg-primary/30" />
             </div>
           </div>
 
-          {/* Main Title Interface */}
+          {/* Kinetic Title Interface */}
           <div 
-            className="relative mb-16 text-center"
+            className="relative mb-20 text-center"
             style={{ 
-              transform: `perspective(1000px) rotateY(${coords.x * 0.1}deg) rotateX(${coords.y * -0.1}deg)`,
+              transform: `perspective(1000px) rotateY(${coords.x * 0.05}deg) rotateX(${coords.y * -0.05}deg)`,
               transition: 'transform 0.1s ease-out'
             }}
           >
-            <h1 className={`text-8xl md:text-[14rem] font-headline font-black leading-[0.8] tracking-tighter transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <span className="block text-white glow-text">ROHITH</span>
+            <h1 className={`text-8xl md:text-[16rem] font-headline font-black leading-[0.75] tracking-tighter transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
+              <span className="block text-white glow-text mb-4">ROHITH</span>
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_auto] animate-gradient-x">YP</span>
             </h1>
 
-            {/* Corner Brackets */}
-            <div className="absolute -top-10 -left-10 w-20 h-20 border-t-2 border-l-2 border-primary/40" />
-            <div className="absolute -bottom-10 -right-10 w-20 h-20 border-b-2 border-r-2 border-secondary/40" />
+            {/* Tactical Brackets */}
+            <div className="absolute -top-16 -left-16 w-32 h-32 border-t-2 border-l-2 border-primary/40" />
+            <div className="absolute -bottom-16 -right-16 w-32 h-32 border-b-2 border-r-2 border-secondary/40" />
           </div>
 
-          {/* Subtitle Interface */}
-          <div className={`max-w-4xl text-center transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <p className="text-xl md:text-3xl text-white/40 font-light leading-tight mb-16 tracking-tight">
+          {/* Technical Subtext */}
+          <div className={`max-w-5xl text-center transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <p className="text-xl md:text-4xl text-white/30 font-light leading-tight mb-20 tracking-tight">
               <span className="text-white font-bold">AIML ENGINEERING ARCHITECT</span><br />
               Synthesizing Neural Interfaces & Distributed Intelligence.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-12">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-16">
               <a 
                 href="#projects" 
-                className="group relative px-20 py-8 bg-primary text-white font-black tracking-[0.3em] text-[12px] uppercase overflow-hidden transition-all hover:scale-105"
+                className="group relative px-24 py-10 bg-primary text-white font-black tracking-[0.4em] text-[12px] uppercase overflow-hidden transition-all hover:scale-105 active:scale-95"
               >
-                <div className="relative z-10 flex items-center gap-4">
-                  INITIALIZE_CORE <ArrowRight size={16} className="group-hover:translate-x-3 transition-transform" />
+                <div className="relative z-10 flex items-center gap-6">
+                  INITIALIZE_CORE <ArrowRight size={18} className="group-hover:translate-x-4 transition-transform" />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
               </a>
               
               <a 
                 href="#contact" 
-                className="group px-20 py-8 border border-white/10 text-white/60 font-black tracking-[0.3em] text-[12px] uppercase hover:bg-white/5 hover:text-white transition-all flex items-center gap-4"
+                className="group px-24 py-10 border border-white/10 text-white/40 font-black tracking-[0.4em] text-[12px] uppercase hover:bg-white/5 hover:text-white transition-all flex items-center gap-6"
               >
-                <Terminal size={16} className="text-secondary" />
+                <Terminal size={18} className="text-secondary" />
                 <span>CMD_PROMPT</span>
               </a>
             </div>
@@ -103,20 +114,21 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Persistent Data Metrics */}
-      <div className="absolute bottom-12 left-12 font-mono text-[10px] text-white/10 space-y-2 hidden lg:block">
-        <div className="flex items-center gap-3">
-          <div className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-          <span>NETWORK_SYNC: STABLE</span>
+      {/* Persistent Technical Telemetry */}
+      <div className="absolute bottom-16 left-16 font-mono text-[10px] text-white/10 space-y-3 hidden lg:block">
+        <div className="flex items-center gap-4">
+          <div className="w-3 h-3 rounded-full bg-secondary animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
+          <span className="tracking-[0.2em]">NETWORK_SYNC: OPTIMAL</span>
         </div>
-        <p>LATENCY: 0.0004MS</p>
-        <p>COORDS: {coords.x.toFixed(4)}, {coords.y.toFixed(4)}</p>
+        <p className="tracking-[0.1em]">LATENCY_PING: 0.00042MS</p>
+        <p className="tracking-[0.1em]">SPATIAL_X: {coords.x.toFixed(4)}</p>
+        <p className="tracking-[0.1em]">SPATIAL_Y: {coords.y.toFixed(4)}</p>
       </div>
 
-      <div className="absolute top-1/2 right-12 -translate-y-1/2 hidden lg:flex flex-col gap-8 opacity-20">
-        <Share2 size={20} className="hover:text-primary cursor-pointer transition-colors" />
-        <Shield size={20} className="hover:text-primary cursor-pointer transition-colors" />
-        <Activity size={20} className="hover:text-primary cursor-pointer transition-colors" />
+      <div className="absolute top-1/2 right-16 -translate-y-1/2 hidden lg:flex flex-col gap-12 opacity-20">
+        <Share2 size={24} className="hover:text-primary cursor-pointer transition-all hover:scale-110" />
+        <Shield size={24} className="hover:text-primary cursor-pointer transition-all hover:scale-110" />
+        <Activity size={24} className="hover:text-primary cursor-pointer transition-all hover:scale-110" />
       </div>
     </section>
   );
