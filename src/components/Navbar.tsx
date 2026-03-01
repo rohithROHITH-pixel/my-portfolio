@@ -68,7 +68,7 @@ export function Navbar() {
                 href={link.href}
                 className="group relative flex items-center gap-2 py-1 px-3"
               >
-                {/* Protocol Brackets */}
+                {/* Protocol Brackets - Appearing on hover */}
                 <span className="absolute left-0 top-0 text-primary opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0 font-mono text-[10px]">[</span>
                 <span className="absolute right-0 top-0 text-primary opacity-0 group-hover:opacity-100 transition-all translate-x-2 group-hover:translate-x-0 font-mono text-[10px]">]</span>
                 
