@@ -13,7 +13,10 @@ import {
   ArrowDown,
   Globe,
   Cpu,
-  Brain
+  Brain,
+  Smartphone,
+  MousePointer2,
+  Sparkles
 } from 'lucide-react';
 
 export function About() {
@@ -60,7 +63,7 @@ function build_modern_app() {
       observer.disconnect();
       if (interval) clearInterval(interval);
     };
-  }, [isVisible, isVisible]);
+  }, [isVisible]);
 
   return (
     <section id="about" ref={sectionRef} className="py-16 md:py-32 relative bg-background overflow-hidden border-t border-white/5">
@@ -98,59 +101,59 @@ function build_modern_app() {
                 </div>
               </div>
 
-              {/* BACK SIDE: The Three Pillars Visualization */}
+              {/* BACK SIDE: Feature Output Synthesis */}
               <div className="absolute inset-0 backface-hidden rotate-y-180 tactical-panel p-0 bg-black border-primary shadow-[0_0_50px_rgba(130,26,252,0.4)] overflow-hidden flex flex-col items-center justify-center">
                 <div className="absolute top-0 left-0 w-full h-full opacity-10 data-grid" />
                 
-                <div className="relative z-10 w-full h-full p-6 md:p-10 flex flex-col items-center justify-center animate-reveal-blur">
-                  <div className="text-[9px] font-mono font-black text-primary uppercase tracking-[0.5em] mb-12 flex items-center gap-3">
+                <div className="relative z-10 w-full h-full p-4 md:p-8 flex flex-col items-center justify-center">
+                  <div className="text-[9px] font-mono font-black text-primary uppercase tracking-[0.5em] mb-8 flex items-center gap-3">
                     <Activity size={10} className="animate-pulse" />
-                    Architecture_Synthesis
+                    Synthesis_Output
                   </div>
 
-                  {/* Three Pillars UI */}
-                  <div className="grid grid-cols-3 gap-4 md:gap-8 mb-12 w-full max-w-sm">
+                  {/* Three Pillars UI (Smaller) */}
+                  <div className="grid grid-cols-3 gap-3 md:gap-6 mb-8 w-full max-w-sm">
                     {[
-                      { icon: <Code2 size={24} />, label: "HTML", color: "text-red-500", desc: "STRUCTURE" },
-                      { icon: <Palette size={24} />, label: "CSS", color: "text-primary", desc: "DESIGN" },
-                      { icon: <Zap size={24} />, label: "JS", color: "text-secondary", desc: "LOGIC" }
+                      { icon: <Code2 size={18} />, label: "HTML", color: "text-red-500" },
+                      { icon: <Palette size={18} />, label: "CSS", color: "text-primary" },
+                      { icon: <Zap size={18} />, label: "JS", color: "text-secondary" }
                     ].map((pillar, i) => (
-                      <div key={i} className="flex flex-col items-center text-center group">
-                        <div className={`w-12 h-12 md:w-16 md:h-16 rounded-none border border-white/10 bg-white/[0.02] flex items-center justify-center mb-3 group-hover:border-white/30 transition-all ${pillar.color}`}>
+                      <div key={i} className="flex flex-col items-center text-center">
+                        <div className={`w-10 h-10 md:w-12 md:h-12 rounded-none border border-white/10 bg-white/[0.02] flex items-center justify-center mb-2 ${pillar.color}`}>
                           {pillar.icon}
                         </div>
-                        <div className="text-[10px] font-black text-white tracking-widest mb-1">{pillar.label}</div>
-                        <div className="text-[6px] font-mono text-white/30 uppercase tracking-[0.2em]">{pillar.desc}</div>
+                        <div className="text-[9px] font-black text-white tracking-widest">{pillar.label}</div>
                       </div>
                     ))}
                   </div>
 
-                  {/* Connecting Arrow */}
-                  <div className="flex flex-col items-center gap-2 mb-10 opacity-30 animate-bounce">
-                    <ArrowDown size={16} className="text-white" />
+                  {/* Connecting Transition */}
+                  <div className="flex flex-col items-center gap-2 mb-6 opacity-30 animate-bounce">
+                    <ArrowDown size={14} className="text-white" />
                   </div>
 
-                  {/* Final Output Node */}
-                  <div className="w-full max-w-xs p-5 md:p-8 bg-white/[0.03] border border-white/10 relative group overflow-hidden">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-10 h-10 bg-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                        <Globe size={20} />
+                  {/* Features Display Node */}
+                  <div className="w-full max-w-sm grid grid-cols-2 gap-2">
+                    {[
+                      { icon: <Globe size={14} />, title: "MODERN INTERFACES", desc: "Clean & Professional" },
+                      { icon: <Smartphone size={14} />, title: "RESPONSIVE", desc: "Multi-Device Layouts" },
+                      { icon: <Layers size={14} />, title: "ANIMATED", desc: "Fluid Motion Design" },
+                      { icon: <Sparkles size={14} />, title: "AI-ENHANCED", desc: "Efficient Solutions" }
+                    ].map((feature, i) => (
+                      <div key={i} className="p-3 bg-white/[0.03] border border-white/5 flex items-center gap-3">
+                        <div className="text-primary">{feature.icon}</div>
+                        <div className="text-left">
+                          <div className="text-[8px] font-black text-white leading-none mb-1 uppercase">{feature.title}</div>
+                          <div className="text-[6px] font-mono text-white/40 uppercase tracking-tighter">{feature.desc}</div>
+                        </div>
                       </div>
-                      <div className="text-left">
-                        <div className="text-[7px] font-mono text-white/40 uppercase tracking-widest">Project_Status</div>
-                        <div className="text-xs md:text-sm font-black text-white tracking-tight uppercase">MODERN_WEB_OUTPUT</div>
-                      </div>
-                    </div>
-                    <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
-                      <div className="w-full h-full bg-gradient-to-r from-primary via-secondary to-primary animate-gradient-x" />
-                    </div>
-                    <div className="mt-3 text-[7px] font-mono text-primary/60 uppercase tracking-widest">Optimal_Performance_Reached</div>
-                    
-                    <div className="absolute top-2 right-2 flex gap-1">
-                      <div className="w-1 h-1 bg-emerald-500 animate-pulse" />
-                      <div className="w-1 h-1 bg-emerald-500/40" />
-                    </div>
+                    ))}
                   </div>
+
+                  <div className="mt-8 w-full max-w-xs h-1 bg-white/5 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary animate-gradient-x" />
+                  </div>
+                  <div className="mt-2 text-[7px] font-mono text-primary/60 uppercase tracking-widest animate-pulse">Optimal_System_Ready</div>
                 </div>
 
                 <div className="scanning-line opacity-40" />
