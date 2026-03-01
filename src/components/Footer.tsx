@@ -16,7 +16,7 @@ export function Footer() {
         <div className="flex items-center gap-4">
           {[
             { icon: <Github size={20} />, href: "https://github.com/rohithROHITH-pixel" },
-            { icon: <Linkedin size={20} />, href: "#" },
+            { icon: <Linkedin size={20} />, href: "https://www.linkedin.com/in/rohith-y-p-a4588132b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
             { icon: <Twitter size={20} />, href: "#" },
             { icon: <Instagram size={20} />, href: "#" },
           ].map((social, idx) => (
