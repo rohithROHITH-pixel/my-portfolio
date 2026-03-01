@@ -20,7 +20,7 @@ const projects = [
     status: "ACTIVE",
     category: "GEOSPATIAL_REAL_ESTATE",
     description: "High-precision mapping interface for architectural visualization and asset management.",
-    link: "https://abhirambuilders.com/",
+    link: "https://home.abhirambuilders.com/",
     metrics: { latency: "45ms", uptime: "100%" },
     image: "https://picsum.photos/seed/build-final/1200/800"
   },
