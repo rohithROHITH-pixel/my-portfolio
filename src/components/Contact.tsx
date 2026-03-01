@@ -13,14 +13,14 @@ export function Contact() {
   }, []);
 
   return (
-    <section id="contact" className="py-24 md:py-40 relative overflow-hidden border-t border-white/5 bg-black/40">
+    <section id="contact" className="py-24 md:py-40 relative overflow-hidden border-t border-white/5 bg-black">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-32 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-32 items-start">
           
           {/* Left Content: Narrative Header */}
-          <div className="animate-slide-up">
+          <div className="animate-slide-up lg:sticky lg:top-32">
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-12 h-[2px] bg-primary" />
+              <div className="w-12 h-[2px] bg-primary shadow-[0_0_10px_rgba(130,26,252,0.5)]" />
               <span className="text-[10px] font-mono font-black tracking-[0.5em] text-primary uppercase">Link_Interface</span>
             </div>
             
@@ -29,7 +29,7 @@ export function Contact() {
             </h2>
             
             <p className="text-lg md:text-xl text-white/40 font-light leading-relaxed mb-12 max-w-md">
-              Initialize a high-priority communication protocol. Open for neural node collaborations, architectural requests, or technical consultation.
+              Initialize a high-priority communication protocol. Open for neural node collaborations or architectural requests.
             </p>
             
             <div className="hidden lg:block space-y-6">
@@ -41,110 +41,109 @@ export function Contact() {
             </div>
           </div>
 
-          {/* Right Content: Secure Comms Hub */}
+          {/* Right Content: Refined HUD Terminal (Matches Reference Image) */}
           <div className="animate-slide-up [animation-delay:0.3s]">
-            <div className="relative w-full aspect-square md:aspect-[4/5] lg:aspect-square max-w-xl mx-auto lg:ml-auto group perspective-1000">
+            <div className="relative w-full max-w-xl mx-auto lg:ml-auto">
               
               {/* Main HUD Container */}
-              <div className="w-full h-full bg-black border-l-2 border-primary tactical-panel p-0 relative overflow-hidden shadow-[0_0_80px_rgba(130,26,252,0.15)]">
+              <div className="w-full bg-[#050508] border border-white/5 relative overflow-hidden shadow-[0_0_100px_rgba(0,0,0,1)]">
                 
-                {/* Background Grid Layer */}
-                <div className="absolute inset-0 opacity-10 data-grid" />
-                
-                {/* Scanning Line Overlay */}
-                <div className="scanning-line opacity-20" />
-
-                <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-between z-10">
-                  
-                  {/* Top Header Section */}
-                  <div className="space-y-6">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded bg-primary/10 flex items-center justify-center">
-                          <ShieldCheck size={18} className="text-primary" />
-                        </div>
-                        <span className="text-[11px] font-mono font-black text-primary tracking-[0.4em] uppercase">COMM_NODE_V4.0</span>
-                      </div>
-                      <div className="flex gap-1.5">
-                        <div className="w-1.5 h-1.5 bg-primary animate-pulse" />
-                        <div className="w-1.5 h-1.5 bg-primary/30" />
-                        <div className="w-1.5 h-1.5 bg-primary/10" />
-                      </div>
+                {/* Header Section */}
+                <div className="p-6 md:p-8 flex items-center justify-between border-b border-white/5">
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded bg-white/[0.03] border border-white/10 flex items-center justify-center">
+                      <ShieldCheck size={20} className="text-primary" />
                     </div>
-                    <div className="h-[1px] w-full bg-white/10" />
+                    <span className="text-[11px] md:text-xs font-mono font-bold text-white/90 tracking-[0.4em] uppercase">COMM_NODE_V4.0</span>
                   </div>
-
-                  {/* Contact Protocol Nodes */}
-                  <div className="space-y-6 md:space-y-10">
-                    {/* Phone Protocol */}
-                    <div className="group/item relative">
-                      <p className="text-[9px] font-mono text-white/20 uppercase tracking-[0.4em] mb-3">Protocol_Voice</p>
-                      <div className="flex items-center justify-between p-6 bg-white/[0.02] border border-white/5 group-hover/item:border-primary/40 transition-all">
-                        <div className="flex items-center gap-6">
-                          <div className="w-12 h-12 rounded-full border border-primary/20 flex items-center justify-center text-primary group-hover/item:bg-primary/10 transition-all">
-                            <Phone size={20} />
-                          </div>
-                          <div className="text-xl md:text-3xl font-bold text-white tracking-tighter">+91 9663761192</div>
-                        </div>
-                        <a href="tel:+919663761192" className="p-3 hover:bg-primary/20 rounded-sm text-primary transition-all">
-                          <ExternalLink size={16} />
-                        </a>
-                      </div>
-                    </div>
-
-                    {/* Email Protocol */}
-                    <div className="group/item relative">
-                      <p className="text-[9px] font-mono text-white/20 uppercase tracking-[0.4em] mb-3">Protocol_Data</p>
-                      <div className="flex items-center justify-between p-6 bg-white/[0.02] border border-white/5 group-hover/item:border-secondary/40 transition-all">
-                        <div className="flex items-center gap-6">
-                          <div className="w-12 h-12 rounded-full border border-secondary/20 flex items-center justify-center text-secondary group-hover/item:bg-secondary/10 transition-all">
-                            <Mail size={20} />
-                          </div>
-                          <div className="text-sm md:text-xl font-bold text-white tracking-tight break-all">roopanrohith320@gmail.com</div>
-                        </div>
-                        <a href="mailto:roopanrohith320@gmail.com" className="p-3 hover:bg-secondary/20 rounded-sm text-secondary transition-all">
-                          <ExternalLink size={16} />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Bottom HUD Metadata */}
-                  <div className="pt-10 flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
-                    <div className="flex items-center gap-8">
-                      <div className="space-y-1">
-                        <p className="text-[7px] font-mono text-white/20 uppercase tracking-widest">Loc_Node</p>
-                        <p className="text-[10px] font-bold text-white/60">BANGALORE_IN</p>
-                      </div>
-                      <div className="w-[1px] h-6 bg-white/10" />
-                      <div className="space-y-1">
-                        <p className="text-[7px] font-mono text-white/20 uppercase tracking-widest">Time_Zone</p>
-                        <p className="text-[10px] font-bold text-white/60">IST_UTC+5:30</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex flex-col items-end gap-1 text-right">
-                      <div className="flex items-center gap-2">
-                        <Activity size={10} className="text-emerald-500 animate-pulse" />
-                        <span className="text-[8px] font-mono text-white/30 uppercase tracking-[0.3em]">Neural_Link_Active</span>
-                      </div>
-                      <div className="text-[7px] font-mono text-white/10 uppercase">Auth_Hash: {systemHash}</div>
-                    </div>
+                  <div className="flex gap-1.5 opacity-40">
+                    <div className="w-1.5 h-1.5 bg-primary" />
+                    <div className="w-1.5 h-1.5 bg-primary/60" />
+                    <div className="w-1.5 h-1.5 bg-primary/30" />
                   </div>
                 </div>
 
-                {/* Tactical HUD Decorative Brackets */}
-                <div className="absolute top-0 right-0 w-24 h-24 border-t border-r border-primary/20 pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-24 h-24 border-b border-l border-secondary/20 pointer-events-none" />
+                {/* Protocol Nodes Area */}
+                <div className="p-6 md:p-10 space-y-12">
+                  
+                  {/* Voice Protocol (Phone) */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-4">
+                      <span className="text-[8px] md:text-[9px] font-mono text-white/30 uppercase tracking-[0.4em]">Protocol_Voice</span>
+                      <div className="flex-grow h-[1px] bg-white/5" />
+                    </div>
+                    
+                    <div className="relative group">
+                      <div className="flex items-center justify-between p-6 md:p-10 bg-white/[0.01] border border-white/5 transition-all hover:bg-white/[0.03] hover:border-primary/30">
+                        <div className="flex items-center gap-6 md:gap-10">
+                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-primary/20 flex items-center justify-center text-primary group-hover:scale-105 transition-transform bg-primary/5">
+                            <Phone size={24} className="md:size-32" />
+                          </div>
+                          <div className="space-y-1">
+                            <div className="text-2xl md:text-4xl lg:text-5xl font-bold text-white tracking-tighter">+91</div>
+                            <div className="text-2xl md:text-4xl lg:text-5xl font-bold text-white tracking-tighter">9663761192</div>
+                          </div>
+                        </div>
+                        <a href="tel:+919663761192" className="p-3 text-white/20 hover:text-primary transition-colors">
+                          <ExternalLink size={24} />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Data Protocol (Email) */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-4">
+                      <span className="text-[8px] md:text-[9px] font-mono text-white/30 uppercase tracking-[0.4em]">Protocol_Data</span>
+                      <div className="flex-grow h-[1px] bg-white/5" />
+                    </div>
+                    
+                    <div className="relative group">
+                      <div className="flex items-center justify-between p-6 md:p-10 bg-white/[0.01] border border-white/5 transition-all hover:bg-white/[0.03] hover:border-secondary/30">
+                        <div className="flex items-center gap-6 md:gap-10">
+                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-secondary/20 flex items-center justify-center text-secondary group-hover:scale-105 transition-transform bg-secondary/5">
+                            <Mail size={24} className="md:size-32" />
+                          </div>
+                          <div className="text-sm sm:text-lg md:text-2xl lg:text-3xl font-bold text-white tracking-tight break-all max-w-[150px] sm:max-w-xs">
+                            roopanrohith320@gmail.com
+                          </div>
+                        </div>
+                        <a href="mailto:roopanrohith320@gmail.com" className="p-3 text-white/20 hover:text-secondary transition-colors shrink-0">
+                          <ExternalLink size={24} />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* Bottom Metadata Layer */}
+                <div className="p-8 border-t border-white/5 bg-black/40 flex flex-wrap items-center justify-between gap-6">
+                  <div className="flex items-center gap-10">
+                    <div className="space-y-1">
+                      <p className="text-[7px] font-mono text-white/20 uppercase tracking-widest">Loc_Node</p>
+                      <p className="text-[10px] font-bold text-white/60">BANGALORE_IN</p>
+                    </div>
+                    <div className="w-[1px] h-6 bg-white/10" />
+                    <div className="space-y-1">
+                      <p className="text-[7px] font-mono text-white/20 uppercase tracking-widest">Neural_Sync</p>
+                      <p className="text-[10px] font-bold text-emerald-500/80 animate-pulse">OPTIMAL</p>
+                    </div>
+                  </div>
+                  
+                  <div className="text-[7px] font-mono text-white/10 uppercase tracking-[0.2em]">
+                    AUTH_HASH: {systemHash}
+                  </div>
+                </div>
+
+                {/* HUD Grid Overlay */}
+                <div className="absolute inset-0 pointer-events-none opacity-[0.03] data-grid" />
+                <div className="scanning-line opacity-[0.05]" />
               </div>
             </div>
           </div>
         </div>
       </div>
-      
-      {/* Background Spatial Element */}
-      <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-primary/5 blur-[200px] -translate-y-1/2 rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-secondary/5 blur-[150px] translate-y-1/2 rounded-full pointer-events-none" />
     </section>
   );
 }
