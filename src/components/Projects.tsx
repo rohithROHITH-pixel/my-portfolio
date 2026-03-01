@@ -1,8 +1,9 @@
-
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
 import { ExternalLink, Database, Shield } from 'lucide-react';
+import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const projects = [
   {
@@ -13,7 +14,8 @@ const projects = [
     description: "Enterprise-grade logistics training simulation with real-time neural feedback loops.",
     link: "https://sap-demou.vercel.app/",
     metrics: { latency: "12ms", uptime: "99.9%" },
-    image: "https://picsum.photos/seed/sap-final/1200/800"
+    image: PlaceHolderImages.find(img => img.id === 'sap-demo')?.imageUrl || "https://picsum.photos/seed/sap/1200/800",
+    hint: PlaceHolderImages.find(img => img.id === 'sap-demo')?.imageHint || "tech interface"
   },
   {
     id: '02',
@@ -23,7 +25,8 @@ const projects = [
     description: "High-precision mapping interface for architectural visualization and asset management.",
     link: "https://home.abhirambuilders.com/",
     metrics: { latency: "45ms", uptime: "100%" },
-    image: "https://picsum.photos/seed/build-final/1200/800"
+    image: PlaceHolderImages.find(img => img.id === 'abhiram-builders')?.imageUrl || "https://picsum.photos/seed/build/1200/800",
+    hint: PlaceHolderImages.find(img => img.id === 'abhiram-builders')?.imageHint || "real estate"
   },
   {
     id: '03',
@@ -33,7 +36,8 @@ const projects = [
     description: "Centralized hub for enterprise AI integration and automated workflow scaling.",
     link: "https://aisolutionsprivatelimited.com/",
     metrics: { latency: "8ms", uptime: "99.99%" },
-    image: "https://picsum.photos/seed/ai-final/1200/800"
+    image: PlaceHolderImages.find(img => img.id === 'ai-solutions')?.imageUrl || "https://picsum.photos/seed/ai/1200/800",
+    hint: PlaceHolderImages.find(img => img.id === 'ai-solutions')?.imageHint || "ai server"
   },
   {
     id: '04',
@@ -43,7 +47,8 @@ const projects = [
     description: "Modular platform for emerging tech nodes and startup lifecycle management.",
     link: "https://innosphere-azure.vercel.app/",
     metrics: { latency: "22ms", uptime: "99.8%" },
-    image: "https://picsum.photos/seed/inno-final/1200/800"
+    image: PlaceHolderImages.find(img => img.id === 'innosphere')?.imageUrl || "https://picsum.photos/seed/inno/1200/800",
+    hint: PlaceHolderImages.find(img => img.id === 'innosphere')?.imageHint || "modern office"
   },
   {
     id: '05',
@@ -53,7 +58,8 @@ const projects = [
     description: "Main corporate portal for Abhiram Builders, orchestrating structural excellence and architectural innovation.",
     link: "https://abhirambuilders.com/",
     metrics: { latency: "15ms", uptime: "100%" },
-    image: "https://picsum.photos/seed/corp-final/1200/800"
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&h=800&auto=format&fit=crop",
+    hint: "skyscraper office"
   }
 ];
 
@@ -89,7 +95,6 @@ export function Projects() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 md:gap-8">
-          {/* Navigation Terminal */}
           <div className="lg:col-span-4 flex lg:flex-col overflow-x-auto lg:overflow-visible gap-3 pb-3 lg:pb-0 scrollbar-hide">
             {projects.map((project, idx) => (
               <button
@@ -120,18 +125,17 @@ export function Projects() {
             ))}
           </div>
 
-          {/* Main Visual Terminal */}
           <div className="lg:col-span-8">
             <div className="tactical-panel aspect-square md:aspect-[16/9] relative group overflow-hidden border-white/10">
-              <img 
+              <Image 
                 src={projects[activeIdx].image} 
                 alt={projects[activeIdx].name}
-                className="w-full h-full object-cover grayscale brightness-50 group-hover:scale-105 transition-all duration-[2000ms]"
-                data-ai-hint="futuristic tech interface"
+                fill
+                className="object-cover grayscale brightness-50 group-hover:scale-105 transition-all duration-[2000ms]"
+                data-ai-hint={projects[activeIdx].hint}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
               
-              {/* HUD Content */}
               <div className="absolute inset-0 p-6 md:p-12 lg:p-16 flex flex-col justify-between">
                 <div className="flex justify-between items-start">
                   <div className="space-y-3 md:space-y-5">
@@ -162,7 +166,6 @@ export function Projects() {
                 </div>
               </div>
 
-              {/* Decorative HUD */}
               <div className="absolute top-0 right-0 w-12 h-12 md:w-24 border-t-2 border-r-2 border-primary/20 pointer-events-none" />
               <div className="absolute bottom-0 left-0 w-12 h-12 md:w-24 border-b-2 border-l-2 border-secondary/20 pointer-events-none" />
               <div className="scanning-line opacity-20" />

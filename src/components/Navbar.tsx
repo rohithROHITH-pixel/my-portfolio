@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Terminal, Cpu, Activity, Target, Zap } from 'lucide-react';
+import { Menu, X, Terminal, Activity, Target } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export function Navbar() {
@@ -14,7 +14,6 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Prevent scrolling when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -34,16 +33,14 @@ export function Navbar() {
 
   return (
     <>
-      {/* Mobile Menu Overlay - Full Screen Takeover */}
+      {/* Full-Screen Mobile Menu Overlay */}
       <div className={cn(
         "lg:hidden fixed inset-0 bg-black z-[100] transition-all duration-500 ease-in-out flex flex-col",
         isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
       )}>
-        {/* Background Decorative HUD */}
         <div className="absolute inset-0 pointer-events-none opacity-[0.05] data-grid" />
         <div className="scanning-line opacity-10" />
 
-        {/* Mobile Menu Header */}
         <div className="p-6 flex items-center justify-between border-b border-white/5 bg-white/[0.02]">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-primary/10 border border-primary/40 flex items-center justify-center text-primary font-black text-sm">R</div>
@@ -57,7 +54,6 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Navigation Links */}
         <div className="flex-grow flex flex-col p-8 gap-2 overflow-y-auto">
           {navLinks.map((link, idx) => (
             <a
@@ -78,7 +74,6 @@ export function Navbar() {
           ))}
         </div>
 
-        {/* Mobile Menu Footer */}
         <div className="p-8 border-t border-white/5 bg-black/40">
           <a 
             href="#contact" 
@@ -90,10 +85,11 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Main Floating Navbar */}
+      {/* Main Floating Navbar - Hides when mobile menu is open to prevent collisions */}
       <nav className={cn(
         "fixed left-1/2 -translate-x-1/2 z-[60] w-[95%] max-w-7xl transition-all duration-700",
-        isScrolled ? "top-4" : "top-8"
+        isScrolled ? "top-4" : "top-8",
+        isMobileMenuOpen ? "opacity-0 pointer-events-none" : "opacity-100"
       )}>
         <div className={cn(
           "relative flex items-center justify-between px-6 py-3 backdrop-blur-2xl border transition-all duration-500",
@@ -101,13 +97,11 @@ export function Navbar() {
             ? "bg-black/80 border-primary/30 shadow-[0_0_30px_rgba(130,26,252,0.15)]" 
             : "bg-black/40 border-white/10"
         )}>
-          {/* HUD Decorative Corners */}
           <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-primary/40" />
           <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-primary/40" />
           <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-secondary/40" />
           <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-secondary/40" />
 
-          {/* Left Side: System Core Node */}
           <a href="#home" className="flex items-center gap-4 group">
             <div className="relative">
               <div className="w-10 h-10 bg-primary/10 border border-primary/40 flex items-center justify-center text-primary font-black text-xl transition-all group-hover:scale-110 group-hover:rotate-12 group-hover:bg-primary/20">
@@ -123,7 +117,6 @@ export function Navbar() {
             </div>
           </a>
 
-          {/* Desktop Navigation: HUD Protocols */}
           <div className="hidden lg:flex items-center gap-8">
             <div className="flex items-center gap-6">
               {navLinks.map((link) => (
@@ -152,11 +145,10 @@ export function Navbar() {
             </a>
           </div>
 
-          {/* Mobile Toggle Button */}
           <button 
             className={cn(
               "lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 border transition-all",
-              isMobileMenuOpen ? "border-primary bg-primary/10" : "border-white/10 bg-white/5"
+              "border-white/10 bg-white/5"
             )}
             onClick={() => setIsMobileMenuOpen(true)}
           >
