@@ -70,6 +70,10 @@
     @apply absolute w-[1px] opacity-20;
     animation: stream-down 3s linear infinite;
   }
+
+  .glass-card {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/10 relative overflow-hidden;
+  }
 }
 
 @keyframes scan {
@@ -111,4 +115,13 @@
 }
 ::-webkit-scrollbar-thumb {
   @apply bg-primary/20 hover:bg-primary/50 transition-colors;
+}
+
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 15s ease infinite;
 }

@@ -9,6 +9,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [sessionId, setSessionId] = useState("INIT_PENDING");
 
   useEffect(() => {
+    // Prevent hydration error by generating random string only on client
     setSessionId(Math.random().toString(16).substring(2, 10).toUpperCase());
     
     const logs = [
@@ -63,18 +64,18 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         ))}
       </div>
       
-      <div className="w-full max-w-2xl px-12 relative z-10">
-        <div className="flex items-end justify-between mb-8">
+      <div className="w-full max-w-2xl px-8 md:px-12 relative z-10">
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-8 gap-4">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-4 h-4 bg-primary animate-pulse" />
               <h2 className="text-primary text-[10px] font-black tracking-[1em] uppercase">Tactical_Neural_OS</h2>
             </div>
-            <div className="text-6xl md:text-8xl font-headline font-black text-white tracking-tighter leading-none">
+            <div className="text-5xl md:text-8xl font-headline font-black text-white tracking-tighter leading-none">
               ROHITH <span className="text-primary/60">YP</span>
             </div>
           </div>
-          <div className="font-mono text-3xl text-primary font-black animate-pulse">
+          <div className="font-mono text-2xl md:text-3xl text-primary font-black animate-pulse self-end md:self-auto">
             {progress}%
           </div>
         </div>
@@ -88,14 +89,14 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         </div>
 
         {/* Dynamic Log Line */}
-        <div className="flex items-center gap-6 text-[10px] font-mono text-white/60 uppercase tracking-[0.5em] h-4">
-          <span className="w-1 h-full bg-secondary animate-bounce" />
-          {log}
+        <div className="flex items-center gap-4 md:gap-6 text-[8px] md:text-[10px] font-mono text-white/60 uppercase tracking-[0.2em] md:tracking-[0.5em] h-4">
+          <span className="w-1 h-full bg-secondary animate-bounce shrink-0" />
+          <span className="truncate">{log}</span>
         </div>
       </div>
 
       {/* Hardware Identifiers */}
-      <div className="absolute bottom-12 right-12 text-[10px] font-mono text-white/20 text-right space-y-2">
+      <div className="absolute bottom-12 right-12 text-[8px] md:text-[10px] font-mono text-white/20 text-right space-y-2 hidden sm:block">
         <p className="flex items-center justify-end gap-2">
           CORE_TEMP: <span className="text-emerald-400">OPTIMAL</span>
         </p>

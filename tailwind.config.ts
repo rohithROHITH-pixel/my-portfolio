@@ -71,12 +71,18 @@ export default {
           from: { transform: 'translateY(20px)', opacity: '0' },
           to: { transform: 'translateY(0)', opacity: '1' },
         },
+        'glitch-pulse': {
+          '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+          '50%': { opacity: '0.8', transform: 'scale(1.02)' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'reveal-blur': 'reveal-blur 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards',
         'slide-up': 'slide-up 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards',
+        'spin-slow': 'spin 8s linear infinite',
+        'glitch': 'glitch-pulse 2s infinite ease-in-out',
       },
     },
   },
