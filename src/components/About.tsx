@@ -7,15 +7,21 @@ export function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [typedCode, setTypedCode] = useState("");
-  const codeSnippet = `class RohithYP {
-  role = 'AIML_ARCHITECT';
-  node = 'IN_NODE_01';
   
-  async synthesize() {
-    await this.neuralSync();
-    return "SYSTEM_ONLINE";
-  }
-}`;
+  const codeSnippet = `// Initializing_Neural_Core...
+// Status: HANDSHAKE_OK
+// Target: SYSTEM_GUEST
+
+const init = async () => {
+  console.log("WELCOME TO MY PORTFOLIO");
+  await sync_neural_weights();
+  return "READY_FOR_EXPLORATION";
+};
+
+/* [SYSTEM_LOG] */
+// > SYNC_COMPLETE
+// > GREETING_ACTIVE
+// > "WELCOME TO MY PORTFOLIO"`;
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
@@ -23,19 +29,23 @@ export function About() {
     }, { threshold: 0.1 });
     if (sectionRef.current) observer.observe(sectionRef.current);
     
-    // Typing animation effect
+    // Typing animation effect starts when visible
     let i = 0;
-    const interval = setInterval(() => {
-      setTypedCode(codeSnippet.slice(0, i));
-      i++;
-      if (i > codeSnippet.length) clearInterval(interval);
-    }, 40);
+    let interval: NodeJS.Timeout;
+
+    if (isVisible) {
+      interval = setInterval(() => {
+        setTypedCode(codeSnippet.slice(0, i));
+        i++;
+        if (i > codeSnippet.length) clearInterval(interval);
+      }, 30);
+    }
 
     return () => {
       observer.disconnect();
-      clearInterval(interval);
+      if (interval) clearInterval(interval);
     };
-  }, []);
+  }, [isVisible]);
 
   return (
     <section id="about" ref={sectionRef} className="py-20 md:py-32 relative bg-background overflow-hidden border-t border-white/5">
@@ -43,7 +53,7 @@ export function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 items-center">
           {/* Neural Terminal Interface */}
           <div className={`relative transition-all duration-1000 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-            <div className="relative tactical-panel p-0 aspect-[4/5] max-w-sm mx-auto lg:mx-0 group overflow-hidden bg-black/40 border-primary/20">
+            <div className="relative tactical-panel p-0 aspect-square sm:aspect-[4/3] max-w-lg mx-auto lg:mx-0 group overflow-hidden bg-black/40 border-primary/20">
               {/* Terminal Header */}
               <div className="bg-white/5 border-b border-white/10 p-3 flex items-center justify-between">
                 <div className="flex gap-1.5">
@@ -53,14 +63,14 @@ export function About() {
                 </div>
                 <div className="flex items-center gap-2 text-[8px] font-mono text-white/20 uppercase tracking-widest">
                   <Terminal size={10} />
-                  neural_core_init.ts
+                  welcoming_sequence.ts
                 </div>
               </div>
 
               {/* Terminal Body with Typing Effect */}
-              <div className="p-6 font-mono text-xs md:text-sm leading-relaxed relative h-full">
-                <div className="text-secondary/60 mb-2">/* Initializing_Subject_Profile */</div>
-                <pre className="text-white/80 whitespace-pre-wrap">
+              <div className="p-4 md:p-6 font-mono text-[10px] sm:text-xs md:text-sm leading-relaxed relative h-full overflow-hidden">
+                <div className="text-secondary/60 mb-2">/* Execution_Thread_ID: {Math.random().toString(16).substring(2, 6).toUpperCase()} */</div>
+                <pre className="text-white/80 whitespace-pre-wrap break-words">
                   {typedCode}
                   <span className="inline-block w-1.5 h-4 bg-primary animate-pulse ml-1 align-middle" />
                 </pre>
@@ -80,7 +90,7 @@ export function About() {
                 </div>
                 <div className="absolute bottom-4 right-4 p-2 bg-black/80 backdrop-blur-md border border-secondary/20">
                   <Radar className="text-secondary animate-spin-slow w-4 h-4" />
-                  <div className="text-[6px] font-mono text-white/40 uppercase">SYNC_OK</div>
+                  <div className="text-[6px] font-mono text-white/40 uppercase">GREET_SYNC: OK</div>
                 </div>
               </div>
             </div>
@@ -93,11 +103,11 @@ export function About() {
               <span className="text-[9px] md:text-[11px] font-mono font-black tracking-[0.3em] text-primary uppercase">Bio_Processor</span>
             </div>
             
-            <h2 className="text-3xl sm:text-5xl md:text-7xl font-headline font-black text-white mb-6 md:mb-10 tracking-tighter uppercase leading-none">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-headline font-black text-white mb-6 md:mb-10 tracking-tighter uppercase leading-none">
               ENGINEERED FOR <span className="text-primary/60">INTELLIGENCE</span>
             </h2>
 
-            <div className="space-y-6 md:space-y-10 text-base md:text-lg text-white/40 font-light leading-relaxed">
+            <div className="space-y-6 md:space-y-10 text-sm md:text-base lg:text-lg text-white/40 font-light leading-relaxed">
               <p>
                 I am <span className="text-white font-bold">Rohith YP</span>. My focus is the intersection of high-performance web architecture and cognitive computing. Currently architecting modular systems at the 2nd-year engineering node.
               </p>
@@ -117,7 +127,7 @@ export function About() {
 
               <div className="p-6 md:p-10 border-l-4 border-secondary/40 bg-white/[0.01] relative overflow-hidden group">
                 <div className="absolute top-0 right-0 p-2 text-[7px] font-mono text-secondary opacity-40">REF_AUTH_01</div>
-                <p className="italic text-white/70 relative z-10 text-lg md:text-xl leading-snug">
+                <p className="italic text-white/70 relative z-10 text-base md:text-xl leading-snug">
                   "Architecture is not just code; it's the nervous system of digital reality. I build the synapses."
                 </p>
               </div>
