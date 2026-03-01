@@ -15,7 +15,7 @@ export function Footer() {
 
         <div className="flex items-center gap-4">
           {[
-            { icon: <Github size={20} />, href: "#" },
+            { icon: <Github size={20} />, href: "https://github.com/rohithROHITH-pixel" },
             { icon: <Linkedin size={20} />, href: "#" },
             { icon: <Twitter size={20} />, href: "#" },
             { icon: <Instagram size={20} />, href: "#" },
@@ -23,6 +23,8 @@ export function Footer() {
             <a 
               key={idx}
               href={social.href}
+              target={social.href.startsWith('http') ? "_blank" : undefined}
+              rel={social.href.startsWith('http') ? "noopener noreferrer" : undefined}
               className="w-10 h-10 rounded-xl glass border border-white/10 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
             >
               {social.icon}
