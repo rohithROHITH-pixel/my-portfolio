@@ -106,13 +106,13 @@ function build_modern_app() {
                 <div className="absolute top-0 left-0 w-full h-full opacity-10 data-grid" />
                 
                 <div className="relative z-10 w-full h-full p-4 md:p-8 flex flex-col items-center justify-center">
-                  <div className="text-[9px] font-mono font-black text-primary uppercase tracking-[0.5em] mb-8 flex items-center gap-3">
+                  <div className="text-[9px] font-mono font-black text-primary uppercase tracking-[0.5em] mb-4 md:mb-6 flex items-center gap-3">
                     <Activity size={10} className="animate-pulse" />
                     Synthesis_Output
                   </div>
 
-                  {/* Three Pillars UI (Smaller) */}
-                  <div className="grid grid-cols-3 gap-3 md:gap-6 mb-8 w-full max-w-sm">
+                  {/* Three Pillars UI */}
+                  <div className="grid grid-cols-3 gap-3 md:gap-6 mb-4 md:mb-6 w-full max-w-sm">
                     {[
                       { icon: <Code2 size={18} />, label: "HTML", color: "text-red-500" },
                       { icon: <Palette size={18} />, label: "CSS", color: "text-primary" },
@@ -128,29 +128,29 @@ function build_modern_app() {
                   </div>
 
                   {/* Connecting Transition */}
-                  <div className="flex flex-col items-center gap-2 mb-6 opacity-30 animate-bounce">
+                  <div className="flex flex-col items-center gap-2 mb-4 md:mb-6 opacity-30 animate-bounce">
                     <ArrowDown size={14} className="text-white" />
                   </div>
 
-                  {/* Features Display Node */}
-                  <div className="w-full max-w-sm grid grid-cols-2 gap-2">
+                  {/* Features Display Node - Arranged one after another */}
+                  <div className="w-full max-w-[320px] flex flex-col gap-2">
                     {[
                       { icon: <Globe size={14} />, title: "MODERN INTERFACES", desc: "Clean & Professional" },
                       { icon: <Smartphone size={14} />, title: "RESPONSIVE", desc: "Multi-Device Layouts" },
                       { icon: <Layers size={14} />, title: "ANIMATED", desc: "Fluid Motion Design" },
                       { icon: <Sparkles size={14} />, title: "AI-ENHANCED", desc: "Efficient Solutions" }
                     ].map((feature, i) => (
-                      <div key={i} className="p-3 bg-white/[0.03] border border-white/5 flex items-center gap-3">
-                        <div className="text-primary">{feature.icon}</div>
+                      <div key={i} className="p-2.5 bg-white/[0.03] border border-white/5 flex items-center gap-4 hover:border-primary/40 transition-all group/feat">
+                        <div className="text-primary group-hover/feat:scale-110 transition-transform">{feature.icon}</div>
                         <div className="text-left">
-                          <div className="text-[8px] font-black text-white leading-none mb-1 uppercase">{feature.title}</div>
-                          <div className="text-[6px] font-mono text-white/40 uppercase tracking-tighter">{feature.desc}</div>
+                          <div className="text-[9px] font-black text-white leading-none mb-1 uppercase tracking-wider">{feature.title}</div>
+                          <div className="text-[7px] font-mono text-white/40 uppercase tracking-tighter">{feature.desc}</div>
                         </div>
                       </div>
                     ))}
                   </div>
 
-                  <div className="mt-8 w-full max-w-xs h-1 bg-white/5 relative overflow-hidden">
+                  <div className="mt-6 md:mt-8 w-full max-w-xs h-1 bg-white/5 relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary animate-gradient-x" />
                   </div>
                   <div className="mt-2 text-[7px] font-mono text-primary/60 uppercase tracking-widest animate-pulse">Optimal_System_Ready</div>
