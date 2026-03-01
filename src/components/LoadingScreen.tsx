@@ -108,10 +108,10 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       )}>
         
         {/* Reveal Title Section */}
-        <div className="relative mb-16 group overflow-hidden perspective-1000 flex flex-col items-center w-full">
-          <div className="flex items-center gap-3 mb-12 opacity-40">
+        <div className="relative mb-8 md:mb-16 group overflow-hidden perspective-1000 flex flex-col items-center w-full">
+          <div className="flex items-center gap-3 mb-8 md:mb-12 opacity-40">
             <div className="w-4 h-4 border border-primary animate-spin-slow" />
-            <span className="text-primary text-[10px] font-black tracking-[1em] uppercase">NEURAL_INIT_V5.0</span>
+            <span className="text-primary text-[8px] md:text-[10px] font-black tracking-[0.5em] md:tracking-[1em] uppercase">NEURAL_INIT_V5.0</span>
           </div>
 
           <div className={cn(
@@ -119,7 +119,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
             stage === 0 ? "translate-y-10" : "translate-y-0"
           )}>
             <div className="flex flex-col items-center text-center">
-              <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-headline font-black tracking-tighter leading-[0.85] relative uppercase">
+              <h1 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-headline font-black tracking-tighter leading-[0.85] relative uppercase">
                 {/* Reveal Shutter Mask Animation - Centered Reveal */}
                 <div className={cn(
                   "absolute -inset-8 bg-primary z-20 origin-center transition-transform duration-[1500ms] ease-in-out",
@@ -141,21 +141,21 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
             </div>
 
             {/* Tactical Frame Brackets - Centered relative to title */}
-            <div className="absolute -top-16 -left-16 w-32 h-32 border-t-2 border-l-2 border-primary/30 transition-all duration-700" style={{ transform: `scale(${1 + (progress/200)})` }} />
-            <div className="absolute -bottom-16 -right-16 w-32 h-32 border-b-2 border-r-2 border-secondary/30 transition-all duration-700" style={{ transform: `scale(${1 + (progress/200)})` }} />
+            <div className="absolute -top-8 -left-8 md:-top-16 md:-left-16 w-16 h-16 md:w-32 md:h-32 border-t-2 border-l-2 border-primary/30 transition-all duration-700" style={{ transform: `scale(${1 + (progress/200)})` }} />
+            <div className="absolute -bottom-8 -right-8 md:-bottom-16 md:-right-16 w-16 h-16 md:w-32 md:h-32 border-b-2 border-r-2 border-secondary/30 transition-all duration-700" style={{ transform: `scale(${1 + (progress/200)})` }} />
           </div>
         </div>
 
         {/* Technical Data Bar & Progress - Centered */}
-        <div className="space-y-10 max-w-4xl mx-auto w-full px-12">
-          <div className="flex flex-col items-center gap-6">
+        <div className="space-y-6 md:space-y-10 max-w-4xl mx-auto w-full px-6 md:px-12">
+          <div className="flex flex-col items-center gap-4 md:gap-6">
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-secondary animate-pulse" />
-              <span className="text-[11px] font-mono text-white/40 uppercase tracking-[0.5em]">{log}</span>
+              <span className="text-[9px] md:text-[11px] font-mono text-white/40 uppercase tracking-[0.3em] md:tracking-[0.5em]">{log}</span>
             </div>
             
-            <div className="text-7xl md:text-8xl font-mono text-primary font-black tracking-tighter tabular-nums flex items-baseline">
-              {progress}<span className="text-xs ml-3 opacity-50 tracking-normal font-light">LINK_SYNC</span>
+            <div className="text-5xl md:text-8xl font-mono text-primary font-black tracking-tighter tabular-nums flex items-baseline">
+              {progress}<span className="text-[8px] md:text-xs ml-2 md:ml-3 opacity-50 tracking-normal font-light">LINK_SYNC</span>
             </div>
           </div>
 
@@ -186,16 +186,16 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         <div>PROTOCOL: SYNC_V5</div>
       </div>
 
-      <div className="absolute bottom-10 right-10 text-[10px] font-mono text-white/20 text-right space-y-2">
-        <div className="flex items-center justify-end gap-3">
+      <div className="absolute bottom-6 md:bottom-10 right-6 md:right-10 text-[8px] md:text-[10px] font-mono text-white/20 text-right space-y-1 md:space-y-2">
+        <div className="flex items-center justify-end gap-2 md:gap-3">
           <span className="opacity-30">CORE_TEMP:</span> 
           <span className="text-emerald-500 font-bold animate-pulse">32.4°C</span>
         </div>
-        <div className="flex items-center justify-end gap-3 text-primary">
+        <div className="flex items-center justify-end gap-2 md:gap-3 text-primary">
           <span className="opacity-30 text-white">AUTH_LEVEL:</span> 
           <span className="font-black tracking-widest">MASTER_NODE</span>
         </div>
-        <div className="pt-2 border-t border-white/5 opacity-40 uppercase tracking-[0.2em] text-[8px]">
+        <div className="pt-1 md:pt-2 border-t border-white/5 opacity-40 uppercase tracking-[0.2em] text-[7px] md:text-[8px]">
           SID: {sessionId || "SYNC_PENDING"}
         </div>
       </div>

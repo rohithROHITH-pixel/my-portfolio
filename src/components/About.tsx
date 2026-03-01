@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
@@ -9,13 +8,11 @@ import {
   Activity, 
   Code2, 
   Palette, 
-  Settings,
   ArrowDown,
   Globe,
   Cpu,
   Brain,
   Smartphone,
-  MousePointer2,
   Sparkles
 } from 'lucide-react';
 
@@ -63,7 +60,7 @@ function build_modern_app() {
       observer.disconnect();
       if (interval) clearInterval(interval);
     };
-  }, [isVisible]);
+  }, [isVisible, codeSnippet]);
 
   return (
     <section id="about" ref={sectionRef} className="py-16 md:py-32 relative bg-background overflow-hidden border-t border-white/5">
@@ -132,7 +129,7 @@ function build_modern_app() {
                     <ArrowDown size={14} className="text-white" />
                   </div>
 
-                  {/* Features Display Node - Arranged one after another */}
+                  {/* Features Display Node - Arranged vertically for clarity */}
                   <div className="w-full max-w-[320px] flex flex-col gap-2">
                     {[
                       { icon: <Globe size={14} />, title: "MODERN INTERFACES", desc: "Clean & Professional" },
