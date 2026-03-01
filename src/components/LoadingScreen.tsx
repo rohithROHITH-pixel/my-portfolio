@@ -13,11 +13,11 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
     setSessionId(Math.random().toString(16).substring(2, 10).toUpperCase());
     
     const logs = [
-      "SYNCHRONIZING_NEURAL_CORES...",
-      "FETCHING_SPATIAL_WEIGHTS...",
-      "BUILDING_TACTICAL_GRID...",
-      "ALLOCATING_BUFFER_SEGMENTS...",
-      "NEURAL_INTERFACE_STABLE_V4.0"
+      "ESTABLISHING_NEURAL_LINK...",
+      "SYNCING_SPATIAL_NODES...",
+      "DECRYPTING_CORE_PROTOCOL...",
+      "INITIALIZING_TACTICAL_HUD...",
+      "SYSTEM_STABLE_READY"
     ];
 
     let logIdx = 0;
@@ -28,7 +28,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
           setTimeout(() => {
             setIsVisible(false);
             setTimeout(onComplete, 800);
-          }, 500);
+          }, 800);
           return 100;
         }
 
@@ -39,7 +39,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
 
         return prev + 1;
       });
-    }, 20);
+    }, 30);
 
     return () => clearInterval(interval);
   }, [onComplete]);
@@ -48,63 +48,105 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
 
   return (
     <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background overflow-hidden px-6">
-      {/* Background Matrix */}
-      <div className="absolute inset-0 opacity-10 data-grid scale-150" />
+      {/* Cinematic Background Layer */}
+      <div className="absolute inset-0 opacity-20 data-grid scale-150 animate-pulse" />
+      
+      {/* Falling Data Streams */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {Array.from({ length: 10 }).map((_, i) => (
+        {Array.from({ length: 15 }).map((_, i) => (
           <div 
             key={i} 
             className="data-stream" 
             style={{ 
-              left: `${i * 10}%`, 
-              animationDelay: `${i * 0.5}s`,
-              height: '100px'
+              left: `${i * 7}%`, 
+              animationDelay: `${i * 0.3}s`,
+              animationDuration: `${2 + Math.random() * 3}s`,
+              height: '150px'
             }} 
           />
         ))}
       </div>
       
-      <div className="w-full max-w-2xl relative z-10">
-        <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-6 md:mb-10 gap-4">
-          <div className="space-y-3 md:space-y-5">
-            <div className="flex items-center gap-3">
-              <div className="w-3 h-3 md:w-4 md:h-4 bg-primary animate-pulse" />
-              <h2 className="text-primary text-[8px] md:text-[10px] font-black tracking-[0.6em] md:tracking-[1em] uppercase">Tactical_Neural_OS</h2>
-            </div>
-            <div className="text-4xl sm:text-6xl md:text-8xl font-headline font-black text-white tracking-tighter leading-none">
-              ROHITH <span className="text-primary/60">YP</span>
-            </div>
+      <div className="w-full max-w-3xl relative z-10">
+        {/* The Revealing Card Section */}
+        <div className="relative mb-12 group overflow-hidden">
+          {/* Top Decorative Line */}
+          <div className="flex items-center gap-3 mb-6 opacity-40">
+            <div className="w-4 h-4 border border-primary animate-spin-slow" />
+            <span className="text-primary text-[10px] font-black tracking-[0.8em] uppercase">NEURAL_INIT_v4.0</span>
           </div>
-          <div className="font-mono text-xl md:text-3xl text-primary font-black animate-pulse self-start md:self-auto">
-            {progress}%
+
+          {/* Name Reveal with Mask */}
+          <div className="relative">
+            <div className="flex flex-col md:flex-row items-baseline gap-4">
+              <h1 className="text-6xl sm:text-8xl md:text-9xl font-headline font-black text-white tracking-tighter leading-none relative">
+                {/* Reveal Shutter Animation */}
+                <div className="absolute inset-0 bg-primary z-20 animate-[reveal-shutter_1.5s_ease-in-out_forwards]" />
+                ROHITH <span className="text-primary/60">YP</span>
+              </h1>
+            </div>
+
+            {/* Tactical Brackets Framing the Reveal */}
+            <div className="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-primary/30" />
+            <div className="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-secondary/30" />
           </div>
         </div>
 
-        {/* Technical Progress Bar */}
-        <div className="h-[2px] w-full bg-white/5 relative overflow-hidden mb-6 md:mb-10">
-          <div 
-            className="absolute top-0 left-0 h-full bg-primary shadow-[0_0_30px_rgba(130,26,252,1)] transition-all duration-100 ease-out"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
+        {/* Technical Data Bar */}
+        <div className="space-y-6">
+          <div className="flex items-end justify-between">
+            <div className="space-y-2">
+              <div className="flex items-center gap-3">
+                <div className="w-1.5 h-1.5 bg-secondary animate-pulse" />
+                <span className="text-[10px] font-mono text-white/40 uppercase tracking-[0.4em]">{log}</span>
+              </div>
+            </div>
+            <div className="text-4xl font-mono text-primary font-black tracking-tighter tabular-nums">
+              {progress}<span className="text-xs ml-1 opacity-50">%</span>
+            </div>
+          </div>
 
-        {/* Dynamic Log Line */}
-        <div className="flex items-center gap-3 md:gap-6 text-[7px] md:text-[10px] font-mono text-white/60 uppercase tracking-[0.2em] md:tracking-[0.5em] h-4">
-          <span className="w-1 h-full bg-secondary animate-bounce shrink-0" />
-          <span className="truncate">{log}</span>
+          {/* Precision Progress Track */}
+          <div className="h-[1px] w-full bg-white/5 relative overflow-hidden">
+            <div 
+              className="absolute top-0 left-0 h-full bg-primary shadow-[0_0_20px_rgba(130,26,252,1)] transition-all duration-300 ease-out"
+              style={{ width: `${progress}%` }}
+            />
+            {/* Scanning Spark */}
+            <div 
+              className="absolute top-0 h-full w-20 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+              style={{ left: `${progress - 10}%` }}
+            />
+          </div>
         </div>
       </div>
 
-      {/* Hardware Identifiers */}
-      <div className="absolute bottom-8 right-8 text-[7px] md:text-[10px] font-mono text-white/20 text-right space-y-1.5 hidden xs:block">
-        <p className="flex items-center justify-end gap-2">
-          CORE_TEMP: <span className="text-emerald-400">OPTIMAL</span>
-        </p>
-        <p className="flex items-center justify-end gap-2">
-          AUTH_LEVEL: <span className="text-primary">ADMIN_01</span>
-        </p>
-        <p className="text-white/10 uppercase">Session: {sessionId}</p>
+      {/* Persistent System Metadata Overlay */}
+      <div className="absolute bottom-10 left-10 text-[9px] font-mono text-white/10 space-y-1 hidden sm:block">
+        <p>LOCATION: BANGALORE_IN</p>
+        <p>PROTOCOL: HTTPS_SECURE</p>
+        <p>NODE_ARCH: AIML_V4</p>
       </div>
+
+      <div className="absolute bottom-10 right-10 text-[9px] font-mono text-white/20 text-right space-y-1">
+        <div className="flex items-center justify-end gap-2">
+          CORE_TEMP: <span className="text-emerald-500 font-bold">OPTIMAL</span>
+        </div>
+        <div className="flex items-center justify-end gap-2 text-primary">
+          AUTH: <span className="font-bold">ADMIN_MASTER</span>
+        </div>
+        <p className="opacity-40 uppercase">SID: {sessionId}</p>
+      </div>
+
+      {/* Decorative Hud Lines */}
+      <div className="scanning-line opacity-[0.05]" />
+      
+      <style jsx global>{`
+        @keyframes reveal-shutter {
+          0% { transform: scaleX(1); transform-origin: left; }
+          100% { transform: scaleX(0); transform-origin: left; }
+        }
+      `}</style>
     </div>
   );
 }
