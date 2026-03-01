@@ -1,20 +1,20 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
-import { Brain, Fingerprint, Radar, Layers, Terminal, Code2, ChevronRight } from 'lucide-react';
+import { Brain, Fingerprint, Radar, Layers, Terminal, Code2, ChevronRight, Activity, ShieldCheck } from 'lucide-react';
 
 export function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [typedCode, setTypedCode] = useState("");
-  const [showOutput, setShowOutput] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
   
   const codeSnippet = `// Initializing_Neural_Core...
 // Status: HANDSHAKE_OK
 // Target: SYSTEM_GUEST
 
 const init = async () => {
-  console.log("WELCOME TO MY PORTFOLIO");
+  console.log("EXECUTING_WELCOME_PROTOCOL");
   await sync_neural_weights();
   return "READY_FOR_EXPLORATION";
 };
@@ -38,9 +38,10 @@ const init = async () => {
         i++;
         if (i > codeSnippet.length) {
           clearInterval(interval);
-          setTimeout(() => setShowOutput(true), 500);
+          // Trigger the 3D flip after the code is fully typed
+          setTimeout(() => setIsFlipped(true), 800);
         }
-      }, 25);
+      }, 20);
     }
 
     return () => {
@@ -53,66 +54,87 @@ const init = async () => {
     <section id="about" ref={sectionRef} className="py-16 md:py-32 relative bg-background overflow-hidden border-t border-white/5">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 items-center">
-          {/* Neural Terminal Interface */}
-          <div className={`relative transition-all duration-1000 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-            <div className="relative tactical-panel p-0 aspect-square sm:aspect-[4/3] max-w-lg mx-auto lg:mx-0 group overflow-hidden bg-black/60 border-primary/20 shadow-2xl">
-              {/* Terminal Header */}
-              <div className="bg-white/5 border-b border-white/10 p-2 md:p-3 flex items-center justify-between">
-                <div className="flex gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-red-500/40" />
-                  <div className="w-2 h-2 rounded-full bg-yellow-500/40" />
-                  <div className="w-2 h-2 rounded-full bg-emerald-500/40" />
-                </div>
-                <div className="flex items-center gap-2 text-[8px] font-mono text-white/20 uppercase tracking-widest">
-                  <Terminal size={10} />
-                  neural_handshake.sys
-                </div>
-              </div>
-
-              {/* Terminal Body */}
-              <div className="p-4 md:p-6 font-mono text-[10px] sm:text-xs md:text-sm leading-relaxed relative h-full overflow-y-auto scrollbar-hide">
-                <div className="text-secondary/40 mb-2">/* Execution_Thread: {isVisible ? 'ACTIVE' : 'IDLE'} */</div>
-                <pre className="text-white/60 whitespace-pre-wrap break-words mb-6">
-                  {typedCode}
-                  {!showOutput && <span className="inline-block w-1.5 h-4 bg-primary animate-pulse ml-1 align-middle" />}
-                </pre>
-
-                {/* Animated Output Section */}
-                {showOutput && (
-                  <div className="mt-4 p-4 border border-primary/30 bg-primary/5 animate-reveal-blur relative overflow-hidden">
-                    <div className="flex items-center gap-2 text-primary mb-2">
-                      <ChevronRight size={14} className="animate-pulse" />
-                      <span className="text-[8px] uppercase font-black tracking-widest">Execution_Result:</span>
-                    </div>
-                    <div className="text-white font-black text-sm sm:text-base md:text-xl tracking-tighter glow-text animate-glitch">
-                      WELCOME TO MY PORTFOLIO
-                    </div>
-                    <div className="absolute top-0 right-0 p-2 text-[6px] text-white/10">STABLE_OS_v4.0</div>
-                  </div>
-                )}
-
-                {/* Background Decor Layer */}
-                <div className="absolute bottom-10 right-0 opacity-5 pointer-events-none">
-                  <Code2 size={120} className="text-primary rotate-12" />
-                </div>
-              </div>
+          
+          {/* 3D Flipping Terminal Interface */}
+          <div className={`relative perspective-1000 transition-all duration-1000 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+            <div className={`relative w-full aspect-square sm:aspect-[4/3] max-w-lg mx-auto lg:mx-0 transition-transform duration-1000 transform-style-3d ${isFlipped ? 'rotate-y-180' : ''}`}>
               
-              {/* Scan Overlay */}
-              <div className="absolute inset-0 pointer-events-none">
-                <div className="scanning-line opacity-20" />
-                <div className="absolute top-12 left-4 p-2 bg-black/80 backdrop-blur-md border border-primary/20 hidden sm:block">
-                  <Fingerprint className="text-primary mb-1 w-4 h-4" />
-                  <div className="text-[6px] font-mono text-white/40 uppercase">UID: 966376</div>
+              {/* FRONT SIDE: Code Execution Terminal */}
+              <div className="absolute inset-0 backface-hidden tactical-panel p-0 bg-black/60 border-primary/20 shadow-2xl overflow-hidden">
+                <div className="bg-white/5 border-b border-white/10 p-2 md:p-3 flex items-center justify-between">
+                  <div className="flex gap-1.5">
+                    <div className="w-2 h-2 rounded-full bg-red-500/40" />
+                    <div className="w-2 h-2 rounded-full bg-yellow-500/40" />
+                    <div className="w-2 h-2 rounded-full bg-emerald-500/40" />
+                  </div>
+                  <div className="flex items-center gap-2 text-[8px] font-mono text-white/20 uppercase tracking-widest">
+                    <Terminal size={10} />
+                    neural_handshake.sys
+                  </div>
                 </div>
-                <div className="absolute bottom-4 right-4 p-2 bg-black/80 backdrop-blur-md border border-secondary/20">
-                  <Radar className="text-secondary animate-spin-slow w-4 h-4" />
-                  <div className="text-[6px] font-mono text-white/40 uppercase">GREET_SYNC: OK</div>
+
+                <div className="p-4 md:p-6 font-mono text-[10px] sm:text-xs md:text-sm leading-relaxed relative h-full overflow-y-auto scrollbar-hide">
+                  <div className="text-secondary/40 mb-2">/* Execution_Thread: ACTIVE */</div>
+                  <pre className="text-white/60 whitespace-pre-wrap break-words mb-6">
+                    {typedCode}
+                    <span className="inline-block w-1.5 h-4 bg-primary animate-pulse ml-1 align-middle" />
+                  </pre>
+                  <div className="absolute bottom-10 right-0 opacity-5 pointer-events-none">
+                    <Code2 size={120} className="text-primary rotate-12" />
+                  </div>
+                </div>
+                
+                <div className="absolute inset-0 pointer-events-none">
+                  <div className="scanning-line opacity-20" />
+                  <div className="absolute top-12 left-4 p-2 bg-black/80 backdrop-blur-md border border-primary/20 hidden sm:block">
+                    <Fingerprint className="text-primary mb-1 w-4 h-4" />
+                    <div className="text-[6px] font-mono text-white/40 uppercase">UID: 966376</div>
+                  </div>
                 </div>
               </div>
+
+              {/* BACK SIDE: Animated Welcome Display */}
+              <div className="absolute inset-0 backface-hidden rotate-y-180 tactical-panel p-0 bg-black border-primary shadow-[0_0_50px_rgba(130,26,252,0.3)] overflow-hidden flex flex-col items-center justify-center text-center">
+                <div className="absolute top-0 left-0 w-full h-full opacity-10 data-grid" />
+                
+                <div className="relative z-10 p-6 md:p-10 space-y-6 md:space-y-8 animate-reveal-blur">
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-primary/20 flex items-center justify-center border border-primary animate-pulse">
+                      <ShieldCheck size={28} className="text-primary" />
+                    </div>
+                    <div className="px-4 py-1.5 bg-primary/10 border border-primary/30 text-[8px] md:text-[10px] font-mono text-primary uppercase tracking-[0.4em] font-black">
+                      System_Initialized
+                    </div>
+                  </div>
+
+                  <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-headline font-black text-white tracking-tighter leading-tight glow-text animate-glitch">
+                    WELCOME TO MY<br />
+                    <span className="text-primary">PORTFOLIO</span>
+                  </h3>
+
+                  <div className="flex items-center gap-6 justify-center">
+                    <div className="flex flex-col items-center gap-1">
+                      <div className="text-[8px] font-mono text-white/20 uppercase tracking-widest">Status</div>
+                      <div className="text-[10px] font-mono text-secondary font-black">ONLINE</div>
+                    </div>
+                    <div className="w-[1px] h-8 bg-white/10" />
+                    <div className="flex flex-col items-center gap-1">
+                      <div className="text-[8px] font-mono text-white/20 uppercase tracking-widest">Access</div>
+                      <div className="text-[10px] font-mono text-primary font-black">ADMIN_01</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* HUD Decorations */}
+                <div className="absolute top-4 left-4 p-2 border-l border-t border-primary/30 w-12 h-12" />
+                <div className="absolute bottom-4 right-4 p-2 border-r border-b border-secondary/30 w-12 h-12" />
+                <div className="scanning-line opacity-30" />
+              </div>
+
             </div>
           </div>
 
-          {/* Technical Specifications */}
+          {/* Technical Specifications Text */}
           <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
             <div className="flex items-center gap-4 mb-6">
               <div className="w-8 md:w-16 h-[2px] bg-primary" />
