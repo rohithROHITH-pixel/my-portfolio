@@ -1,7 +1,9 @@
+
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Terminal, Cpu, Activity } from 'lucide-react';
+import { Menu, X, Terminal, Cpu, Activity, Target, Zap } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,122 +25,146 @@ export function Navbar() {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${isScrolled ? 'py-3 bg-black/90 backdrop-blur-2xl border-b border-primary/20 shadow-2xl' : 'py-6 bg-transparent'}`}>
-      {/* Scanning Line Indicator */}
-      {isScrolled && <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent animate-pulse" />}
-      
-      <div className="container mx-auto px-6 flex items-center justify-between">
-        
-        {/* Left Side: Neural Brand Node (No Name) */}
-        <a href="#home" className="flex items-center gap-6 group">
+    <nav className={cn(
+      "fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl transition-all duration-700",
+      isScrolled ? "top-4" : "top-8"
+    )}>
+      {/* Floating Tactical Container */}
+      <div className={cn(
+        "relative flex items-center justify-between px-6 py-3 backdrop-blur-2xl border transition-all duration-500",
+        isScrolled 
+          ? "bg-black/80 border-primary/30 shadow-[0_0_30px_rgba(130,26,252,0.15)] rounded-none" 
+          : "bg-black/40 border-white/10 rounded-none"
+      )}>
+        {/* HUD Decorative Corners */}
+        <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-primary/40" />
+        <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-primary/40" />
+        <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-secondary/40" />
+        <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-secondary/40" />
+
+        {/* Left Side: System Core Node */}
+        <a href="#home" className="flex items-center gap-4 group">
           <div className="relative">
-            <div className="w-12 h-12 bg-primary flex items-center justify-center text-white font-black text-2xl shadow-[0_0_20px_rgba(130,26,252,0.4)] transition-all group-hover:scale-110 group-hover:rotate-3">
+            <div className="w-10 h-10 bg-primary/10 border border-primary/40 flex items-center justify-center text-primary font-black text-xl transition-all group-hover:scale-110 group-hover:rotate-12 group-hover:bg-primary/20">
               R
             </div>
-            <div className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(16,185,129,1)]" />
+            <div className="absolute -inset-1 border border-primary/20 animate-spin-slow rounded-none opacity-0 group-hover:opacity-100" />
           </div>
-          <div className="flex flex-col justify-center">
+          <div className="hidden sm:flex flex-col">
             <div className="flex items-center gap-2">
-              <Activity size={10} className="text-primary animate-pulse" />
-              <span className="text-[8px] font-mono font-black text-primary/80 leading-tight uppercase tracking-[0.4em]">SYSTEM_STABLE</span>
+              <Activity size={8} className="text-primary animate-pulse" />
+              <span className="text-[7px] font-mono font-black text-primary/80 uppercase tracking-[0.4em]">CORE_ACTIVE</span>
             </div>
+            <div className="text-[9px] font-mono font-bold text-white/30 uppercase tracking-[0.2em]">NODE_IDENTIFIER</div>
           </div>
         </a>
 
-        {/* Desktop Navigation: Protocol Based */}
-        <div className="hidden lg:flex items-center gap-12">
-          <div className="flex items-center gap-10">
+        {/* Desktop Navigation: HUD Protocols */}
+        <div className="hidden lg:flex items-center gap-8">
+          <div className="flex items-center gap-6">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="group relative flex items-baseline gap-2 py-1"
+                className="group relative flex items-center gap-2 py-1 px-3"
               >
-                <span className="text-[7px] font-mono font-bold text-primary/60 group-hover:text-primary transition-colors">
+                {/* Protocol Brackets */}
+                <span className="absolute left-0 top-0 text-primary opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0 font-mono text-[10px]">[</span>
+                <span className="absolute right-0 top-0 text-primary opacity-0 group-hover:opacity-100 transition-all translate-x-2 group-hover:translate-x-0 font-mono text-[10px]">]</span>
+                
+                <span className="text-[7px] font-mono font-bold text-primary/40 group-hover:text-primary transition-colors">
                   {link.id}
                 </span>
-                <span className="text-[11px] font-mono font-black text-white/40 group-hover:text-white uppercase tracking-[0.2em] transition-all group-hover:translate-x-1">
+                <span className="text-[10px] font-mono font-black text-white/40 group-hover:text-white uppercase tracking-[0.2em] transition-all">
                   {link.name}
                 </span>
-                {/* Tactical Underline */}
-                <div className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary group-hover:w-full transition-all duration-500 ease-out shadow-[0_0_10px_rgba(130,26,252,0.8)]" />
+                
+                {/* Interactive Scanning Underline */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-primary group-hover:w-full transition-all duration-300" />
               </a>
             ))}
           </div>
 
-          {/* HUD Separator & Action Node */}
-          <div className="flex items-center gap-10">
-            <div className="h-8 w-[1px] bg-white/10 relative">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-primary/40 rounded-full" />
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-secondary/40 rounded-full" />
+          <div className="h-6 w-[1px] bg-white/10" />
+
+          {/* Action Node: SYNC_PROTOCOL */}
+          <a 
+            href="#contact" 
+            className="group relative px-6 py-2 bg-primary/5 border border-primary/20 hover:border-primary/60 transition-all overflow-hidden"
+          >
+            <div className="relative z-10 flex items-center gap-3">
+              <Target size={12} className="text-secondary group-hover:scale-125 transition-transform" />
+              <span className="text-[9px] font-mono font-black text-white/60 tracking-[0.4em] uppercase group-hover:text-white">INITIALIZE_SYNC</span>
             </div>
-            <a 
-              href="#contact" 
-              className="group relative px-8 py-3.5 bg-black/40 border border-primary/20 hover:border-primary/60 transition-all overflow-hidden"
-            >
-              <div className="relative z-10 flex items-center gap-4">
-                <Cpu size={14} className="text-secondary group-hover:rotate-180 transition-transform duration-1000" />
-                <span className="text-[10px] font-mono font-black text-white/60 tracking-[0.4em] uppercase group-hover:text-white transition-colors">SYNC_PROTOCOL</span>
-              </div>
-              <div className="absolute inset-0 bg-primary/5 -translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-            </a>
-          </div>
+            <div className="absolute inset-0 bg-primary/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+            <div className="scanning-line opacity-0 group-hover:opacity-20" />
+          </a>
         </div>
 
-        {/* Mobile Toggle Interface */}
+        {/* Mobile Toggle */}
         <button 
-          className={`lg:hidden w-12 h-12 flex flex-col items-center justify-center gap-1.5 border transition-all ${isMobileMenuOpen ? 'border-primary bg-primary/10' : 'border-white/10 bg-white/5'}`}
+          className={cn(
+            "lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 border transition-all",
+            isMobileMenuOpen ? "border-primary bg-primary/10" : "border-white/10 bg-white/5"
+          )}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          <div className={`h-[2px] bg-white transition-all duration-300 ${isMobileMenuOpen ? 'w-6 rotate-45 translate-y-[8px]' : 'w-6'}`} />
-          <div className={`h-[2px] bg-white transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : 'w-4'}`} />
-          <div className={`h-[2px] bg-white transition-all duration-300 ${isMobileMenuOpen ? 'w-6 -rotate-45 -translate-y-[8px]' : 'w-6'}`} />
+          <div className={cn("h-[1.5px] bg-white transition-all duration-300", isMobileMenuOpen ? "w-5 rotate-45 translate-y-[6px]" : "w-5")} />
+          <div className={cn("h-[1.5px] bg-white transition-all duration-300", isMobileMenuOpen ? "opacity-0" : "w-3 self-end mr-2.5")} />
+          <div className={cn("h-[1.5px] bg-white transition-all duration-300", isMobileMenuOpen ? "w-5 -rotate-45 -translate-y-[6px]" : "w-5")} />
         </button>
       </div>
 
       {/* Mobile Terminal Overlay */}
-      <div className={`lg:hidden fixed inset-0 top-[72px] bg-black/98 backdrop-blur-3xl transition-all duration-700 ease-in-out ${isMobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}>
-        <div className="absolute inset-0 pointer-events-none opacity-[0.03] data-grid" />
+      <div className={cn(
+        "lg:hidden fixed inset-0 top-[72px] bg-black/95 backdrop-blur-3xl transition-all duration-500 ease-in-out",
+        isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"
+      )}>
+        <div className="absolute inset-0 pointer-events-none opacity-[0.05] data-grid" />
         
-        <div className="flex flex-col p-10 gap-8 relative z-10 h-full justify-center">
-          <div className="mb-8">
-            <div className="text-[9px] font-mono text-primary/40 uppercase tracking-[0.5em] mb-2">Navigation_Nodes</div>
-            <div className="h-[1px] w-full bg-gradient-to-r from-primary/30 to-transparent" />
+        <div className="flex flex-col p-8 h-full">
+          <div className="mb-12">
+            <div className="flex items-center gap-3 mb-4">
+              <Zap size={14} className="text-primary" />
+              <span className="text-[10px] font-mono text-primary/60 uppercase tracking-[0.5em]">SYSTEM_NAVIGATION</span>
+            </div>
+            <div className="h-[1px] w-full bg-gradient-to-r from-primary/30 via-primary/10 to-transparent" />
           </div>
 
-          {navLinks.map((link, idx) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center justify-between group"
-              style={{ transitionDelay: `${idx * 100}ms` }}
-            >
-              <div className="flex items-center gap-6">
-                <span className="text-[12px] font-mono text-primary/40 font-bold group-hover:text-primary transition-colors">{link.id}</span>
-                <span className="text-3xl font-headline font-black text-white/40 group-hover:text-white group-hover:translate-x-4 transition-all uppercase tracking-tighter">
-                  {link.name}
-                </span>
-              </div>
-              <Terminal size={18} className="opacity-0 group-hover:opacity-100 transition-all text-primary -translate-x-4 group-hover:translate-x-0" />
-            </a>
-          ))}
+          <div className="flex flex-col gap-6">
+            {navLinks.map((link, idx) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center justify-between group py-2"
+                style={{ transitionDelay: `${idx * 50}ms` }}
+              >
+                <div className="flex items-center gap-6">
+                  <span className="text-[10px] font-mono text-primary/40 font-bold">{link.id}</span>
+                  <span className="text-4xl font-headline font-black text-white/30 group-hover:text-white transition-all uppercase tracking-tighter">
+                    {link.name}
+                  </span>
+                </div>
+                <Terminal size={20} className="opacity-0 group-hover:opacity-100 transition-all text-primary -translate-x-4 group-hover:translate-x-0" />
+              </a>
+            ))}
+          </div>
 
-          <div className="mt-auto space-y-6">
-            <div className="h-[1px] w-full bg-gradient-to-l from-secondary/30 to-transparent" />
+          <div className="mt-auto pb-12">
+            <div className="h-[1px] w-full bg-white/5 mb-8" />
             <a 
               href="#contact" 
               onClick={() => setIsMobileMenuOpen(false)}
-              className="w-full py-5 border border-primary text-primary text-center font-black tracking-[0.5em] text-[12px] uppercase bg-primary/5 relative group overflow-hidden"
+              className="w-full py-4 border border-primary/40 text-primary text-center font-black tracking-[0.4em] text-[10px] uppercase bg-primary/5 group relative overflow-hidden block"
             >
-              <span className="relative z-10">INITIALIZE_SYNC</span>
-              <div className="absolute inset-0 bg-primary -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+              <span className="relative z-10">OPEN_LINK_PROTOCOL</span>
+              <div className="absolute inset-0 bg-primary/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
             </a>
           </div>
         </div>
         
-        {/* HUD Scanning Line */}
-        <div className="scanning-line opacity-20" />
+        <div className="scanning-line opacity-10" />
       </div>
     </nav>
   );
