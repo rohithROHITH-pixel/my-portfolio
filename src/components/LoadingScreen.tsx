@@ -20,7 +20,6 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   useEffect(() => {
     setSessionId(Math.random().toString(16).substring(2, 10).toUpperCase());
     
-    // Generate hydration-safe random streams only on client mount
     const generatedStreams = Array.from({ length: 15 }).map((_, i) => ({
       left: `${i * 7}%`,
       delay: `${i * 0.3}s`,
@@ -50,7 +49,6 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
           return 100;
         }
 
-        // Logic for stage transitions (Camera Shots)
         if (next === 30) setStage(1);
         if (next === 70) setStage(2);
 
@@ -70,7 +68,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
 
   return (
     <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background overflow-hidden px-6">
-      {/* Dynamic Background Data Grid - Perspective Shifted per Stage */}
+      {/* Dynamic Background Data Grid */}
       <div 
         className={cn(
           "absolute inset-0 opacity-20 data-grid transition-all duration-[2000ms] ease-in-out",
@@ -80,7 +78,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         )} 
       />
       
-      {/* Cinematic Lens Flare Effect */}
+      {/* Cinematic Lens Flare */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[1px] bg-primary/20 blur-[100px] animate-pulse" />
       </div>
@@ -101,17 +99,17 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         ))}
       </div>
       
-      {/* Main Cinematic Container */}
+      {/* Main Cinematic Container - Centered Alignment */}
       <div className={cn(
-        "w-full max-w-6xl relative z-10 transition-all duration-1000",
+        "w-full max-w-7xl relative z-10 transition-all duration-1000 flex flex-col items-center",
         stage === 0 ? "scale-90 opacity-40 blur-sm" : 
         stage === 1 ? "scale-105 opacity-80" : 
         "scale-100 opacity-100"
       )}>
         
         {/* Reveal Title Section */}
-        <div className="relative mb-8 group overflow-hidden perspective-1000">
-          <div className="flex items-center gap-3 mb-8 opacity-40">
+        <div className="relative mb-16 group overflow-hidden perspective-1000 flex flex-col items-center w-full">
+          <div className="flex items-center gap-3 mb-12 opacity-40">
             <div className="w-4 h-4 border border-primary animate-spin-slow" />
             <span className="text-primary text-[10px] font-black tracking-[1em] uppercase">NEURAL_INIT_V5.0</span>
           </div>
@@ -120,59 +118,57 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
             "relative transition-transform duration-1000",
             stage === 0 ? "translate-y-10" : "translate-y-0"
           )}>
-            <div className="flex flex-col items-center md:items-start text-center md:text-left gap-4">
-              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-headline font-black text-white tracking-tighter leading-tight relative uppercase">
-                {/* Reveal Shutter Mask Animation */}
+            <div className="flex flex-col items-center text-center">
+              <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-headline font-black tracking-tighter leading-[0.85] relative uppercase">
+                {/* Reveal Shutter Mask Animation - Centered Reveal */}
                 <div className={cn(
-                  "absolute inset-0 bg-primary z-20 origin-left transition-transform duration-[1500ms] ease-in-out",
+                  "absolute -inset-8 bg-primary z-20 origin-center transition-transform duration-[1500ms] ease-in-out",
                   progress > 15 ? "scale-x-0" : "scale-x-100"
                 )} />
-                <span className="relative">
-                  WELCOME TO <br className="hidden md:block" />
-                  <span className="text-primary/60">ROHITH YP</span> <br className="hidden md:block" />
+                <span className="relative block text-white mb-2">
+                  WELCOME TO
+                </span>
+                <span className="relative block text-primary glow-text mb-2">
+                  ROHITH YP
+                </span>
+                <span className="relative block text-white/20">
                   PORTFOLIO
                 </span>
                 
                 {/* Horizontal Scan Light Sweep */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent w-full h-full -translate-x-full animate-[sweep_3s_infinite_linear]" />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent w-full h-full -translate-x-full animate-[sweep_3s_infinite_linear]" />
               </h1>
             </div>
 
-            {/* Tactical Frame Brackets */}
-            <div className="absolute -top-6 -left-6 w-16 h-16 border-t-2 border-l-2 border-primary/30 transition-all duration-700" style={{ transform: `scale(${1 + (progress/200)})` }} />
-            <div className="absolute -bottom-6 -right-6 w-16 h-16 border-b-2 border-r-2 border-secondary/30 transition-all duration-700" style={{ transform: `scale(${1 + (progress/200)})` }} />
+            {/* Tactical Frame Brackets - Centered relative to title */}
+            <div className="absolute -top-16 -left-16 w-32 h-32 border-t-2 border-l-2 border-primary/30 transition-all duration-700" style={{ transform: `scale(${1 + (progress/200)})` }} />
+            <div className="absolute -bottom-16 -right-16 w-32 h-32 border-b-2 border-r-2 border-secondary/30 transition-all duration-700" style={{ transform: `scale(${1 + (progress/200)})` }} />
           </div>
         </div>
 
-        {/* Technical Data Bar & Progress */}
-        <div className="space-y-8 max-w-2xl mx-auto md:mx-0">
-          <div className="flex items-end justify-between">
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <div className="w-2 h-2 bg-secondary animate-pulse" />
-                <span className="text-[11px] font-mono text-white/40 uppercase tracking-[0.5em]">{log}</span>
-              </div>
-              <div className="flex gap-4 opacity-20">
-                <div className="w-12 h-1 bg-white/20" />
-                <div className="w-8 h-1 bg-white/40" />
-                <div className="w-24 h-1 bg-white/10" />
-              </div>
+        {/* Technical Data Bar & Progress - Centered */}
+        <div className="space-y-10 max-w-4xl mx-auto w-full px-12">
+          <div className="flex flex-col items-center gap-6">
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 bg-secondary animate-pulse" />
+              <span className="text-[11px] font-mono text-white/40 uppercase tracking-[0.5em]">{log}</span>
             </div>
-            <div className="text-5xl font-mono text-primary font-black tracking-tighter tabular-nums flex items-baseline">
-              {progress}<span className="text-xs ml-2 opacity-50 tracking-normal font-light">LINK_SYNC</span>
+            
+            <div className="text-7xl md:text-8xl font-mono text-primary font-black tracking-tighter tabular-nums flex items-baseline">
+              {progress}<span className="text-xs ml-3 opacity-50 tracking-normal font-light">LINK_SYNC</span>
             </div>
           </div>
 
           {/* Precision Hardware Progress Track */}
-          <div className="h-1 w-full bg-white/5 relative overflow-hidden">
+          <div className="h-[2px] w-full bg-white/5 relative overflow-hidden">
             <div 
               className="absolute top-0 left-0 h-full bg-primary shadow-[0_0_25px_rgba(130,26,252,1)] transition-all duration-500 ease-out"
               style={{ width: `${progress}%` }}
             />
             {/* Dynamic Scanning Spark */}
             <div 
-              className="absolute top-0 h-full w-32 bg-gradient-to-r from-transparent via-white/60 to-transparent"
-              style={{ left: `${progress - 20}%` }}
+              className="absolute top-0 h-full w-64 bg-gradient-to-r from-transparent via-white/60 to-transparent"
+              style={{ left: `${progress - 30}%` }}
             />
           </div>
         </div>
