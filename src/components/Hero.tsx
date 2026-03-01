@@ -26,7 +26,7 @@ export function Hero() {
     <section 
       id="home" 
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-background"
+      className="relative min-h-screen flex flex-col items-center justify-center pt-32 md:pt-48 pb-20 overflow-hidden bg-background"
     >
       {/* Dynamic Spatial Grid - subtle motion */}
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
@@ -41,8 +41,8 @@ export function Hero() {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center">
-          {/* System Status HUD */}
-          <div className={`mb-6 md:mb-10 flex items-center gap-4 md:gap-8 px-4 md:px-8 py-2 md:py-3 bg-white/[0.02] border-x border-primary/40 transition-all duration-1000 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+          {/* System Status HUD - Positioned to avoid Navbar collision */}
+          <div className={`mb-8 md:mb-12 flex items-center gap-4 md:gap-8 px-4 md:px-8 py-2 md:py-3 bg-white/[0.02] border-x border-primary/40 transition-all duration-1000 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
             <Layers size={14} className="text-secondary animate-pulse" />
             <div className="h-4 w-[1px] bg-white/10" />
             <span className="text-[7px] md:text-[9px] font-mono font-black tracking-[0.2em] md:tracking-[0.5em] text-white uppercase whitespace-nowrap">
@@ -56,7 +56,7 @@ export function Hero() {
 
           {/* Kinetic Title Interface */}
           <div 
-            className="relative mb-6 md:mb-10 text-center"
+            className="relative mb-8 md:mb-12 text-center"
             style={{ 
               transform: `perspective(1000px) rotateY(${coords.x * 0.03}deg) rotateX(${coords.y * -0.03}deg)`,
               transition: 'transform 0.2s ease-out'
@@ -68,7 +68,7 @@ export function Hero() {
             </h1>
 
             {/* Tagline */}
-            <div className={`mt-6 md:mt-8 transition-all duration-1000 delay-200 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
+            <div className={`mt-8 md:mt-10 transition-all duration-1000 delay-200 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
               <div className="inline-flex items-center gap-4 px-4 py-1 border border-white/5 bg-white/[0.01]">
                 <div className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
                 <span className="text-[8px] md:text-[10px] font-mono font-bold tracking-[0.3em] md:tracking-[0.6em] text-white/60 uppercase">
@@ -84,7 +84,7 @@ export function Hero() {
 
           {/* Technical Subtext */}
           <div className={`max-w-3xl text-center transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <p className="text-xs md:text-xl text-white/30 font-light leading-snug mb-8 md:mb-14 tracking-tight px-4 uppercase">
+            <p className="text-xs md:text-xl text-white/30 font-light leading-snug mb-10 md:mb-16 tracking-tight px-4 uppercase">
               <span className="text-white font-bold">AIML Engineering Architect</span><br className="hidden md:block" />
               Synthesizing Next-Gen Web Ecosystems.
             </p>
@@ -112,7 +112,7 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Persistent Technical Telemetry - Hidden on small mobile */}
+      {/* Persistent Technical Telemetry */}
       <div className="absolute bottom-6 left-6 font-mono text-[8px] text-white/10 space-y-1.5 hidden lg:block">
         <div className="flex items-center gap-3">
           <div className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.5)]" />

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -26,15 +25,15 @@ export function Navbar() {
 
   return (
     <nav className={cn(
-      "fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl transition-all duration-700",
+      "fixed left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl transition-all duration-700",
       isScrolled ? "top-4" : "top-8"
     )}>
       {/* Floating Tactical Container */}
       <div className={cn(
         "relative flex items-center justify-between px-6 py-3 backdrop-blur-2xl border transition-all duration-500",
         isScrolled 
-          ? "bg-black/80 border-primary/30 shadow-[0_0_30px_rgba(130,26,252,0.15)] rounded-none" 
-          : "bg-black/40 border-white/10 rounded-none"
+          ? "bg-black/80 border-primary/30 shadow-[0_0_30px_rgba(130,26,252,0.15)]" 
+          : "bg-black/40 border-white/10"
       )}>
         {/* HUD Decorative Corners */}
         <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-primary/40" />
