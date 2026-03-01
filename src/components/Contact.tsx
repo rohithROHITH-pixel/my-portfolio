@@ -2,137 +2,132 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { Mail, Globe, MapPin, Terminal, Share2, ShieldCheck, Activity, Phone, Copy, ExternalLink } from 'lucide-react';
+import { Mail, ShieldCheck, Phone, ExternalLink, Terminal } from 'lucide-react';
 
 export function Contact() {
   const [systemHash, setSystemHash] = useState("SYNC_PENDING");
 
   useEffect(() => {
-    // Generate hash on client to avoid hydration mismatch
     setSystemHash(Math.random().toString(36).substring(7).toUpperCase());
   }, []);
 
   return (
-    <section id="contact" className="py-24 md:py-40 relative overflow-hidden border-t border-white/5 bg-black">
+    <section id="contact" className="py-16 md:py-24 relative overflow-hidden border-t border-white/5 bg-black">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-32 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 items-center">
           
           {/* Left Content: Narrative Header */}
-          <div className="animate-slide-up lg:sticky lg:top-32">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-12 h-[2px] bg-primary shadow-[0_0_10px_rgba(130,26,252,0.5)]" />
-              <span className="text-[10px] font-mono font-black tracking-[0.5em] text-primary uppercase">Link_Interface</span>
+          <div className="animate-slide-up">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-[1px] bg-primary shadow-[0_0_10px_rgba(130,26,252,0.5)]" />
+              <span className="text-[9px] font-mono font-black tracking-[0.4em] text-primary uppercase">Link_Interface</span>
             </div>
             
-            <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-headline font-black text-white mb-10 tracking-tighter uppercase leading-none">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-headline font-black text-white mb-6 tracking-tighter uppercase leading-none">
               SECURE<br /><span className="text-primary">SYNC</span>
             </h2>
             
-            <p className="text-lg md:text-xl text-white/40 font-light leading-relaxed mb-12 max-w-md">
+            <p className="text-sm md:text-base text-white/40 font-light leading-relaxed mb-8 max-w-sm">
               Initialize a high-priority communication protocol. Open for neural node collaborations or architectural requests.
             </p>
             
-            <div className="hidden lg:block space-y-6">
-              <div className="flex items-center gap-4 text-white/20">
-                <Terminal size={14} className="text-primary" />
-                <span className="text-[10px] font-mono uppercase tracking-widest">Awaiting_Encryption_Handshake...</span>
+            <div className="hidden lg:block space-y-4">
+              <div className="flex items-center gap-3 text-white/20">
+                <Terminal size={12} className="text-primary" />
+                <span className="text-[9px] font-mono uppercase tracking-widest">Awaiting_Encryption_Handshake...</span>
               </div>
-              <div className="w-full h-[1px] bg-gradient-to-r from-primary/20 to-transparent" />
+              <div className="w-32 h-[1px] bg-gradient-to-r from-primary/20 to-transparent" />
             </div>
           </div>
 
-          {/* Right Content: Refined HUD Terminal (Matches Reference Image) */}
+          {/* Right Content: Refined Compact HUD Terminal */}
           <div className="animate-slide-up [animation-delay:0.3s]">
-            <div className="relative w-full max-w-xl mx-auto lg:ml-auto">
+            <div className="relative w-full max-w-lg mx-auto lg:ml-auto">
               
               {/* Main HUD Container */}
-              <div className="w-full bg-[#050508] border border-white/5 relative overflow-hidden shadow-[0_0_100px_rgba(0,0,0,1)]">
+              <div className="w-full bg-[#050508] border border-white/10 relative overflow-hidden shadow-2xl">
                 
                 {/* Header Section */}
-                <div className="p-6 md:p-8 flex items-center justify-between border-b border-white/5">
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded bg-white/[0.03] border border-white/10 flex items-center justify-center">
-                      <ShieldCheck size={20} className="text-primary" />
-                    </div>
-                    <span className="text-[11px] md:text-xs font-mono font-bold text-white/90 tracking-[0.4em] uppercase">COMM_NODE_V4.0</span>
+                <div className="px-5 py-4 flex items-center justify-between border-b border-white/10 bg-white/[0.02]">
+                  <div className="flex items-center gap-3">
+                    <ShieldCheck size={16} className="text-primary" />
+                    <span className="text-[10px] font-mono font-bold text-white/90 tracking-[0.3em] uppercase">COMM_NODE_V4.0</span>
                   </div>
-                  <div className="flex gap-1.5 opacity-40">
-                    <div className="w-1.5 h-1.5 bg-primary" />
-                    <div className="w-1.5 h-1.5 bg-primary/60" />
-                    <div className="w-1.5 h-1.5 bg-primary/30" />
+                  <div className="flex gap-1">
+                    <div className="w-1 h-1 bg-primary" />
+                    <div className="w-1 h-1 bg-primary/40" />
                   </div>
                 </div>
 
                 {/* Protocol Nodes Area */}
-                <div className="p-6 md:p-10 space-y-12">
+                <div className="p-5 md:p-8 space-y-8">
                   
                   {/* Voice Protocol (Phone) */}
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-4">
-                      <span className="text-[8px] md:text-[9px] font-mono text-white/30 uppercase tracking-[0.4em]">Protocol_Voice</span>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <span className="text-[7px] md:text-[8px] font-mono text-white/30 uppercase tracking-[0.3em]">Protocol_Voice</span>
                       <div className="flex-grow h-[1px] bg-white/5" />
                     </div>
                     
-                    <div className="relative group">
-                      <div className="flex items-center justify-between p-6 md:p-10 bg-white/[0.01] border border-white/5 transition-all hover:bg-white/[0.03] hover:border-primary/30">
-                        <div className="flex items-center gap-6 md:gap-10">
-                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-primary/20 flex items-center justify-center text-primary group-hover:scale-105 transition-transform bg-primary/5">
-                            <Phone size={24} className="md:size-32" />
+                    <a href="tel:+919663761192" className="group block relative">
+                      <div className="flex items-center justify-between p-4 md:p-6 bg-white/[0.02] border border-white/5 transition-all hover:bg-white/[0.04] hover:border-primary/30">
+                        <div className="flex items-center gap-4 md:gap-6">
+                          <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-primary/20 flex items-center justify-center text-primary bg-primary/5 group-hover:scale-110 transition-transform">
+                            <Phone size={18} />
                           </div>
-                          <div className="space-y-1">
-                            <div className="text-2xl md:text-4xl lg:text-5xl font-bold text-white tracking-tighter">+91</div>
-                            <div className="text-2xl md:text-4xl lg:text-5xl font-bold text-white tracking-tighter">9663761192</div>
+                          <div>
+                            <div className="text-[8px] font-mono text-white/20 uppercase mb-0.5">Primary_Mobile</div>
+                            <div className="text-lg md:text-2xl font-bold text-white tracking-tight">+91 9663761192</div>
                           </div>
                         </div>
-                        <a href="tel:+919663761192" className="p-3 text-white/20 hover:text-primary transition-colors">
-                          <ExternalLink size={24} />
-                        </a>
+                        <ExternalLink size={16} className="text-white/20 group-hover:text-primary transition-colors" />
                       </div>
-                    </div>
+                    </a>
                   </div>
 
                   {/* Data Protocol (Email) */}
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-4">
-                      <span className="text-[8px] md:text-[9px] font-mono text-white/30 uppercase tracking-[0.4em]">Protocol_Data</span>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <span className="text-[7px] md:text-[8px] font-mono text-white/30 uppercase tracking-[0.3em]">Protocol_Data</span>
                       <div className="flex-grow h-[1px] bg-white/5" />
                     </div>
                     
-                    <div className="relative group">
-                      <div className="flex items-center justify-between p-6 md:p-10 bg-white/[0.01] border border-white/5 transition-all hover:bg-white/[0.03] hover:border-secondary/30">
-                        <div className="flex items-center gap-6 md:gap-10">
-                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-secondary/20 flex items-center justify-center text-secondary group-hover:scale-105 transition-transform bg-secondary/5">
-                            <Mail size={24} className="md:size-32" />
+                    <a href="mailto:roopanrohith320@gmail.com" className="group block relative">
+                      <div className="flex items-center justify-between p-4 md:p-6 bg-white/[0.02] border border-white/5 transition-all hover:bg-white/[0.04] hover:border-secondary/30">
+                        <div className="flex items-center gap-4 md:gap-6">
+                          <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-secondary/20 flex items-center justify-center text-secondary bg-secondary/5 group-hover:scale-110 transition-transform">
+                            <Mail size={18} />
                           </div>
-                          <div className="text-sm sm:text-lg md:text-2xl lg:text-3xl font-bold text-white tracking-tight break-all max-w-[150px] sm:max-w-xs">
-                            roopanrohith320@gmail.com
+                          <div>
+                            <div className="text-[8px] font-mono text-white/20 uppercase mb-0.5">Secure_Email</div>
+                            <div className="text-base md:text-xl font-bold text-white tracking-tight truncate max-w-[180px] sm:max-w-xs">
+                              roopanrohith320@gmail.com
+                            </div>
                           </div>
                         </div>
-                        <a href="mailto:roopanrohith320@gmail.com" className="p-3 text-white/20 hover:text-secondary transition-colors shrink-0">
-                          <ExternalLink size={24} />
-                        </a>
+                        <ExternalLink size={16} className="text-white/20 group-hover:text-secondary transition-colors" />
                       </div>
-                    </div>
+                    </a>
                   </div>
 
                 </div>
 
                 {/* Bottom Metadata Layer */}
-                <div className="p-8 border-t border-white/5 bg-black/40 flex flex-wrap items-center justify-between gap-6">
-                  <div className="flex items-center gap-10">
-                    <div className="space-y-1">
-                      <p className="text-[7px] font-mono text-white/20 uppercase tracking-widest">Loc_Node</p>
-                      <p className="text-[10px] font-bold text-white/60">BANGALORE_IN</p>
+                <div className="px-5 py-4 border-t border-white/10 bg-black/40 flex items-center justify-between">
+                  <div className="flex items-center gap-6">
+                    <div className="space-y-0.5">
+                      <p className="text-[6px] font-mono text-white/20 uppercase">Loc_Node</p>
+                      <p className="text-[9px] font-bold text-white/60">BANGALORE_IN</p>
                     </div>
-                    <div className="w-[1px] h-6 bg-white/10" />
-                    <div className="space-y-1">
-                      <p className="text-[7px] font-mono text-white/20 uppercase tracking-widest">Neural_Sync</p>
-                      <p className="text-[10px] font-bold text-emerald-500/80 animate-pulse">OPTIMAL</p>
+                    <div className="w-[1px] h-4 bg-white/10" />
+                    <div className="space-y-0.5">
+                      <p className="text-[6px] font-mono text-white/20 uppercase">Neural_Sync</p>
+                      <p className="text-[9px] font-bold text-emerald-500/80 animate-pulse uppercase">Optimal</p>
                     </div>
                   </div>
                   
-                  <div className="text-[7px] font-mono text-white/10 uppercase tracking-[0.2em]">
-                    AUTH_HASH: {systemHash}
+                  <div className="text-[6px] font-mono text-white/10 uppercase tracking-[0.2em] hidden xs:block">
+                    HASH_{systemHash}
                   </div>
                 </div>
 
