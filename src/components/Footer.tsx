@@ -1,6 +1,6 @@
 "use client";
 
-import { Github, Linkedin, Twitter, Instagram } from 'lucide-react';
+import { Github, Linkedin, Instagram } from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -17,7 +17,6 @@ export function Footer() {
           {[
             { icon: <Github size={20} />, href: "https://github.com/rohithROHITH-pixel" },
             { icon: <Linkedin size={20} />, href: "https://www.linkedin.com/in/rohith-y-p-a4588132b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
-            { icon: <Twitter size={20} />, href: "#" },
             { icon: <Instagram size={20} />, href: "#" },
           ].map((social, idx) => (
             <a 
