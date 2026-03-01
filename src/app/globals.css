@@ -4,78 +4,68 @@
 
 @layer base {
   :root {
-    --background: 240 25% 2%;
-    --foreground: 0 0% 100%;
-    --card: 240 25% 4%;
-    --card-foreground: 0 0% 90%;
-    --popover: 240 25% 3%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 270 95% 65%; /* Electric Purple */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 190 90% 50%; /* Atomic Cyan */
-    --secondary-foreground: 240 25% 2%;
-    --muted: 240 15% 10%;
-    --muted-foreground: 240 10% 60%;
-    --accent: 270 95% 65%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 85% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 240 20% 15%;
-    --input: 240 20% 15%;
-    --ring: 270 95% 65%;
-    --radius: 0rem;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%; /* Royal Blue */
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+    --radius: 0.5rem;
   }
 }
 
 @layer base {
   * {
-    @apply border-border selection:bg-primary/30 selection:text-white cursor-crosshair;
+    @apply border-border selection:bg-primary/20 selection:text-white;
   }
   body {
-    @apply bg-background text-foreground font-body overflow-x-hidden antialiased;
+    @apply bg-background text-foreground font-body antialiased overflow-x-hidden;
     background-image: 
-      radial-gradient(circle at 50% 50%, rgba(130, 26, 252, 0.05) 0%, transparent 50%),
-      linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: 100% 100%, 40px 40px, 40px 40px;
+      radial-gradient(circle at 50% -20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+      linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+    background-size: 100% 100%, 60px 60px, 60px 60px;
   }
 }
 
 @layer components {
   .tactical-panel {
-    @apply relative bg-black/60 backdrop-blur-2xl border-l-2 border-primary/40 overflow-hidden transition-all duration-500;
-    box-shadow: -10px 0 30px -10px rgba(130, 26, 252, 0.2);
+    @apply relative bg-slate-900/40 backdrop-blur-xl border border-white/5 rounded-xl transition-all duration-300;
   }
 
   .tactical-panel:hover {
-    @apply border-primary/80 bg-black/80;
-    box-shadow: -10px 0 40px -5px rgba(130, 26, 252, 0.4);
-  }
-
-  .hud-bracket {
-    @apply absolute pointer-events-none opacity-30;
+    @apply border-primary/30 bg-slate-900/60 shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)];
   }
 
   .glow-text {
-    text-shadow: 0 0 10px hsla(270, 95%, 65%, 0.5), 0 0 20px hsla(190, 90%, 50%, 0.3);
+    text-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
   }
 
   .scanning-line {
-    @apply absolute left-0 w-full h-[1px] bg-primary/30 shadow-[0_0_15px_rgba(130,26,252,0.8)];
-    animation: scan 4s linear infinite;
+    @apply absolute left-0 w-full h-[1px] bg-primary/20;
+    animation: scan 6s linear infinite;
   }
 
-  .data-stream {
-    background: linear-gradient(180deg, transparent 0%, var(--primary) 50%, transparent 100%);
-    @apply absolute w-[1px] opacity-20;
-    animation: stream-down 3s linear infinite;
+  .data-grid {
+    background-image: 
+      linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
-  .glass-card {
-    @apply bg-white/[0.03] backdrop-blur-xl border border-white/10 relative overflow-hidden;
-  }
-
-  /* 3D Flip Helper Classes */
   .perspective-1000 {
     perspective: 1000px;
   }
@@ -85,50 +75,18 @@
   .backface-hidden {
     backface-visibility: hidden;
   }
-  .rotate-y-180 {
-    transform: rotateY(180deg);
-  }
 }
 
 @keyframes scan {
   0% { top: 0%; opacity: 0; }
-  5% { opacity: 1; }
-  95% { opacity: 1; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
   100% { top: 100%; opacity: 0; }
 }
 
-@keyframes stream-down {
-  0% { transform: translateY(-100%); opacity: 0; }
-  50% { opacity: 0.5; }
-  100% { transform: translateY(1000%); opacity: 0; }
-}
-
-@keyframes float-spatial {
-  0%, 100% { transform: translateY(0) rotateX(0); }
-  50% { transform: translateY(-20px) rotateX(5deg); }
-}
-
-.animate-spatial {
-  animation: float-spatial 6s ease-in-out infinite;
-}
-
-.data-grid {
-  background-image: 
-    linear-gradient(rgba(130, 26, 252, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(130, 26, 252, 0.1) 1px, transparent 1px);
-  background-size: 50px 50px;
-  perspective: 1000px;
-  mask-image: linear-gradient(to bottom, black, transparent);
-}
-
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  @apply bg-background;
-}
-::-webkit-scrollbar-thumb {
-  @apply bg-primary/20 hover:bg-primary/50 transition-colors;
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 10s ease infinite;
 }
 
 @keyframes gradient-x {
@@ -136,6 +94,12 @@
   50% { background-position: 100% 50%; }
 }
 
-.animate-gradient-x {
-  animation: gradient-x 15s ease infinite;
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-800 rounded-full hover:bg-slate-700 transition-colors;
 }
