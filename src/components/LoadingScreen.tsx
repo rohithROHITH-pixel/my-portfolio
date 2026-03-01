@@ -47,7 +47,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background overflow-hidden">
+    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background overflow-hidden px-6">
       {/* Background Matrix */}
       <div className="absolute inset-0 opacity-10 data-grid scale-150" />
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -64,24 +64,24 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         ))}
       </div>
       
-      <div className="w-full max-w-2xl px-8 md:px-12 relative z-10">
-        <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-8 gap-4">
-          <div className="space-y-4">
+      <div className="w-full max-w-2xl relative z-10">
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-6 md:mb-10 gap-4">
+          <div className="space-y-3 md:space-y-5">
             <div className="flex items-center gap-3">
-              <div className="w-4 h-4 bg-primary animate-pulse" />
-              <h2 className="text-primary text-[10px] font-black tracking-[1em] uppercase">Tactical_Neural_OS</h2>
+              <div className="w-3 h-3 md:w-4 md:h-4 bg-primary animate-pulse" />
+              <h2 className="text-primary text-[8px] md:text-[10px] font-black tracking-[0.6em] md:tracking-[1em] uppercase">Tactical_Neural_OS</h2>
             </div>
-            <div className="text-5xl md:text-8xl font-headline font-black text-white tracking-tighter leading-none">
+            <div className="text-4xl sm:text-6xl md:text-8xl font-headline font-black text-white tracking-tighter leading-none">
               ROHITH <span className="text-primary/60">YP</span>
             </div>
           </div>
-          <div className="font-mono text-2xl md:text-3xl text-primary font-black animate-pulse self-end md:self-auto">
+          <div className="font-mono text-xl md:text-3xl text-primary font-black animate-pulse self-start md:self-auto">
             {progress}%
           </div>
         </div>
 
         {/* Technical Progress Bar */}
-        <div className="h-[2px] w-full bg-white/5 relative overflow-hidden mb-8">
+        <div className="h-[2px] w-full bg-white/5 relative overflow-hidden mb-6 md:mb-10">
           <div 
             className="absolute top-0 left-0 h-full bg-primary shadow-[0_0_30px_rgba(130,26,252,1)] transition-all duration-100 ease-out"
             style={{ width: `${progress}%` }}
@@ -89,21 +89,21 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         </div>
 
         {/* Dynamic Log Line */}
-        <div className="flex items-center gap-4 md:gap-6 text-[8px] md:text-[10px] font-mono text-white/60 uppercase tracking-[0.2em] md:tracking-[0.5em] h-4">
+        <div className="flex items-center gap-3 md:gap-6 text-[7px] md:text-[10px] font-mono text-white/60 uppercase tracking-[0.2em] md:tracking-[0.5em] h-4">
           <span className="w-1 h-full bg-secondary animate-bounce shrink-0" />
           <span className="truncate">{log}</span>
         </div>
       </div>
 
       {/* Hardware Identifiers */}
-      <div className="absolute bottom-12 right-12 text-[8px] md:text-[10px] font-mono text-white/20 text-right space-y-2 hidden sm:block">
+      <div className="absolute bottom-8 right-8 text-[7px] md:text-[10px] font-mono text-white/20 text-right space-y-1.5 hidden xs:block">
         <p className="flex items-center justify-end gap-2">
           CORE_TEMP: <span className="text-emerald-400">OPTIMAL</span>
         </p>
         <p className="flex items-center justify-end gap-2">
           AUTH_LEVEL: <span className="text-primary">ADMIN_01</span>
         </p>
-        <p className="text-white/10 uppercase">Session_ID: {sessionId}</p>
+        <p className="text-white/10 uppercase">Session: {sessionId}</p>
       </div>
     </div>
   );

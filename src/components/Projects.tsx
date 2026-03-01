@@ -60,48 +60,48 @@ export function Projects() {
   }, []);
 
   return (
-    <section id="projects" ref={sectionRef} className="py-24 md:py-40 bg-background relative border-y border-white/5">
+    <section id="projects" ref={sectionRef} className="py-20 md:py-32 bg-background relative border-y border-white/5">
       <div className="container mx-auto px-6">
-        <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 md:gap-12">
-          <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-            <div className="flex items-center gap-4 text-secondary mb-4 md:mb-6">
-              <Database size={18} />
-              <span className="text-[10px] font-mono font-black tracking-[0.4em] md:tracking-[0.6em] uppercase">Directory_Registry</span>
+        <div className="mb-12 md:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-10">
+          <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-5'}`}>
+            <div className="flex items-center gap-3 text-secondary mb-3 md:mb-5">
+              <Database size={16} />
+              <span className="text-[9px] md:text-[11px] font-mono font-black tracking-[0.3em] md:tracking-[0.6em] uppercase">Directory_Registry</span>
             </div>
-            <h2 className="text-5xl sm:text-7xl md:text-9xl font-headline font-black text-white tracking-tighter uppercase leading-none">
+            <h2 className="text-4xl sm:text-6xl md:text-8xl font-headline font-black text-white tracking-tighter uppercase leading-none">
               ACTIVE<br /><span className="text-primary">NODES</span>
             </h2>
           </div>
-          <div className="font-mono text-[10px] text-white/20 uppercase tracking-[0.4em] mb-4">
+          <div className="font-mono text-[8px] md:text-[10px] text-white/20 uppercase tracking-[0.3em] mb-2">
             Total_Deployed: 04 // Filtered: All
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
-          {/* Navigation Terminal - Horizontal on mobile */}
-          <div className="lg:col-span-4 flex lg:flex-col overflow-x-auto lg:overflow-visible gap-4 pb-4 lg:pb-0 scrollbar-hide">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 md:gap-8">
+          {/* Navigation Terminal */}
+          <div className="lg:col-span-4 flex lg:flex-col overflow-x-auto lg:overflow-visible gap-3 pb-3 lg:pb-0 scrollbar-hide">
             {projects.map((project, idx) => (
               <button
                 key={project.id}
                 onClick={() => setActiveIdx(idx)}
-                className={`flex-shrink-0 w-[240px] lg:w-full text-left p-6 md:p-8 tactical-panel transition-all duration-500 group relative ${
+                className={`flex-shrink-0 w-[200px] lg:w-full text-left p-5 md:p-8 tactical-panel transition-all duration-500 group relative ${
                   activeIdx === idx 
                   ? 'bg-primary/10 border-primary border-l-4' 
                   : 'bg-transparent border-white/5 hover:border-white/20'
                 }`}
               >
-                <div className="flex items-center justify-between mb-4">
-                  <span className={`text-[10px] font-mono font-bold transition-colors ${activeIdx === idx ? 'text-primary' : 'text-white/20'}`}>
+                <div className="flex items-center justify-between mb-3">
+                  <span className={`text-[9px] font-mono font-bold transition-colors ${activeIdx === idx ? 'text-primary' : 'text-white/20'}`}>
                     0{idx + 1}_NODE
                   </span>
-                  <div className={`px-2 py-0.5 md:px-3 md:py-1 text-[8px] font-black tracking-widest rounded-none border ${
+                  <div className={`px-2 py-0.5 text-[7px] md:text-[8px] font-black tracking-widest rounded-none border ${
                     activeIdx === idx ? 'border-primary text-primary' : 'border-white/10 text-white/20'
                   }`}>
                     {project.status}
                   </div>
                 </div>
-                <h3 className={`text-xl md:text-2xl font-headline font-black tracking-tight transition-all ${
-                  activeIdx === idx ? 'text-white translate-x-2' : 'text-white/40'
+                <h3 className={`text-lg md:text-xl lg:text-2xl font-headline font-black tracking-tight transition-all ${
+                  activeIdx === idx ? 'text-white translate-x-1 md:translate-x-2' : 'text-white/40'
                 }`}>
                   {project.name}
                 </h3>
@@ -121,22 +121,22 @@ export function Projects() {
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
               
               {/* HUD Content */}
-              <div className="absolute inset-0 p-8 md:p-16 flex flex-col justify-between">
+              <div className="absolute inset-0 p-6 md:p-12 lg:p-16 flex flex-col justify-between">
                 <div className="flex justify-between items-start">
-                  <div className="space-y-4">
-                    <div className="px-3 py-1 md:px-4 md:py-1.5 bg-primary/20 border border-primary/30 text-[8px] md:text-[10px] font-black text-primary tracking-[0.2em] md:tracking-[0.3em] uppercase inline-block">
+                  <div className="space-y-3 md:space-y-5">
+                    <div className="px-2 py-0.5 md:px-4 md:py-1.5 bg-primary/20 border border-primary/30 text-[7px] md:text-[9px] font-black text-primary tracking-[0.2em] md:tracking-[0.3em] uppercase inline-block">
                       {projects[activeIdx].category}
                     </div>
-                    <div className="flex gap-6 md:gap-12 font-mono text-[8px] md:text-[9px] text-white/40 uppercase">
-                      <div>Latency: <span className="text-white">{projects[activeIdx].metrics.latency}</span></div>
-                      <div>Uptime: <span className="text-white">{projects[activeIdx].metrics.uptime}</span></div>
+                    <div className="flex gap-4 md:gap-10 font-mono text-[7px] md:text-[9px] text-white/40 uppercase">
+                      <div>Lat: <span className="text-white">{projects[activeIdx].metrics.latency}</span></div>
+                      <div>Up: <span className="text-white">{projects[activeIdx].metrics.uptime}</span></div>
                     </div>
                   </div>
-                  <Shield size={20} className="text-primary/40 animate-pulse hidden sm:block" />
+                  <Shield size={18} className="text-primary/40 animate-pulse hidden sm:block" />
                 </div>
 
-                <div className="max-w-2xl">
-                  <p className="text-base md:text-2xl text-white/80 font-light leading-relaxed mb-8 md:mb-12 line-clamp-3 md:line-clamp-none">
+                <div className="max-w-xl">
+                  <p className="text-sm md:text-lg lg:text-xl text-white/80 font-light leading-relaxed mb-6 md:mb-10 line-clamp-3 md:line-clamp-none">
                     {projects[activeIdx].description}
                   </p>
                   
@@ -144,16 +144,16 @@ export function Projects() {
                     href={projects[activeIdx].link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-4 md:gap-6 text-[10px] md:text-[12px] font-black tracking-[0.3em] md:tracking-[0.5em] uppercase text-white hover:text-primary transition-colors group/link"
+                    className="inline-flex items-center gap-3 md:gap-5 text-[9px] md:text-[11px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-white hover:text-primary transition-colors group/link"
                   >
-                    ESTABLISH_CONNECTION <ExternalLink className="w-3.5 h-3.5 md:w-4 md:h-4 group-hover/link:translate-x-2 transition-transform" />
+                    ESTABLISH_CONNECTION <ExternalLink className="w-3 h-3 md:w-4 md:h-4 group-hover/link:translate-x-2 transition-transform" />
                   </a>
                 </div>
               </div>
 
               {/* Decorative HUD */}
-              <div className="absolute top-0 right-0 w-16 h-16 md:w-32 md:h-32 border-t-2 border-r-2 border-primary/20 pointer-events-none" />
-              <div className="absolute bottom-0 left-0 w-16 h-16 md:w-32 md:h-32 border-b-2 border-l-2 border-secondary/20 pointer-events-none" />
+              <div className="absolute top-0 right-0 w-12 h-12 md:w-24 border-t-2 border-r-2 border-primary/20 pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-12 h-12 md:w-24 border-b-2 border-l-2 border-secondary/20 pointer-events-none" />
               <div className="scanning-line opacity-20" />
             </div>
           </div>
