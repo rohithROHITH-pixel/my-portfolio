@@ -4,134 +4,103 @@
 
 @layer base {
   :root {
-    /* Deep Space Black: #050508 */
     --background: 240 30% 2%;
     --foreground: 0 0% 98%;
-    
-    --card: 240 25% 6%;
+    --card: 240 25% 4%;
     --card-foreground: 0 0% 98%;
-    
-    --popover: 240 30% 4%;
+    --popover: 240 30% 2%;
     --popover-foreground: 0 0% 98%;
-    
-    /* Cyber Purple/Indigo: #6D28D9 */
-    --primary: 263 70% 50%;
+    --primary: 263 80% 60%;
     --primary-foreground: 0 0% 100%;
-    
-    --secondary: 240 20% 10%;
+    --secondary: 240 20% 8%;
     --secondary-foreground: 0 0% 98%;
-    
-    --muted: 240 20% 12%;
-    --muted-foreground: 240 10% 60%;
-    
-    /* Neon Cyan/Blue: #06B6D4 */
-    --accent: 188 90% 45%;
+    --muted: 240 20% 10%;
+    --muted-foreground: 240 10% 50%;
+    --accent: 188 90% 50%;
     --accent-foreground: 240 30% 2%;
-    
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    
-    --border: 240 20% 15%;
-    --input: 240 20% 15%;
-    --ring: 263 70% 50%;
-    
-    --radius: 0.5rem;
+    --border: 240 20% 12%;
+    --input: 240 20% 12%;
+    --ring: 263 80% 60%;
+    --radius: 0rem;
   }
 }
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border transition-colors duration-300;
   }
   body {
-    @apply bg-background text-foreground font-body overflow-x-hidden selection:bg-primary/30 selection:text-primary;
+    @apply bg-background text-foreground font-body overflow-x-hidden selection:bg-primary/40 selection:text-white;
     background-image: 
-      radial-gradient(circle at 50% -20%, hsla(263, 70%, 50%, 0.15), transparent 70%),
-      radial-gradient(circle at 100% 100%, hsla(188, 90%, 45%, 0.05), transparent 50%),
-      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      radial-gradient(circle at 50% 0%, hsla(263, 80%, 60%, 0.1), transparent 50%),
+      radial-gradient(circle at 0% 100%, hsla(188, 90%, 50%, 0.05), transparent 40%),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-blend-mode: overlay;
   }
 }
 
 @layer components {
-  .cyber-grid {
-    background-image: 
-      linear-gradient(to right, rgba(109, 40, 217, 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(109, 40, 217, 0.05) 1px, transparent 1px);
-    background-size: 50px 50px;
-    mask-image: radial-gradient(circle at center, black, transparent 80%);
+  .cyber-panel {
+    @apply relative bg-card/40 backdrop-blur-md border border-white/5 overflow-hidden;
+    box-shadow: 0 0 40px -10px rgba(0,0,0,0.5);
   }
 
-  .hud-corner {
-    @apply absolute w-4 h-4 border-primary/40 pointer-events-none;
-  }
-  
-  .hud-corner-tl { @apply hud-corner top-0 left-0 border-t-2 border-l-2; }
-  .hud-corner-tr { @apply hud-corner top-0 right-0 border-t-2 border-r-2; }
-  .hud-corner-bl { @apply hud-corner bottom-0 left-0 border-b-2 border-l-2; }
-  .hud-corner-br { @apply hud-corner bottom-0 right-0 border-b-2 border-r-2; }
-
-  .neon-glow-purple {
-    box-shadow: 0 0 20px hsla(263, 70%, 50%, 0.2);
+  .cyber-panel::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none;
   }
 
-  .neon-glow-cyan {
-    box-shadow: 0 0 20px hsla(188, 90%, 45%, 0.2);
+  .hud-accent {
+    @apply absolute w-1 h-1 bg-primary;
   }
 
-  .glitch-text {
-    position: relative;
-    display: inline-block;
+  .glow-text-primary {
+    text-shadow: 0 0 10px hsla(263, 80%, 60%, 0.5), 0 0 20px hsla(263, 80%, 60%, 0.2);
   }
 
-  .glitch-text::before,
-  .glitch-text::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.8;
+  .glow-text-accent {
+    text-shadow: 0 0 10px hsla(188, 90%, 50%, 0.5), 0 0 20px hsla(188, 90%, 50%, 0.2);
   }
 
-  .glitch-text::before {
-    left: 2px;
-    text-shadow: -2px 0 #ff00c1;
-    clip: rect(44px, 450px, 56px, 0);
-    animation: glitch-anim 5s infinite linear alternate-reverse;
-  }
-
-  .glitch-text::after {
-    left: -2px;
-    text-shadow: -2px 0 #00fff9;
-    clip: rect(44px, 450px, 56px, 0);
-    animation: glitch-anim2 5s infinite linear alternate-reverse;
+  .shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite linear;
   }
 }
 
-@keyframes glitch-anim {
-  0% { clip: rect(31px, 9999px, 94px, 0); }
-  20% { clip: rect(62px, 9999px, 42px, 0); }
-  40% { clip: rect(16px, 9999px, 78px, 0); }
-  60% { clip: rect(89px, 9999px, 13px, 0); }
-  80% { clip: rect(54px, 9999px, 91px, 0); }
-  100% { clip: rect(27px, 9999px, 56px, 0); }
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
-@keyframes glitch-anim2 {
-  0% { clip: rect(76px, 9999px, 23px, 0); }
-  20% { clip: rect(13px, 9999px, 98px, 0); }
-  40% { clip: rect(45px, 9999px, 34px, 0); }
-  60% { clip: rect(29px, 9999px, 87px, 0); }
-  80% { clip: rect(92px, 9999px, 11px, 0); }
-  100% { clip: rect(58px, 9999px, 49px, 0); }
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-10px) rotate(1deg); }
 }
 
-@keyframes scan-line {
-  0% { top: -100%; }
-  100% { top: 200%; }
+@keyframes scan-horizontal {
+  0% { left: -100%; }
+  100% { left: 100%; }
 }
 
-.animate-scan-line {
-  animation: scan-line 4s linear infinite;
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-scan-h {
+  animation: scan-horizontal 3s linear infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/20 hover:bg-primary/40 transition-colors;
 }
