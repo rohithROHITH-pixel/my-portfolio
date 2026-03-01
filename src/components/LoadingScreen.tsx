@@ -109,7 +109,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       )}>
         
         {/* Reveal Title Section */}
-        <div className="relative mb-16 group overflow-hidden perspective-1000">
+        <div className="relative mb-8 group overflow-hidden perspective-1000">
           <div className="flex items-center gap-3 mb-8 opacity-40">
             <div className="w-4 h-4 border border-primary animate-spin-slow" />
             <span className="text-primary text-[10px] font-black tracking-[1em] uppercase">NEURAL_INIT_V5.0</span>
@@ -136,6 +136,20 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
             {/* Tactical Frame Brackets */}
             <div className="absolute -top-6 -left-6 w-16 h-16 border-t-2 border-l-2 border-primary/30 transition-all duration-700" style={{ transform: `scale(${1 + (progress/200)})` }} />
             <div className="absolute -bottom-6 -right-6 w-16 h-16 border-b-2 border-r-2 border-secondary/30 transition-all duration-700" style={{ transform: `scale(${1 + (progress/200)})` }} />
+          </div>
+        </div>
+
+        {/* Cinematic Welcome Message Reveal */}
+        <div className={cn(
+          "mb-12 transition-all duration-1000 delay-500 text-center flex justify-center",
+          stage === 2 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        )}>
+          <div className="inline-flex items-center gap-4 px-6 py-2 border-x border-primary/20 bg-primary/5">
+             <div className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
+             <span className="text-[9px] md:text-xs font-mono font-black tracking-[0.4em] text-white/80 uppercase">
+               WELCOME TO ROHITH YP PORTFOLIO
+             </span>
+             <div className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
           </div>
         </div>
 
