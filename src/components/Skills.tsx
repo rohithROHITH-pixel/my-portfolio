@@ -1,35 +1,35 @@
 "use client";
 
-import { Layout, Server, Brain, Cpu, Activity } from 'lucide-react';
+import { Layout, Terminal, Layers, Cpu, Activity } from 'lucide-react';
 
 const skillNodes = [
   { 
-    name: 'NEURAL_FRONTEND', 
+    name: 'FRONTEND_CORE', 
     icon: <Layout />, 
-    items: ['Next.js 15', 'TypeScript', 'Tailwind', 'Motion UI'], 
+    items: ['HTML5 / CSS3', 'Tailwind CSS', 'Responsive Layouts', 'Web Standards'], 
     id: 'NODE_01',
     efficiency: '98%'
   },
   { 
-    name: 'LOGIC_CLUSTER', 
-    icon: <Server />, 
-    items: ['Node.js', 'Python', 'REST APIs', 'System Design'], 
+    name: 'LOGIC_PROTOCOLS', 
+    icon: <Terminal />, 
+    items: ['Java Core', 'Python', 'Logic Synthesis', 'Data Structures'], 
     id: 'NODE_02',
     efficiency: '94%'
   },
   { 
-    name: 'INTELLIGENCE', 
-    icon: <Brain />, 
-    items: ['Gemini AI', 'Genkit', 'Prompt Engineering', 'RAG Flows'], 
+    name: 'NEURAL_INTERFACE', 
+    icon: <Layers />, 
+    items: ['JavaScript (Learning)', 'Shadcn UI', 'Shadow Gen Tech', 'Motion Design'], 
     id: 'NODE_03',
-    efficiency: '96%'
+    efficiency: '88%'
   },
   { 
-    name: 'CORE_INFRA', 
+    name: 'SYSTEM_TOOLS', 
     icon: <Cpu />, 
-    items: ['Performance Opt', 'SEO Synthesis', 'Edge Nodes', 'Security'], 
+    items: ['Git / GitHub', 'VS Code Node', 'UI Optimization', 'Visual Logic'], 
     id: 'NODE_04',
-    efficiency: '99%'
+    efficiency: '96%'
   },
 ];
 
