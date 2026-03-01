@@ -117,7 +117,7 @@ export function Hero() {
                 className="group w-full sm:w-auto px-10 md:px-16 py-5 md:py-7 border border-white/10 text-white/40 font-black tracking-[0.3em] text-[10px] uppercase hover:bg-white/5 hover:text-white transition-all flex items-center justify-center gap-4 text-center"
               >
                 <Terminal size={16} className="text-secondary" />
-                <span>CMD_PROMPT</span>
+                <span>CONTACT</span>
               </a>
             </div>
           </div>
