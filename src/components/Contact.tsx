@@ -1,8 +1,7 @@
-
 "use client";
 
 import { useEffect, useState } from 'react';
-import { Mail, ShieldCheck, Phone, ExternalLink, Terminal } from 'lucide-react';
+import { Mail, ShieldCheck, ExternalLink, Terminal } from 'lucide-react';
 
 export function Contact() {
   const [systemHash, setSystemHash] = useState("SYNC_PENDING");
@@ -19,7 +18,7 @@ export function Contact() {
           {/* Left Content: Narrative Header */}
           <div className="animate-slide-up">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-8 h-[1px] bg-primary shadow-[0_0_10px_rgba(130,26,252,0.5)]" />
+              <div className="w-8 h-[1px] bg-primary shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
               <span className="text-[9px] font-mono font-black tracking-[0.4em] text-primary uppercase">Link_Interface</span>
             </div>
             
@@ -62,29 +61,6 @@ export function Contact() {
                 {/* Protocol Nodes Area */}
                 <div className="p-5 md:p-8 space-y-8">
                   
-                  {/* Voice Protocol (Phone) */}
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <span className="text-[7px] md:text-[8px] font-mono text-white/30 uppercase tracking-[0.3em]">Protocol_Voice</span>
-                      <div className="flex-grow h-[1px] bg-white/5" />
-                    </div>
-                    
-                    <a href="tel:+919663761192" className="group block relative">
-                      <div className="flex items-center justify-between p-4 md:p-6 bg-white/[0.02] border border-white/5 transition-all hover:bg-white/[0.04] hover:border-primary/30">
-                        <div className="flex items-center gap-4 md:gap-6">
-                          <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-primary/20 flex items-center justify-center text-primary bg-primary/5 group-hover:scale-110 transition-transform">
-                            <Phone size={18} />
-                          </div>
-                          <div>
-                            <div className="text-[8px] font-mono text-white/20 uppercase mb-0.5">Primary_Mobile</div>
-                            <div className="text-lg md:text-2xl font-bold text-white tracking-tight">+91 9663761192</div>
-                          </div>
-                        </div>
-                        <ExternalLink size={16} className="text-white/20 group-hover:text-primary transition-colors" />
-                      </div>
-                    </a>
-                  </div>
-
                   {/* Data Protocol (Email) */}
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
@@ -93,9 +69,9 @@ export function Contact() {
                     </div>
                     
                     <a href="mailto:roopanrohith320@gmail.com" className="group block relative">
-                      <div className="flex items-center justify-between p-4 md:p-6 bg-white/[0.02] border border-white/5 transition-all hover:bg-white/[0.04] hover:border-secondary/30">
+                      <div className="flex items-center justify-between p-4 md:p-6 bg-white/[0.02] border border-white/5 transition-all hover:bg-white/[0.04] hover:border-primary/30">
                         <div className="flex items-center gap-4 md:gap-6">
-                          <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-secondary/20 flex items-center justify-center text-secondary bg-secondary/5 group-hover:scale-110 transition-transform">
+                          <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-primary/20 flex items-center justify-center text-primary bg-primary/5 group-hover:scale-110 transition-transform">
                             <Mail size={18} />
                           </div>
                           <div>
@@ -105,7 +81,7 @@ export function Contact() {
                             </div>
                           </div>
                         </div>
-                        <ExternalLink size={16} className="text-white/20 group-hover:text-secondary transition-colors" />
+                        <ExternalLink size={16} className="text-white/20 group-hover:text-primary transition-colors" />
                       </div>
                     </a>
                   </div>
