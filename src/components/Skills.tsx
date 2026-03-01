@@ -13,7 +13,7 @@ const skillNodes = [
   { 
     name: 'LOGIC_CLUSTER', 
     icon: <Server />, 
-    items: ['Node.js', 'Firebase', 'PostgreSQL', 'Cloud Architecture'], 
+    items: ['Node.js', 'Python', 'REST APIs', 'System Design'], 
     id: 'NODE_02',
     efficiency: '94%'
   },
