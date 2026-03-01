@@ -146,7 +146,7 @@ export function Projects() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-3 md:gap-5 text-[9px] md:text-[11px] font-black tracking-[0.3em] md:tracking-[0.4em] uppercase text-white hover:text-primary transition-colors group/link"
                   >
-                    ESTABLISH_CONNECTION <ExternalLink className="w-3 h-3 md:w-4 md:h-4 group-hover/link:translate-x-2 transition-transform" />
+                    VIEW_LIVE_NODE <ExternalLink className="w-3 h-3 md:w-4 md:h-4 group-hover/link:translate-x-2 transition-transform" />
                   </a>
                 </div>
               </div>
