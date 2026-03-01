@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
@@ -43,6 +44,16 @@ const projects = [
     link: "https://innosphere-azure.vercel.app/",
     metrics: { latency: "22ms", uptime: "99.8%" },
     image: "https://picsum.photos/seed/inno-final/1200/800"
+  },
+  {
+    id: '05',
+    name: "ABHIRAM_MAIN",
+    status: "LIVE",
+    category: "CONSTRUCTION_PROTOCOL",
+    description: "Main corporate portal for Abhiram Builders, orchestrating structural excellence and architectural innovation.",
+    link: "https://abhirambuilders.com/",
+    metrics: { latency: "15ms", uptime: "100%" },
+    image: "https://picsum.photos/seed/corp-final/1200/800"
   }
 ];
 
@@ -73,7 +84,7 @@ export function Projects() {
             </h2>
           </div>
           <div className="font-mono text-[8px] md:text-[10px] text-white/20 uppercase tracking-[0.3em] mb-2">
-            Total_Deployed: 04 // Filtered: All
+            Total_Deployed: 05 // Filtered: All
           </div>
         </div>
 
