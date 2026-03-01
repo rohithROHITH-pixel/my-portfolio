@@ -10,21 +10,18 @@ export function About() {
   const [typedCode, setTypedCode] = useState("");
   const [isFlipped, setIsFlipped] = useState(false);
   
-  const codeSnippet = `// Initializing_Modern_Web_App...
-const project_config = {
-  framework: "Next.js 15",
-  design: "High-Performance UI",
-  animation: "Smooth 3D Motion"
-};
+  const codeSnippet = `// Build_Process: HTML + CSS + JS
+const structure = "<html><section>...</section></html>";
+const styling = ".ui { color: electric-purple; }";
+const logic = "() => { animate_spatial_nodes(); }";
 
-async function launch_site() {
-  console.log("Optimizing_User_Experience...");
-  await handshake(project_config);
-  return "READY_FOR_USERS";
+function build_modern_app() {
+  combine(structure, styling, logic);
+  deploy_to_cloud("Next.js 15");
 }
 
-// > CONNECTION_ESTABLISHED
-// > STATUS: SECURE_AND_STABLE`;
+// > STATUS: READY_FOR_LAUNCH
+// > PERFORMANCE: OPTIMAL`;
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
@@ -72,12 +69,12 @@ async function launch_site() {
                   </div>
                   <div className="flex items-center gap-2 text-[8px] font-mono text-white/20 uppercase tracking-widest">
                     <Terminal size={10} />
-                    core_init.sys
+                    build_log.sys
                   </div>
                 </div>
 
                 <div className="p-4 md:p-6 font-mono text-[10px] sm:text-xs md:text-sm leading-relaxed relative h-full overflow-y-auto scrollbar-hide">
-                  <div className="text-secondary/40 mb-2">/* System Booting... */</div>
+                  <div className="text-secondary/40 mb-2">/* Initializing_Web_Component... */</div>
                   <pre className="text-white/60 whitespace-pre-wrap break-words mb-6">
                     {typedCode}
                     <span className="inline-block w-1.5 h-4 bg-primary animate-pulse ml-1 align-middle" />
