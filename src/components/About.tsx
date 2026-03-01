@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
-import { Cpu, Zap, Brain, Shield } from 'lucide-react';
+import { Cpu, Zap, Brain, Fingerprint, Radar, Layers } from 'lucide-react';
 
 export function About() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -16,69 +16,72 @@ export function About() {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-32 relative overflow-hidden bg-[#050508]">
+    <section id="about" ref={sectionRef} className="py-40 relative bg-background overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-          <div className={`transition-all duration-1000 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'}`}>
-            <div className="flex items-center gap-4 mb-8">
-              <span className="h-[1px] w-12 bg-primary/40" />
-              <span className="text-[10px] font-mono tracking-[0.6em] text-primary uppercase font-bold">Neural_Identity</span>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-32 items-center">
+          {/* Bio-Scan Profile */}
+          <div className={`relative transition-all duration-1000 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+            <div className="relative tactical-panel p-2 aspect-[4/5] max-w-md mx-auto group">
+              <img 
+                src="https://picsum.photos/seed/rohith-os/1200/1500" 
+                alt="System Administrator" 
+                className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-1000"
+                data-ai-hint="futuristic pilot portrait"
+              />
+              
+              {/* Scan Overlay */}
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="scanning-line" />
+                <div className="absolute top-8 left-8 p-4 bg-black/80 backdrop-blur-md border border-primary/20">
+                  <Fingerprint className="text-primary mb-2" size={24} />
+                  <div className="text-[8px] font-mono text-white/40 uppercase">Subject_ID: 966376</div>
+                </div>
+                <div className="absolute bottom-8 right-8 p-4 bg-black/80 backdrop-blur-md border border-secondary/20">
+                  <Radar className="text-secondary animate-spin-slow" size={24} />
+                  <div className="text-[8px] font-mono text-white/40 uppercase">Loc: IN_NODE_01</div>
+                </div>
+              </div>
+            </div>
+            {/* Background Light Leaks */}
+            <div className="absolute -top-10 -left-10 w-64 h-64 bg-primary/10 blur-[100px] rounded-full animate-pulse" />
+          </div>
+
+          {/* Technical Specifications */}
+          <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0'}`}>
+            <div className="flex items-center gap-6 mb-12">
+              <div className="w-16 h-[2px] bg-primary" />
+              <span className="text-[12px] font-mono font-black tracking-[0.8em] text-primary uppercase">Bio_Processor</span>
             </div>
             
-            <h2 className="text-5xl md:text-7xl font-headline font-bold text-white mb-12 tracking-tighter">
-              BEYOND THE <span className="text-primary/80">PIXELS</span>
+            <h2 className="text-6xl md:text-8xl font-headline font-black text-white mb-12 tracking-tighter uppercase leading-none">
+              ENGINEERED FOR <span className="text-primary/60">INTELLIGENCE</span>
             </h2>
 
-            <div className="space-y-8 text-xl text-white/50 font-light leading-relaxed">
+            <div className="space-y-12 text-xl text-white/40 font-light leading-relaxed">
               <p>
-                I am <span className="text-white font-bold">Rohith YP</span>, an AIML Engineering student forging the next generation of intelligent web systems.
+                I am <span className="text-white font-bold">Rohith YP</span>. My focus is the intersection of high-performance web architecture and cognitive computing. Currently architecting modular systems at the 2nd-year engineering node.
               </p>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 my-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 {[
-                  { icon: <Brain />, label: "Cognitive Logic", desc: "Building neural-integrated systems" },
-                  { icon: <Cpu />, label: "High Performance", desc: "Optimized for extreme scale" }
+                  { icon: <Brain />, title: "Neural Logic", desc: "Deep integration of LLM workflows into responsive UX" },
+                  { icon: <Layers />, title: "Distributed Web", desc: "Scale-first architecture using Vercel & Firebase nodes" }
                 ].map((item, i) => (
-                  <div key={i} className="p-6 neural-panel border-white/5 group hover:border-primary/20 transition-all">
-                    <div className="text-primary mb-4">{item.icon}</div>
-                    <h4 className="text-white font-bold mb-2 tracking-wide">{item.label}</h4>
-                    <p className="text-sm text-white/40">{item.desc}</p>
+                  <div key={i} className="tactical-panel p-8 border-white/5 hover:border-primary/20 transition-all group">
+                    <div className="text-primary mb-6 group-hover:scale-110 transition-transform">{item.icon}</div>
+                    <h4 className="text-white font-black mb-3 tracking-widest text-sm uppercase">{item.title}</h4>
+                    <p className="text-[13px] leading-relaxed">{item.desc}</p>
                   </div>
                 ))}
               </div>
 
-              <p className="border-l-2 border-primary/40 pl-8 italic py-4 text-white/80 bg-white/[0.02]">
-                "Synthesizing manual code precision with AI efficiency to architect digital experiences that feel like the future."
-              </p>
-            </div>
-          </div>
-          
-          <div className={`relative transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0'}`}>
-            <div className="relative z-10 neural-panel p-2 aspect-square max-w-lg mx-auto overflow-hidden group">
-              <img 
-                src="https://picsum.photos/seed/rohith-v3/1000/1000" 
-                alt="Neural Profile" 
-                className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700"
-                data-ai-hint="futuristic character portrait"
-              />
-              
-              {/* Dynamic HUD Overlays */}
-              <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-10 right-10 text-[8px] font-mono text-white/40 animate-pulse">
-                  SYSTEM_SCANNING...
-                </div>
-                <div className="absolute bottom-10 left-10 space-y-1">
-                  <div className="w-12 h-1 bg-primary/60" />
-                  <div className="w-8 h-1 bg-white/20" />
-                </div>
-                {/* Scan line */}
-                <div className="absolute left-0 w-full h-[2px] bg-primary/20 animate-scan-v" />
+              <div className="p-10 border-l-4 border-secondary/40 bg-white/[0.01] relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-2 text-[8px] font-mono text-secondary opacity-40">REF_AUTH_01</div>
+                <p className="italic text-white/70 relative z-10 text-2xl">
+                  "Architecture is not just code; it's the nervous system of digital reality. I build the synapses."
+                </p>
               </div>
             </div>
-            
-            {/* Background energy fields */}
-            <div className="absolute -top-20 -right-20 w-80 h-80 bg-primary/5 blur-[120px] rounded-full" />
-            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-accent/5 blur-[120px] rounded-full" />
           </div>
         </div>
       </div>

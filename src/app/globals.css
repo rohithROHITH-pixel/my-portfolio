@@ -4,26 +4,26 @@
 
 @layer base {
   :root {
-    --background: 250 20% 5%;
-    --foreground: 0 0% 98%;
-    --card: 250 25% 7%;
-    --card-foreground: 0 0% 98%;
-    --popover: 250 30% 4%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 250 90% 65%; /* #821AFC */
+    --background: 240 25% 2%;
+    --foreground: 0 0% 100%;
+    --card: 240 25% 4%;
+    --card-foreground: 0 0% 90%;
+    --popover: 240 25% 3%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 270 95% 65%; /* Electric Purple */
     --primary-foreground: 0 0% 100%;
-    --secondary: 250 20% 12%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 250 20% 15%;
-    --muted-foreground: 250 10% 60%;
-    --accent: 220 70% 75%; /* #9ECFFC */
-    --accent-foreground: 250 30% 5%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 250 20% 18%;
-    --input: 250 20% 18%;
-    --ring: 250 90% 65%;
-    --radius: 0.75rem;
+    --secondary: 190 90% 50%; /* Atomic Cyan */
+    --secondary-foreground: 240 25% 2%;
+    --muted: 240 15% 10%;
+    --muted-foreground: 240 10% 60%;
+    --accent: 270 95% 65%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 20% 15%;
+    --input: 240 20% 15%;
+    --ring: 270 95% 65%;
+    --radius: 0rem; /* Sharp, futuristic corners */
   }
 }
 
@@ -34,71 +34,73 @@
   body {
     @apply bg-background text-foreground font-body overflow-x-hidden antialiased;
     background-image: 
-      radial-gradient(circle at 2px 2px, rgba(130, 26, 252, 0.05) 1px, transparent 0);
-    background-size: 40px 40px;
+      radial-gradient(circle at 50% 50%, rgba(130, 26, 252, 0.05) 0%, transparent 50%),
+      linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
   }
 }
 
 @layer components {
-  .neural-panel {
-    @apply relative bg-card/40 backdrop-blur-xl border border-white/5 overflow-hidden rounded-2xl;
-    box-shadow: 0 0 50px -10px rgba(0,0,0,0.8);
+  .tactical-panel {
+    @apply relative bg-black/60 backdrop-blur-2xl border-l-2 border-primary/40 overflow-hidden;
+    box-shadow: -10px 0 30px -10px rgba(130, 26, 252, 0.2);
   }
 
-  .neural-panel::after {
-    content: '';
-    @apply absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent pointer-events-none;
-  }
-
-  .hud-bracket {
-    @apply absolute w-4 h-4 border-primary/40;
+  .hud-border {
+    @apply absolute inset-0 pointer-events-none;
+    background: 
+      linear-gradient(to right, var(--primary) 2px, transparent 2px) 0 0,
+      linear-gradient(to bottom, var(--primary) 2px, transparent 2px) 0 0,
+      linear-gradient(to left, var(--primary) 2px, transparent 2px) 100% 100%,
+      linear-gradient(to top, var(--primary) 2px, transparent 2px) 100% 100%;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    opacity: 0.3;
   }
 
   .glow-text {
-    text-shadow: 0 0 15px hsla(250, 90%, 65%, 0.4);
+    text-shadow: 0 0 10px hsla(270, 95%, 65%, 0.5), 0 0 20px hsla(190, 90%, 50%, 0.3);
   }
 
-  .glass-card {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 hover:border-primary/40 transition-all duration-500;
-  }
-
-  .glitch-hover:hover {
-    animation: glitch 0.3s cubic-bezier(.25,.46,.45,.94) both infinite;
+  .scanning-line {
+    @apply absolute left-0 w-full h-[1px] bg-primary/30 shadow-[0_0_15px_rgba(130,26,252,0.8)];
+    animation: scan 4s linear infinite;
   }
 }
 
-@keyframes glitch {
-  0% { transform: translate(0) }
-  20% { transform: translate(-2px, 2px) }
-  40% { transform: translate(-2px, -2px) }
-  60% { transform: translate(2px, 2px) }
-  80% { transform: translate(2px, -2px) }
-  100% { transform: translate(0) }
+@keyframes scan {
+  0% { top: 0%; opacity: 0; }
+  5% { opacity: 1; }
+  95% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
 }
 
-@keyframes scan-v {
-  0% { top: -100%; }
-  100% { top: 100%; }
+@keyframes float-spatial {
+  0%, 100% { transform: translateY(0) rotateX(0); }
+  50% { transform: translateY(-20px) rotateX(5deg); }
 }
 
-.animate-scan-v {
-  animation: scan-v 4s linear infinite;
+.animate-spatial {
+  animation: float-spatial 6s ease-in-out infinite;
 }
 
-.energy-grid {
+.data-grid {
   background-image: 
-    linear-gradient(to right, rgba(130, 26, 252, 0.1) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(130, 26, 252, 0.1) 1px, transparent 1px);
-  background-size: 100px 100px;
-  mask-image: radial-gradient(circle at center, black, transparent 80%);
+    linear-gradient(rgba(130, 26, 252, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(130, 26, 252, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  perspective: 1000px;
+  transform: rotateX(60deg) translateY(-200px);
+  mask-image: linear-gradient(to bottom, black, transparent);
 }
 
 ::-webkit-scrollbar {
-  width: 3px;
+  width: 4px;
 }
 ::-webkit-scrollbar-track {
   @apply bg-background;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-primary/30 hover:bg-primary/60;
+  @apply bg-primary/20 hover:bg-primary/50 transition-colors;
 }
