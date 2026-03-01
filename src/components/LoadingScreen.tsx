@@ -20,6 +20,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   useEffect(() => {
     setSessionId(Math.random().toString(16).substring(2, 10).toUpperCase());
     
+    // Generate hydration-safe random streams only on client mount
     const generatedStreams = Array.from({ length: 15 }).map((_, i) => ({
       left: `${i * 7}%`,
       delay: `${i * 0.3}s`,
@@ -102,7 +103,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       
       {/* Main Cinematic Container */}
       <div className={cn(
-        "w-full max-w-4xl relative z-10 transition-all duration-1000",
+        "w-full max-w-6xl relative z-10 transition-all duration-1000",
         stage === 0 ? "scale-90 opacity-40 blur-sm" : 
         stage === 1 ? "scale-105 opacity-80" : 
         "scale-100 opacity-100"
@@ -119,14 +120,18 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
             "relative transition-transform duration-1000",
             stage === 0 ? "translate-y-10" : "translate-y-0"
           )}>
-            <div className="flex flex-col md:flex-row items-baseline gap-4">
-              <h1 className="text-7xl sm:text-8xl md:text-9xl font-headline font-black text-white tracking-tighter leading-none relative">
+            <div className="flex flex-col items-center md:items-start text-center md:text-left gap-4">
+              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-headline font-black text-white tracking-tighter leading-tight relative uppercase">
                 {/* Reveal Shutter Mask Animation */}
                 <div className={cn(
                   "absolute inset-0 bg-primary z-20 origin-left transition-transform duration-[1500ms] ease-in-out",
                   progress > 15 ? "scale-x-0" : "scale-x-100"
                 )} />
-                <span className="relative">ROHITH <span className="text-primary/60">YP</span></span>
+                <span className="relative">
+                  WELCOME TO <br className="hidden md:block" />
+                  <span className="text-primary/60">ROHITH YP</span> <br className="hidden md:block" />
+                  PORTFOLIO
+                </span>
                 
                 {/* Horizontal Scan Light Sweep */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent w-full h-full -translate-x-full animate-[sweep_3s_infinite_linear]" />
@@ -139,22 +144,8 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
           </div>
         </div>
 
-        {/* Cinematic Welcome Message Reveal */}
-        <div className={cn(
-          "mb-12 transition-all duration-1000 delay-500 text-center flex justify-center",
-          stage === 2 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        )}>
-          <div className="inline-flex items-center gap-4 px-6 py-2 border-x border-primary/20 bg-primary/5">
-             <div className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
-             <span className="text-[9px] md:text-xs font-mono font-black tracking-[0.4em] text-white/80 uppercase">
-               WELCOME TO ROHITH YP PORTFOLIO
-             </span>
-             <div className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
-          </div>
-        </div>
-
         {/* Technical Data Bar & Progress */}
-        <div className="space-y-8 max-w-2xl mx-auto">
+        <div className="space-y-8 max-w-2xl mx-auto md:mx-0">
           <div className="flex items-end justify-between">
             <div className="space-y-3">
               <div className="flex items-center gap-3">
