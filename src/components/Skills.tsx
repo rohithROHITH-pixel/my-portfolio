@@ -1,6 +1,6 @@
 "use client";
 
-import { Layout, Server, Brain, Cpu, Database, Globe, Layers, Zap, Activity } from 'lucide-react';
+import { Layout, Server, Brain, Cpu, Activity } from 'lucide-react';
 
 const skillNodes = [
   { 
@@ -80,24 +80,6 @@ export function Skills() {
               </div>
 
               <div className="scanning-line opacity-0 group-hover:opacity-10" />
-            </div>
-          ))}
-        </div>
-
-        {/* Data Stream Metrics */}
-        <div className="mt-16 md:mt-24 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 border-y border-white/5 py-10 md:py-14">
-          {[
-            { label: 'Latency', value: '0.04ms', icon: <Zap size={14} /> },
-            { label: 'Cluster', value: 'Distributed', icon: <Database size={14} /> },
-            { label: 'Uptime', value: '99.99%', icon: <Layers size={14} /> },
-            { label: 'Protocols', value: 'v4.0_Stable', icon: <Globe size={14} /> },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center md:text-left space-y-2 md:space-y-3">
-              <div className="flex items-center justify-center md:justify-start gap-2 text-primary">
-                {stat.icon}
-                <span className="text-[7px] md:text-[9px] font-mono font-black tracking-widest text-white/20 uppercase">{stat.label}</span>
-              </div>
-              <p className="text-lg md:text-2xl font-mono text-white font-black tracking-tighter">{stat.value}</p>
             </div>
           ))}
         </div>
