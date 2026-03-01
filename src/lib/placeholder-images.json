@@ -1,3 +1,28 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "sap-demo",
+      "description": "SAP Training Institute Website",
+      "imageUrl": "https://images.unsplash.com/photo-1640163561337-b0d4161f7ce9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0cmFpbmluZyUyMGluc3RpdHV0ZSUyMHdlYnNpdGV8ZW58MHx8fHwxNzcyMzQ1OTc2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "training institute website"
+    },
+    {
+      "id": "abhiram-builders",
+      "description": "Real Estate Business Website",
+      "imageUrl": "https://images.unsplash.com/photo-1565953522043-baea26b83b7e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxyZWFsJTIwZXN0YXRlJTIwYnVpbGRpbmd8ZW58MHx8fHwxNzcyMzQ1OTc2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "real estate building"
+    },
+    {
+      "id": "ai-solutions",
+      "description": "Corporate AI Business Website",
+      "imageUrl": "https://images.unsplash.com/photo-1563884705074-7c8b15f16295?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhcnRpZmljaWFsJTIwaW50ZWxsaWdlbmNlJTIwc2VydmVyfGVufDB8fHx8MTc3MjM0NTk3Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "artificial intelligence server"
+    },
+    {
+      "id": "innosphere",
+      "description": "Startup Innovation Website",
+      "imageUrl": "https://images.unsplash.com/photo-1559136555-9303baea8ebd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBzdGFydHVwfGVufDB8fHx8MTc3MjM0NTk3Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern office startup"
+    }
+  ]
 }
