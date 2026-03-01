@@ -40,7 +40,7 @@ const projects = [
     status: "OPTIMIZED",
     category: "VENTURE_TERMINAL",
     description: "Modular platform for emerging tech nodes and startup lifecycle management.",
-    link: "https://innosphere-eta.vercel.app/",
+    link: "https://innosphere-azure.vercel.app/",
     metrics: { latency: "22ms", uptime: "99.8%" },
     image: "https://picsum.photos/seed/inno-final/1200/800"
   }
