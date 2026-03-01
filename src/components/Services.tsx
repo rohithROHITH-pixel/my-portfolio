@@ -31,7 +31,7 @@ const serviceNodes = [
       "Neural Transitions",
       "High-Engage UI",
       "Fluid Spatial Motion",
-      "Performance Optimized"
+      "Vercel Optimized"
     ],
     accentColor: "secondary",
     hoverBg: "hover:bg-secondary/10",

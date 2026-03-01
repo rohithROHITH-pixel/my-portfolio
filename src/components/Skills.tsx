@@ -6,14 +6,14 @@ const skillNodes = [
   { 
     name: 'FRONTEND_CORE', 
     icon: <Layout />, 
-    items: ['HTML5 / CSS3', 'Tailwind CSS', 'Responsive Layouts', 'Web Standards'], 
+    items: ['HTML5 / CSS3', 'Tailwind CSS', 'Responsive Layouts', 'Vercel Deployment'], 
     id: 'NODE_01',
     efficiency: '98%'
   },
   { 
     name: 'LOGIC_PROTOCOLS', 
     icon: <Terminal />, 
-    items: ['Java Core', 'Python', 'Logic Synthesis', 'Data Structures'], 
+    items: ['Java Core', 'Python', 'Logic Synthesis', 'Problem Solving'], 
     id: 'NODE_02',
     efficiency: '94%'
   },
