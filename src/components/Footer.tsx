@@ -22,8 +22,8 @@ export function Footer() {
             <a 
               key={idx}
               href={social.href}
-              target={social.href.startsWith('http') ? "_blank" : undefined}
-              rel={social.href.startsWith('http') ? "noopener noreferrer" : undefined}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-10 h-10 rounded-xl glass border border-white/10 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
             >
               {social.icon}
@@ -31,9 +31,17 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="text-center md:text-right">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-2">Designed By</p>
-          <p className="text-sm font-medium text-white">Rohith YP</p>
+        <div className="text-center md:text-right group">
+          <div className="flex flex-col md:items-end gap-1.5">
+            <div className="flex items-center justify-center md:justify-end gap-2">
+              <div className="w-1.5 h-1.5 bg-primary animate-pulse shadow-[0_0_8px_rgba(130,26,252,0.8)]" />
+              <p className="text-[9px] font-mono font-black text-white/40 uppercase tracking-[0.4em]">Designed_By</p>
+            </div>
+            <p className="text-lg font-headline font-black text-white tracking-tight glow-text group-hover:text-primary transition-colors duration-500">
+              ROHITH YP
+            </p>
+            <div className="w-12 h-[1px] bg-white/5 group-hover:w-full group-hover:bg-primary/20 transition-all duration-700" />
+          </div>
         </div>
       </div>
     </footer>
